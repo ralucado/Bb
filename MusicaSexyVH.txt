@@ -1,0 +1,141 @@
+//Hola bb, hay una explicacion abajo, esto es solo como guia o prueba del como seria de alguna forma, faltaria definir como armar el arbol soloamente (creo)
+
+grammar Musica;
+
+prog:   func+ ;
+                
+func: ('function' ID '(' argtiplist ')' insts)*;
+
+argtiplist: (tipos ID (',' tipos ID)*)?;
+
+expr: ('+' | '-' | )  multExpr (('+' | '-')^ multExpr)* ;
+
+multExpr:   numatom ('*' numatom)* ; 
+
+numatom:   INT
+    |   ID
+    | interval
+    | funcall
+    ;
+
+musatom: polifon
+    | pitch
+    | funcall
+    | ID
+    ;
+
+atom: INT
+    | ID
+    | funcall
+    | polifon
+    | interval
+    | pitch
+    ;
+
+insts: (inst ';' | '{' insts* '}' |);
+
+inst: for
+    | while
+    | funcall
+    | assig
+    | play
+    | speed
+    | return
+    ;
+
+speed: 'Speed' expr;
+
+return: 'return' (expr | pitch | polifon); 
+
+pitch:'pitch' '(' musatom ',' numatom ')';
+
+interval: 'interval' '(' (nota | funcall | ID) ',' (nota | funcall | ID)  ')';
+
+play: 'play' '(' musatom ')';
+
+tipos:('int' | 'Note' | 'Notes' | 'Playable' | 'Melody' | 'Ensemble') '[]'?
+
+assig: 'int'? ID EQ (expr | pitch | polifon) ';'?
+    | 'Note' ID EQ (nota | pitch | funcall | ID) ';'?
+    | 'Combo' ID EQ (notas | pitch | funcall | ID) ';'?
+    | 'Playable' ID EQ (playable | pitch | funcall | ID)';'?
+    | 'Melody' ID EQ (melodia | pitch | funcall | ID)';'?
+    | 'Ensemble' ID EQ (polifon | pitch | funcall | ID) ';'?
+    ;
+
+cond: bool (( and | or ) bool)+;
+
+bool: (atom ('<' |  '>' | '==' | '<=' | '>=') atom);
+
+funcall: ID '(' arglist ')';
+
+arglist: (atom (',' atom)*)?;
+
+for: 'for' '(' assig? ';' cond? ';' assig? ')' insts;
+
+while: 'while' '(' bool ')' insts;
+
+nota: NOTA ; //que si que no hace falta
+
+notas: nota
+    | '(' nota (',' nota)* ')'
+    ;
+
+playable: notas ('.' duration ('*')? )? ;
+
+duration: INT 
+    | '(' expr ')'
+    ;
+
+auxfor: 'for' '(' assig ';' cond ';' assig ')' ( playable | '{' melodia '}');
+
+auxwhile: 'while' '(' cond ')' '(' (playable | '{' melodia '}'); 
+
+melodia: (playable 
+    | auxfor 
+    | auxwhile)*;
+
+polifon: '{' ((VOICE ID)? melodia '|')* '}'
+    |  (VOICE ID)? melodia ';'?;
+
+NOTA: ('Do' | 'Re' | 'Mi' | 'Fa' | 'Sol' | 'La' | 'Si' | 'C' | 'D' | 'E' | 'F' | 'G' | 'A' | 'B') ('0'..'9')? 
+    |'Quiet'
+    ;
+
+VOICE: 'Voice';
+EQ: '=';
+ID  :   ('a'..'z'|'A'..'Z')+ ;
+INT :   '0'..'9'+ ;
+NEWLINE:'\r'? '\n' ;
+WS : (' '|'\t')+ {skip();} ;
+
+////////////////////////////////////////////////////////////////
+/*
+El programa se compone de varias funciones (la funcion a la que se llamara sera la de nombre main).
+Dentro de estas funciones se pueden ejecutar instrucciones. Los tipos de instrucciones son:
+-Iteracion for
+-Iteracion while
+-Llamadas a funciones
+-Asignaciones (y declaraciones de variables)
+-Reproducir (lo que haya dentro de un play() se convertira en midi)
+-Speed(define los bpm)
+-Return (retornar un valor)
+
+Los tipos que existen son:
+-int
+-Nota (que representa una frecuencia)
+-Combo (Combinacion de Notas)
+-Playable (un Combo con duracion)
+-Melody (conjunto de Playable)
+-Ensemble (conjunto de Melody)
+
+Existen tambien operadores especiales para Notas:
+-Interval, le pasas dos notas y te da el intervalo(devolveria positivo si la primera nota es mas grave)
+-Pitch, le pasas una polifonia y una expresion y aumenta o disminuye el pitch
+
+En teoria, con 2 notas a y b, pitch(a,interval(a,b)) = b.
+
+La duracion de una nota se codifica en potencias de 2. 1 es redonda, 2 es blanca, 4 es negra, etc. El marcador * le agrega la mitad de duracion a esa nota.
+No esta definido que hacen valores diferentes.
+
+*/
