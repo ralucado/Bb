@@ -46,6 +46,5 @@ Las funciones retornan un valor de algún tipo de valor del lenguaje, el cual se
 Los programas escritos en Bb se compilan, es decir, a partir del código se genera un archivo MIDI con la música descrita por el código.
 
 \subsection{Software Adicional}
-Java tiene una librería para MIDI, javax.sound.midi, que se usara para generar la música en formato MIDI a partir del código.
-
+Java tiene una librería para MIDI, javax.sound.midi, que se usara para generar la música en formato MIDI a partir del código. Este archivo MIDI podrá entonces ser reproducido por algún software que lo reconozca( como Audacious en Ubuntu).
 \end{document}
