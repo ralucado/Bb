@@ -1,4 +1,3 @@
- 
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 
@@ -11,21 +10,24 @@
 \maketitle
 
 \section{Introducción}
-Bb es un lenguaje que expresa música.
+Bb es un lenguaje que expresa música mediante una sintaxis de lenguaje de programación.
 
 \section{Funcionalidades}
 
 \subsection{Tipos de datos}
 Los tipos de datos que usan los programas escritos en Bb son:
 \begin{enumerate}
-    \item Int (número entero)
+    \item int (número entero)
+    \item void
     \item Note
     \item Chord (conjunto de Notas, incluso una)
-    \item Playable (Chord con duración)
-    \item Melody (conjunto de Playable, incluso uno)
-    \item Ensemble (conjunto de Melodia, incluso una)
+    \item Melody (conjunto de Chord, incluso uno)
+    \item Poli (conjunto de Melody, incluso una)
 \end{enumerate}
+La codificación de las notas es el cifrado americano.
+
 También se podrán usar arrays de los tipos ya mencionados, y acceder a ellos mediante índices.
+Para diferenciar entre variables musicales que pueden producir sonido y variables que no, se comienzan los nombres de las primeras en mayúscula y de las segundas en minúscula.
 
 \subsection{Operaciones}
 Se incluye, aparte de las operaciones aritméticas comunes en los lenguajes de programación, operaciones con Tipos Musicales. 
@@ -33,6 +35,10 @@ Se incluye, aparte de las operaciones aritméticas comunes en los lenguajes de p
 Se puede alterar la nota sumando o restando expresiones matemáticas, aumentando o disminuyendo en semitonos la nota original.
 
 Se puede obtener el intervalo entre 2 notas en semitonos, como un entero (Int).
+
+Tiene tambien instrucciones de iteración, el $for$ y el $while$, e instrucciones condicionales $if$ y  $else$ correspondiente.
+
+Las funciones retornan un valor de algún tipo de valor del lenguaje, el cual se menciona en la declaración de la función. Resulta útil usar las funciones como plantillas para tipos de acordes, en el que se devuelve un acorde con tónica en el parametro que le pases, por ejemplo. 
 
 \section{Arquitectura}
 
