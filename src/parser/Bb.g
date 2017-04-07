@@ -7,7 +7,7 @@ options {
 
 tokens {
     LIST_FUNCTIONS; // List of functions (the root of the tree)
-    INTASSIGN;     // Assignment instruction
+    ASSIGN;     // Assignment instruction
     PARAMS;     // List of parameters in the declaration of a function
     FUNCALL;    // Function call
     ARGLIST;    // List of arguments passed in a function call
@@ -15,6 +15,8 @@ tokens {
     BOOLEAN;    // Boolean atom (for Boolean constants "true" or "false")
     PVALUE;     // Parameter by value in the list of parameters
     PREF;       // Parameter by reference in the list of parameters
+    PACK;
+    CHORD;
 }
 
 @header {
@@ -31,7 +33,7 @@ prog    : func+ EOF -> ^(LIST_FUNCTIONS func+)
         ;
 
 // A function has a name, a list of parameters and a block of instructions  
-func    : FUNC^ ID LB! params block_instructions RB!
+func    : type ID^ params LB! block_instructions RB!
         ;
 
 // The list of parameters grouped in a subtree (it can be empty)
@@ -44,8 +46,8 @@ paramlist: param (','! param)*
 
 // Parameters with & as prefix are passed by reference
 // Only one node with the name of the parameter is created
-param   :   '&' id=ID -> ^(PREF[$id,$id.text])
-        |   id=ID -> ^(PVALUE[$id,$id.text])
+param   :   '&' type id=ID -> ^(PREF[$id,$id.text]) type
+        |   type id=ID -> ^(PVALUE[$id,$id.text]) type
         ;
                 
 block_instructions
@@ -61,23 +63,27 @@ instruction
         |   funcall         // Call to a procedure (when no result is produced)
         |   return_stmt     // Return statement
         |   playable        // Play
+        |	speed			//Defines the playing speed
         |                   // Nothing
         ;
 
 // Assignment
-assign  :   'int' ID eq=EQ expr -> ^(INTASSIGN[$eq,":="] ID expr)|   'Note' ID EQ 
-        |   'Notes' ID EQ 
-        |   'Playable' ID EQ 
-        |   'Melody' ID EQ
-        |   'Ensemble' ID EQ
+assign  :   type ID eq=EQ expr -> ^(ASSIGN[$eq,":="] type ID expr) 
         ;
 
+type	:   'int'
+		|   'Note'
+        |   'Chord'
+        |   'Melody'
+        |   'Ensemble'
+        |	'void'
+        ;
 // if-then-else (else is optional)
-ite_stmt    :   IF^ LP! expr RP! LB! block_instructions (ELSE! block_instructions)? RB!
+ite_stmt    :   IF^ LP! n_expr RP! LB! block_instructions (ELSE! block_instructions)? RB!
             ;
 
 // while statement
-while_stmt  :   WHILE^ expr LB! block_instructions RB!
+while_stmt  :   WHILE^ n_expr LB! block_instructions RB!
             ;
 
 // Return statement with an expression
@@ -92,20 +98,43 @@ playable: melodia
 melodia: (notas '.' duration ('*')?)+
         ;
 
-notas: NOTA 
-     | '(' NOTA (NOTA)* ')'
+notas: nota 
+     | '[' pack ']'
+     | '(' chord ')'
      ;
+     
+nota: NOTA
+	| ID (PLUS num_expr)?
+	;
+	
+	
+chord:	sub_chord -> ^(CHORD sub_chord)
+	;
+	
+sub_chord: nota ( ',' (nota))*
+	;
+	
+pack: sub_pack -> ^(PACK sub_pack)
+	;
+	
+sub_pack: nota+ 
+	;
 
 duration: INT 
-    | '(' expr ')'
+    | '(' num_expr ')'
     ;
 
 polifon : 'Poli' ID LB! ((VOICE ID)? (melodia '|'!))* RB!
         ;
 
+speed	:	'Speed' n_expr;
+
 // Grammar for expressions with boolean, relational and aritmetic operators
-expr    :   boolterm (OR^ boolterm)*
+expr    : playable
+		| n_expr
         ;
+
+n_expr	:	boolterm (OR^ boolterm)*;
 
 boolterm:   boolfact (AND^ boolfact)*
         ;
@@ -130,7 +159,6 @@ atom    :   ID
         |   (b=TRUE | b=FALSE)  -> ^(BOOLEAN[$b,$b.text])
         |   funcall
         |   '('! expr ')'!
-        |   polifon
         ;
 
 
@@ -190,7 +218,7 @@ ESC_SEQ
 // White spaces
 WS      : ( ' '
         | '\t'
-        | '\r'
         | '\n'
+        | '\r'
         ) {$channel=HIDDEN;}
         ;

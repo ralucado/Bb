@@ -236,7 +236,7 @@ public class Interp {
         switch (t.getType()) {
 
             // Assignment
-            case BbLexer.INTASSIGN:
+            case BbLexer.ASSIGN:
                 value = evaluateExpression(t.getChild(1));
                 switch (t.getChild(0).getType()){
                 	case BbLexer.ID: 
