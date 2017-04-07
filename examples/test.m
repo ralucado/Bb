@@ -7,10 +7,10 @@ void main(){
 	int a = 3;*/
 	Melody Shooting = Melody(Aux.4 Aux.5 F#4.8* Patata.16 Min.8 Patata.8);
 	Chord Lol = Chord(Aux, Aux(+a), Aux(+7));
-	Lol(+1).8 Lol.4*; //wtf
-	(C, E, B#).8*; //esto no va bien
+	Lol(+1).8 Lol.4*;
+	(C, E, B#).8*;
 	Aux;
 	Poli Shoot{
-		Voice Singer C#.4 C b 1.16 |
+		Voice Singer C#.4 C b 1.16* |
 	}
 }

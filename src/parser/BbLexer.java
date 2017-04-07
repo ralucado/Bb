@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g 2017-04-07 22:04:55
+// $ANTLR 3.4 /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g 2017-04-07 22:13:23
 
 package parser;
 
@@ -11,7 +11,6 @@ import java.util.ArrayList;
 @SuppressWarnings({"all", "warnings", "unchecked"})
 public class BbLexer extends Lexer {
     public static final int EOF=-1;
-    public static final int T__57=57;
     public static final int T__58=58;
     public static final int T__59=59;
     public static final int T__60=60;
@@ -24,6 +23,7 @@ public class BbLexer extends Lexer {
     public static final int T__67=67;
     public static final int T__68=68;
     public static final int T__69=69;
+    public static final int T__70=70;
     public static final int ALT=4;
     public static final int AND=5;
     public static final int ARGLIST=6;
@@ -65,18 +65,19 @@ public class BbLexer extends Lexer {
     public static final int PITCH=42;
     public static final int PLAYABLE=43;
     public static final int PLUS=44;
-    public static final int PREF=45;
-    public static final int PVALUE=46;
-    public static final int QUIET=47;
-    public static final int RB=48;
-    public static final int RETURN=49;
-    public static final int RP=50;
-    public static final int SPEED=51;
-    public static final int THEN=52;
-    public static final int TRUE=53;
-    public static final int VOICE=54;
-    public static final int WHILE=55;
-    public static final int WS=56;
+    public static final int POLIFONE=45;
+    public static final int PREF=46;
+    public static final int PVALUE=47;
+    public static final int QUIET=48;
+    public static final int RB=49;
+    public static final int RETURN=50;
+    public static final int RP=51;
+    public static final int SPEED=52;
+    public static final int THEN=53;
+    public static final int TRUE=54;
+    public static final int VOICE=55;
+    public static final int WHILE=56;
+    public static final int WS=57;
 
     // delegates
     // delegators
@@ -93,36 +94,15 @@ public class BbLexer extends Lexer {
     }
     public String getGrammarFileName() { return "/home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g"; }
 
-    // $ANTLR start "T__57"
-    public final void mT__57() throws RecognitionException {
-        try {
-            int _type = T__57;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:6:7: ( ',' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:6:9: ','
-            {
-            match(','); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        	// do for sure before leaving
-        }
-    }
-    // $ANTLR end "T__57"
-
     // $ANTLR start "T__58"
     public final void mT__58() throws RecognitionException {
         try {
             int _type = T__58;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:7:7: ( '.' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:7:9: '.'
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:6:7: ( ',' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:6:9: ','
             {
-            match('.'); 
+            match(','); 
 
             }
 
@@ -140,10 +120,10 @@ public class BbLexer extends Lexer {
         try {
             int _type = T__59;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:8:7: ( ';' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:8:9: ';'
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:7:7: ( '.' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:7:9: '.'
             {
-            match(';'); 
+            match('.'); 
 
             }
 
@@ -161,12 +141,10 @@ public class BbLexer extends Lexer {
         try {
             int _type = T__60;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:9:7: ( 'Chord' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:9:9: 'Chord'
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:8:7: ( ';' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:8:9: ';'
             {
-            match("Chord"); 
-
-
+            match(';'); 
 
             }
 
@@ -184,10 +162,10 @@ public class BbLexer extends Lexer {
         try {
             int _type = T__61;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:10:7: ( 'Melody' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:10:9: 'Melody'
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:9:7: ( 'Chord' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:9:9: 'Chord'
             {
-            match("Melody"); 
+            match("Chord"); 
 
 
 
@@ -207,10 +185,10 @@ public class BbLexer extends Lexer {
         try {
             int _type = T__62;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:11:7: ( 'Note' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:11:9: 'Note'
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:10:7: ( 'Melody' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:10:9: 'Melody'
             {
-            match("Note"); 
+            match("Melody"); 
 
 
 
@@ -230,10 +208,10 @@ public class BbLexer extends Lexer {
         try {
             int _type = T__63;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:12:7: ( 'Poli' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:12:9: 'Poli'
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:11:7: ( 'Note' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:11:9: 'Note'
             {
-            match("Poli"); 
+            match("Note"); 
 
 
 
@@ -253,10 +231,10 @@ public class BbLexer extends Lexer {
         try {
             int _type = T__64;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:13:7: ( 'Speed' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:13:9: 'Speed'
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:12:7: ( 'Poli' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:12:9: 'Poli'
             {
-            match("Speed"); 
+            match("Poli"); 
 
 
 
@@ -276,10 +254,12 @@ public class BbLexer extends Lexer {
         try {
             int _type = T__65;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:14:7: ( '[' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:14:9: '['
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:13:7: ( 'Speed' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:13:9: 'Speed'
             {
-            match('['); 
+            match("Speed"); 
+
+
 
             }
 
@@ -297,10 +277,10 @@ public class BbLexer extends Lexer {
         try {
             int _type = T__66;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:15:7: ( ']' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:15:9: ']'
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:14:7: ( '[' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:14:9: '['
             {
-            match(']'); 
+            match('['); 
 
             }
 
@@ -318,12 +298,10 @@ public class BbLexer extends Lexer {
         try {
             int _type = T__67;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:16:7: ( 'int' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:16:9: 'int'
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:15:7: ( ']' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:15:9: ']'
             {
-            match("int"); 
-
-
+            match(']'); 
 
             }
 
@@ -341,10 +319,10 @@ public class BbLexer extends Lexer {
         try {
             int _type = T__68;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:17:7: ( 'void' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:17:9: 'void'
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:16:7: ( 'int' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:16:9: 'int'
             {
-            match("void"); 
+            match("int"); 
 
 
 
@@ -364,6 +342,29 @@ public class BbLexer extends Lexer {
         try {
             int _type = T__69;
             int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:17:7: ( 'void' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:17:9: 'void'
+            {
+            match("void"); 
+
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "T__69"
+
+    // $ANTLR start "T__70"
+    public final void mT__70() throws RecognitionException {
+        try {
+            int _type = T__70;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:18:7: ( '|' )
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:18:9: '|'
             {
@@ -378,14 +379,14 @@ public class BbLexer extends Lexer {
         	// do for sure before leaving
         }
     }
-    // $ANTLR end "T__69"
+    // $ANTLR end "T__70"
 
     // $ANTLR start "AND"
     public final void mAND() throws RecognitionException {
         try {
             int _type = AND;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:198:4: ( '&&' | 'and' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:199:4: ( '&&' | 'and' )
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -404,7 +405,7 @@ public class BbLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:198:9: '&&'
+                    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:199:9: '&&'
                     {
                     match("&&"); 
 
@@ -413,7 +414,7 @@ public class BbLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:198:16: 'and'
+                    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:199:16: 'and'
                     {
                     match("and"); 
 
@@ -437,7 +438,7 @@ public class BbLexer extends Lexer {
         try {
             int _type = OR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:199:3: ( '||' | 'or' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:200:3: ( '||' | 'or' )
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -456,7 +457,7 @@ public class BbLexer extends Lexer {
             }
             switch (alt2) {
                 case 1 :
-                    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:199:9: '||'
+                    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:200:9: '||'
                     {
                     match("||"); 
 
@@ -465,7 +466,7 @@ public class BbLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:199:16: 'or'
+                    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:200:16: 'or'
                     {
                     match("or"); 
 
@@ -489,7 +490,7 @@ public class BbLexer extends Lexer {
         try {
             int _type = NOT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:200:4: ( '!' | 'not' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:201:4: ( '!' | 'not' )
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -508,14 +509,14 @@ public class BbLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:200:9: '!'
+                    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:201:9: '!'
                     {
                     match('!'); 
 
                     }
                     break;
                 case 2 :
-                    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:200:15: 'not'
+                    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:201:15: 'not'
                     {
                     match("not"); 
 
@@ -539,8 +540,8 @@ public class BbLexer extends Lexer {
         try {
             int _type = VOICE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:201:6: ( 'Voice' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:201:8: 'Voice'
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:202:6: ( 'Voice' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:202:8: 'Voice'
             {
             match("Voice"); 
 
@@ -562,8 +563,8 @@ public class BbLexer extends Lexer {
         try {
             int _type = FUNC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:202:5: ( 'function' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:202:7: 'function'
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:203:5: ( 'function' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:203:7: 'function'
             {
             match("function"); 
 
@@ -585,8 +586,8 @@ public class BbLexer extends Lexer {
         try {
             int _type = LB;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:203:5: ( '{' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:203:7: '{'
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:204:5: ( '{' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:204:7: '{'
             {
             match('{'); 
 
@@ -606,8 +607,8 @@ public class BbLexer extends Lexer {
         try {
             int _type = RB;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:204:5: ( '}' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:204:7: '}'
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:205:5: ( '}' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:205:7: '}'
             {
             match('}'); 
 
@@ -627,8 +628,8 @@ public class BbLexer extends Lexer {
         try {
             int _type = LP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:205:5: ( '(' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:205:7: '('
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:206:5: ( '(' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:206:7: '('
             {
             match('('); 
 
@@ -648,8 +649,8 @@ public class BbLexer extends Lexer {
         try {
             int _type = RP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:206:5: ( ')' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:206:7: ')'
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:207:5: ( ')' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:207:7: ')'
             {
             match(')'); 
 
@@ -669,8 +670,8 @@ public class BbLexer extends Lexer {
         try {
             int _type = EQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:207:6: ( '=' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:207:8: '='
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:208:6: ( '=' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:208:8: '='
             {
             match('='); 
 
@@ -690,8 +691,8 @@ public class BbLexer extends Lexer {
         try {
             int _type = NEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:208:4: ( '!=' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:208:6: '!='
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:209:4: ( '!=' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:209:6: '!='
             {
             match("!="); 
 
@@ -713,8 +714,8 @@ public class BbLexer extends Lexer {
         try {
             int _type = LT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:209:9: ( '<' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:209:11: '<'
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:210:9: ( '<' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:210:11: '<'
             {
             match('<'); 
 
@@ -734,8 +735,8 @@ public class BbLexer extends Lexer {
         try {
             int _type = LE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:210:9: ( '<=' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:210:11: '<='
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:211:9: ( '<=' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:211:11: '<='
             {
             match("<="); 
 
@@ -757,8 +758,8 @@ public class BbLexer extends Lexer {
         try {
             int _type = GT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:211:9: ( '>' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:211:11: '>'
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:212:9: ( '>' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:212:11: '>'
             {
             match('>'); 
 
@@ -778,8 +779,8 @@ public class BbLexer extends Lexer {
         try {
             int _type = GE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:212:9: ( '>=' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:212:11: '>='
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:213:9: ( '>=' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:213:11: '>='
             {
             match(">="); 
 
@@ -801,8 +802,8 @@ public class BbLexer extends Lexer {
         try {
             int _type = MUL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:213:5: ( '*' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:213:7: '*'
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:214:5: ( '*' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:214:7: '*'
             {
             match('*'); 
 
@@ -822,8 +823,8 @@ public class BbLexer extends Lexer {
         try {
             int _type = DIV;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:214:5: ( '/' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:214:7: '/'
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:215:5: ( '/' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:215:7: '/'
             {
             match('/'); 
 
@@ -843,8 +844,8 @@ public class BbLexer extends Lexer {
         try {
             int _type = MOD;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:215:5: ( '%' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:215:7: '%'
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:216:5: ( '%' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:216:7: '%'
             {
             match('%'); 
 
@@ -864,8 +865,8 @@ public class BbLexer extends Lexer {
         try {
             int _type = PLUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:216:6: ( '+' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:216:8: '+'
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:217:6: ( '+' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:217:8: '+'
             {
             match('+'); 
 
@@ -885,8 +886,8 @@ public class BbLexer extends Lexer {
         try {
             int _type = MINUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:217:7: ( '-' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:217:9: '-'
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:218:7: ( '-' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:218:9: '-'
             {
             match('-'); 
 
@@ -906,8 +907,8 @@ public class BbLexer extends Lexer {
         try {
             int _type = TRUE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:218:9: ( 'true' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:218:11: 'true'
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:219:9: ( 'true' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:219:11: 'true'
             {
             match("true"); 
 
@@ -929,8 +930,8 @@ public class BbLexer extends Lexer {
         try {
             int _type = FALSE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:219:9: ( 'false' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:219:11: 'false'
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:220:9: ( 'false' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:220:11: 'false'
             {
             match("false"); 
 
@@ -952,8 +953,8 @@ public class BbLexer extends Lexer {
         try {
             int _type = IF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:220:9: ( 'if' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:220:11: 'if'
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:221:9: ( 'if' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:221:11: 'if'
             {
             match("if"); 
 
@@ -975,8 +976,8 @@ public class BbLexer extends Lexer {
         try {
             int _type = THEN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:221:9: ( 'then' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:221:11: 'then'
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:222:9: ( 'then' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:222:11: 'then'
             {
             match("then"); 
 
@@ -998,8 +999,8 @@ public class BbLexer extends Lexer {
         try {
             int _type = ELSE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:222:9: ( 'else' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:222:11: 'else'
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:223:9: ( 'else' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:223:11: 'else'
             {
             match("else"); 
 
@@ -1021,8 +1022,8 @@ public class BbLexer extends Lexer {
         try {
             int _type = WHILE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:223:9: ( 'while' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:223:11: 'while'
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:224:9: ( 'while' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:224:11: 'while'
             {
             match("while"); 
 
@@ -1044,8 +1045,8 @@ public class BbLexer extends Lexer {
         try {
             int _type = FOR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:224:6: ( 'for' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:224:8: 'for'
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:225:6: ( 'for' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:225:8: 'for'
             {
             match("for"); 
 
@@ -1067,8 +1068,8 @@ public class BbLexer extends Lexer {
         try {
             int _type = RETURN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:225:9: ( 'return' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:225:11: 'return'
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:226:9: ( 'return' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:226:11: 'return'
             {
             match("return"); 
 
@@ -1090,7 +1091,7 @@ public class BbLexer extends Lexer {
         try {
             int _type = PITCH;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:226:7: ( ( 'C' | 'D' | 'E' | 'F' | 'G' | 'A' | 'B' ) )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:227:7: ( ( 'C' | 'D' | 'E' | 'F' | 'G' | 'A' | 'B' ) )
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:
             {
             if ( (input.LA(1) >= 'A' && input.LA(1) <= 'G') ) {
@@ -1119,7 +1120,7 @@ public class BbLexer extends Lexer {
         try {
             int _type = ALT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:227:6: ( ( '#' | 'b' ) )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:228:6: ( ( '#' | 'b' ) )
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:
             {
             if ( input.LA(1)=='#'||input.LA(1)=='b' ) {
@@ -1148,8 +1149,8 @@ public class BbLexer extends Lexer {
         try {
             int _type = QUIET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:228:7: ( 'Z' )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:228:9: 'Z'
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:229:7: ( 'Z' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:229:9: 'Z'
             {
             match('Z'); 
 
@@ -1169,8 +1170,8 @@ public class BbLexer extends Lexer {
         try {
             int _type = ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:229:6: ( ( 'a' .. 'z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )* )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:229:10: ( 'a' .. 'z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )*
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:230:6: ( ( 'a' .. 'z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )* )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:230:10: ( 'a' .. 'z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )*
             {
             if ( (input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
                 input.consume();
@@ -1182,7 +1183,7 @@ public class BbLexer extends Lexer {
             }
 
 
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:229:20: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )*
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:230:20: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )*
             loop4:
             do {
                 int alt4=2;
@@ -1232,8 +1233,8 @@ public class BbLexer extends Lexer {
         try {
             int _type = NOTEID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:230:9: ( ( 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )+ )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:230:13: ( 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )+
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:231:9: ( ( 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )+ )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:231:13: ( 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )+
             {
             if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z') ) {
                 input.consume();
@@ -1245,7 +1246,7 @@ public class BbLexer extends Lexer {
             }
 
 
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:230:23: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )+
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:231:23: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )+
             int cnt5=0;
             loop5:
             do {
@@ -1300,10 +1301,10 @@ public class BbLexer extends Lexer {
         try {
             int _type = INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:231:5: ( ( '0' .. '9' )+ )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:231:9: ( '0' .. '9' )+
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:232:5: ( ( '0' .. '9' )+ )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:232:9: ( '0' .. '9' )+
             {
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:231:9: ( '0' .. '9' )+
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:232:9: ( '0' .. '9' )+
             int cnt6=0;
             loop6:
             do {
@@ -1358,7 +1359,7 @@ public class BbLexer extends Lexer {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:233:9: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:234:9: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -1388,13 +1389,13 @@ public class BbLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:233:11: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+                    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:234:11: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
                     {
                     match("//"); 
 
 
 
-                    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:233:16: (~ ( '\\n' | '\\r' ) )*
+                    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:234:16: (~ ( '\\n' | '\\r' ) )*
                     loop7:
                     do {
                         int alt7=2;
@@ -1428,7 +1429,7 @@ public class BbLexer extends Lexer {
                     } while (true);
 
 
-                    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:233:30: ( '\\r' )?
+                    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:234:30: ( '\\r' )?
                     int alt8=2;
                     int LA8_0 = input.LA(1);
 
@@ -1437,7 +1438,7 @@ public class BbLexer extends Lexer {
                     }
                     switch (alt8) {
                         case 1 :
-                            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:233:30: '\\r'
+                            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:234:30: '\\r'
                             {
                             match('\r'); 
 
@@ -1454,13 +1455,13 @@ public class BbLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:234:11: '/*' ( options {greedy=false; } : . )* '*/'
+                    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:235:11: '/*' ( options {greedy=false; } : . )* '*/'
                     {
                     match("/*"); 
 
 
 
-                    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:234:16: ( options {greedy=false; } : . )*
+                    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:235:16: ( options {greedy=false; } : . )*
                     loop9:
                     do {
                         int alt9=2;
@@ -1485,7 +1486,7 @@ public class BbLexer extends Lexer {
 
                         switch (alt9) {
                     	case 1 :
-                    	    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:234:44: .
+                    	    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:235:44: .
                     	    {
                     	    matchAny(); 
 
@@ -1520,8 +1521,8 @@ public class BbLexer extends Lexer {
     // $ANTLR start "ESC_SEQ"
     public final void mESC_SEQ() throws RecognitionException {
         try {
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:240:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:240:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:241:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:241:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
             {
             match('\\'); 
 
@@ -1550,8 +1551,8 @@ public class BbLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:243:9: ( ( ' ' | '\\t' | '\\n' | '\\r' ) )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:243:11: ( ' ' | '\\t' | '\\n' | '\\r' )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:244:9: ( ( ' ' | '\\t' | '\\n' | '\\r' ) )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:244:11: ( ' ' | '\\t' | '\\n' | '\\r' )
             {
             if ( (input.LA(1) >= '\t' && input.LA(1) <= '\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
                 input.consume();
@@ -1577,110 +1578,110 @@ public class BbLexer extends Lexer {
     // $ANTLR end "WS"
 
     public void mTokens() throws RecognitionException {
-        // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:1:8: ( T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | AND | OR | NOT | VOICE | FUNC | LB | RB | LP | RP | EQ | NEQ | LT | LE | GT | GE | MUL | DIV | MOD | PLUS | MINUS | TRUE | FALSE | IF | THEN | ELSE | WHILE | FOR | RETURN | PITCH | ALT | QUIET | ID | NOTEID | INT | COMMENT | WS )
+        // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:1:8: ( T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | AND | OR | NOT | VOICE | FUNC | LB | RB | LP | RP | EQ | NEQ | LT | LE | GT | GE | MUL | DIV | MOD | PLUS | MINUS | TRUE | FALSE | IF | THEN | ELSE | WHILE | FOR | RETURN | PITCH | ALT | QUIET | ID | NOTEID | INT | COMMENT | WS )
         int alt11=49;
         alt11 = dfa11.predict(input);
         switch (alt11) {
             case 1 :
-                // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:1:10: T__57
-                {
-                mT__57(); 
-
-
-                }
-                break;
-            case 2 :
-                // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:1:16: T__58
+                // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:1:10: T__58
                 {
                 mT__58(); 
 
 
                 }
                 break;
-            case 3 :
-                // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:1:22: T__59
+            case 2 :
+                // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:1:16: T__59
                 {
                 mT__59(); 
 
 
                 }
                 break;
-            case 4 :
-                // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:1:28: T__60
+            case 3 :
+                // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:1:22: T__60
                 {
                 mT__60(); 
 
 
                 }
                 break;
-            case 5 :
-                // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:1:34: T__61
+            case 4 :
+                // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:1:28: T__61
                 {
                 mT__61(); 
 
 
                 }
                 break;
-            case 6 :
-                // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:1:40: T__62
+            case 5 :
+                // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:1:34: T__62
                 {
                 mT__62(); 
 
 
                 }
                 break;
-            case 7 :
-                // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:1:46: T__63
+            case 6 :
+                // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:1:40: T__63
                 {
                 mT__63(); 
 
 
                 }
                 break;
-            case 8 :
-                // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:1:52: T__64
+            case 7 :
+                // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:1:46: T__64
                 {
                 mT__64(); 
 
 
                 }
                 break;
-            case 9 :
-                // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:1:58: T__65
+            case 8 :
+                // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:1:52: T__65
                 {
                 mT__65(); 
 
 
                 }
                 break;
-            case 10 :
-                // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:1:64: T__66
+            case 9 :
+                // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:1:58: T__66
                 {
                 mT__66(); 
 
 
                 }
                 break;
-            case 11 :
-                // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:1:70: T__67
+            case 10 :
+                // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:1:64: T__67
                 {
                 mT__67(); 
 
 
                 }
                 break;
-            case 12 :
-                // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:1:76: T__68
+            case 11 :
+                // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:1:70: T__68
                 {
                 mT__68(); 
 
 
                 }
                 break;
-            case 13 :
-                // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:1:82: T__69
+            case 12 :
+                // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:1:76: T__69
                 {
                 mT__69(); 
+
+
+                }
+                break;
+            case 13 :
+                // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:1:82: T__70
+                {
+                mT__70(); 
 
 
                 }
@@ -2201,7 +2202,7 @@ public class BbLexer extends Lexer {
             this.transition = DFA11_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | AND | OR | NOT | VOICE | FUNC | LB | RB | LP | RP | EQ | NEQ | LT | LE | GT | GE | MUL | DIV | MOD | PLUS | MINUS | TRUE | FALSE | IF | THEN | ELSE | WHILE | FOR | RETURN | PITCH | ALT | QUIET | ID | NOTEID | INT | COMMENT | WS );";
+            return "1:1: Tokens : ( T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | AND | OR | NOT | VOICE | FUNC | LB | RB | LP | RP | EQ | NEQ | LT | LE | GT | GE | MUL | DIV | MOD | PLUS | MINUS | TRUE | FALSE | IF | THEN | ELSE | WHILE | FOR | RETURN | PITCH | ALT | QUIET | ID | NOTEID | INT | COMMENT | WS );";
         }
     }
  

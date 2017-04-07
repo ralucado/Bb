@@ -22,6 +22,7 @@ tokens {
     NOTE;
     MELODY;
     PLAYABLE;
+    POLIFONE;
 }
 
 @header {
@@ -121,7 +122,7 @@ playable: melodia
 melodia: notelist+ -> ^(MELODY notelist+)
         ;
 
-notelist: notas '.' duration MUL? -> ^(PLAYABLE notas MUL? duration);
+notelist: notas '.' duration MUL? -> ^(PLAYABLE notas duration MUL?);
 
 notas: nota
      | '['! pack ']'!
@@ -147,7 +148,7 @@ duration: INT
     | '('! num_expr ')'!
     ;
 
-polifon : 'Poli'! NOTEID LB! voices+ RB!
+polifon : 'Poli' NOTEID LB voices+ RB -> ^(POLIFONE NOTEID voices+)
         ;
         
 voices:	VOICE^ NOTEID (melodia '|'!);
@@ -193,7 +194,7 @@ funcall :   ID '(' expr_list? ')' -> ^(FUNCALL ID ^(ARGLIST expr_list?))
 expr_list:  expr (','! expr)*
         ;
 
-notabasica : PITCH^ ALT? INT? ;
+notabasica : PITCH ALT? INT? ;
 //Tokens
 AND:    '&&' | 'and';
 OR:     '||' | 'or';
