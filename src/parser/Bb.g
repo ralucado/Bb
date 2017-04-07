@@ -21,6 +21,7 @@ tokens {
     SPEED;
     NOTE;
     MELODY;
+    PLAYABLE;
 }
 
 @header {
@@ -120,15 +121,15 @@ playable: melodia
 melodia: notelist+ -> ^(MELODY notelist+)
         ;
 
-notelist: notas '.' duration MUL? -> ^(notas MUL? duration);
+notelist: notas '.' duration MUL? -> ^(PLAYABLE notas MUL? duration);
 
 notas: nota
      | '['! pack ']'!
      | '('! chord ')'!
      ;
      
-nota: notabasica
-	| NOTEID ( PLUS^ num_expr)?
+nota: notabasica  -> ^(NOTE notabasica)
+	| NOTEID ( '('! PLUS^ num_expr ')'!)?
 	;
 	
 	
@@ -146,10 +147,10 @@ duration: INT
     | '('! num_expr ')'!
     ;
 
-polifon : 'Poli'! ID LB! voices+ RB!
+polifon : 'Poli'! NOTEID LB! voices+ RB!
         ;
         
-voices:	VOICE^ ID (melodia '|'!);
+voices:	VOICE^ NOTEID (melodia '|'!);
 
 speed	:	'Speed' n_expr -> ^(SPEED n_expr);
 
