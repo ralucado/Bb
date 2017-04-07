@@ -52,8 +52,8 @@ paramlist: param (','! param)*
 
 // Parameters with & as prefix are passed by reference
 // Only one node with the name of the parameter is created
-param   :   type ID
-        |   notetype NOTEID
+param   :   type^ ID
+        |   notetype^ NOTEID
         ;
                 
 block_instructions
@@ -75,8 +75,8 @@ instruction
         ;
 
 // Assignment
-assign  :   type ID eq=EQ n_expr -> ^(ASSIGN[$eq,":="] ID n_expr)
-		|	notetype NOTEID EQ musicnotation -> ^(NOTEASSIGN NOTEID musicnotation)
+assign  :   (type)? ID eq=EQ n_expr -> ^(ASSIGN[$eq,":="] ID n_expr)
+		|	(notetype)? NOTEID EQ musicnotation -> ^(NOTEASSIGN NOTEID musicnotation)
         ;
 
 type	:   'int'
@@ -98,7 +98,7 @@ musicnotation	:	'Note' notabasica ('.' num_expr MUL?)? -> ^(PLAYABLE ^(NOTE nota
 
 
 // if-then-else (else is optional)
-ite_stmt    :   IF^ LP! n_expr RP! LB! block_instructions (ELSE! block_instructions)? RB!
+ite_stmt    :   IF^ LP! n_expr RP! LB! block_instructions RB! (ELSE! LB! block_instructions RB!)?
             ;
 
 // while statement
@@ -106,7 +106,7 @@ while_stmt  :   WHILE^ LP! n_expr RP! LB! block_instructions RB!
             ;
             
 // for statement
-for_stmt  :   FOR^ LP! assign ';' n_expr ';' assign RP! LB! block_instructions RB!
+for_stmt  :   FOR^ LP! assign ';'! n_expr ';'! assign RP! LB! block_instructions RB!
             ;
 
 // Return statement with an expression
