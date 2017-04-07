@@ -60,6 +60,7 @@ instruction
         :   assign          // Assignment
         |   ite_stmt        // if-then-else
         |   while_stmt      // while statement
+        |	for_stmt		//for statement
         |   funcall         // Call to a procedure (when no result is produced)
         |   return_stmt     // Return statement
         |   playable        // Play
@@ -83,7 +84,11 @@ ite_stmt    :   IF^ LP! n_expr RP! LB! block_instructions (ELSE! block_instructi
             ;
 
 // while statement
-while_stmt  :   WHILE^ n_expr LB! block_instructions RB!
+while_stmt  :   WHILE^ LP! n_expr RP! LB! block_instructions RB!
+            ;
+            
+// for statement
+for_stmt  :   FOR^ LP! assign ';' n_expr ';' assign RP! LB! block_instructions RB!
             ;
 
 // Return statement with an expression
@@ -121,10 +126,10 @@ sub_pack: nota+
 	;
 
 duration: INT 
-    | '(' num_expr ')'
+    | '('! num_expr ')'!
     ;
 
-polifon : 'Poli' ID LB! ((VOICE ID)? (melodia '|'!))* RB!
+polifon : 'Poli' ID LB! (VOICE ID (melodia '|'!))* RB!
         ;
 
 speed	:	'Speed' n_expr;
@@ -154,14 +159,12 @@ factor  :   (NOT^ | PLUS^ | MINUS^)? atom
 // Atom of the expressions (variables, integer and boolean literals).
 // An atom can also be a function call or another expression
 // in parenthesis
-atom    :   ID 
+atom    :   ID
         |   INT
         |   (b=TRUE | b=FALSE)  -> ^(BOOLEAN[$b,$b.text])
-        |   funcall
-        |   '('! expr ')'!
+        |	funcall
+        |   '('! n_expr ')'!
         ;
-
-
 // A function call has a lits of arguments in parenthesis (possibly empty)
 funcall :   ID '(' expr_list? ')' -> ^(FUNCALL ID ^(ARGLIST expr_list?))
         ;
@@ -198,6 +201,7 @@ IF      : 'if' ;
 THEN    : 'then' ;
 ELSE    : 'else' ;
 WHILE   : 'while' ;
+FOR		: 'for'	;
 RETURN  : 'return';
 NOTA: ('C' | 'D' | 'E' | 'F' | 'G' | 'A' | 'B') ('0'..'9')? ('#' | 'b')? 
     |'Z'
