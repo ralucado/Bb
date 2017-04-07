@@ -17,6 +17,7 @@ tokens {
     PREF;       // Parameter by reference in the list of parameters
     PACK;
     CHORD;
+    NOTEASSIGN;
 }
 
 @header {
@@ -33,7 +34,7 @@ prog    : func+ EOF -> ^(LIST_FUNCTIONS func+)
         ;
 
 // A function has a name, a list of parameters and a block of instructions  
-func    : type ID^ params LB! block_instructions RB!
+func    : (type | notetype) ID^ params LB! block_instructions RB!
         ;
 
 // The list of parameters grouped in a subtree (it can be empty)
@@ -46,8 +47,8 @@ paramlist: param (','! param)*
 
 // Parameters with & as prefix are passed by reference
 // Only one node with the name of the parameter is created
-param   :   '&' type id=ID -> ^(PREF[$id,$id.text]) type
-        |   type id=ID -> ^(PVALUE[$id,$id.text]) type
+param   :   type ID
+        |   notetype NOTEID
         ;
                 
 block_instructions
@@ -69,16 +70,27 @@ instruction
         ;
 
 // Assignment
-assign  :   type ID eq=EQ expr -> ^(ASSIGN[$eq,":="] type ID expr) 
+assign  :   type ID eq=EQ n_expr -> ^(ASSIGN[$eq,":="] type ID n_expr)
+		|	notetype NOTEID eq=EQ musicnotation -> ^(NOTEASSIGN[$eq,":="] notetype NOTEID musicnotation)
         ;
 
 type	:   'int'
-		|   'Note'
+        |	'void'
+        ;
+        
+notetype:   'Note'
         |   'Chord'
         |   'Melody'
         |   'Ensemble'
-        |	'void'
         ;
+        
+musicnotation	:	'Note' '(' NOTA ')'
+				|	'Chord' '(' chord ')'
+				|	'Melody' '(' melodia ')'
+				|	polifon
+				;
+
+
 // if-then-else (else is optional)
 ite_stmt    :   IF^ LP! n_expr RP! LB! block_instructions (ELSE! block_instructions)? RB!
             ;
@@ -109,7 +121,7 @@ notas: nota
      ;
      
 nota: NOTA
-	| ID (PLUS num_expr)?
+	| NOTEID (PLUS num_expr)?
 	;
 	
 	
@@ -206,7 +218,8 @@ RETURN  : 'return';
 NOTA: ('C' | 'D' | 'E' | 'F' | 'G' | 'A' | 'B') ('0'..'9')? ('#' | 'b')? 
     |'Z'
     ;
-ID  :   ('a'..'z'|'A'..'Z')+ ;
+ID  :   ('a'..'z')('a'..'z'|'A'..'Z'|'0'..'9')* ;
+NOTEID  :   ('A'..'Z')('a'..'z'|'A'..'Z'|'0'..'9')+ ;
 INT :   '0'..'9'+ ;
 // C-style comments
 COMMENT : '//' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
