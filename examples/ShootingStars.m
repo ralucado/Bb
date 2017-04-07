@@ -1,5 +1,4 @@
-Chord maj(Note Ini){
-	return (Ini, Ini+4, Ini+7);
+Chord maj(Note Ini){return (Ini, Ini+4, Ini+7);
 }
 
 Chord min(Note Ini){

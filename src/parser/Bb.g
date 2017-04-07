@@ -18,6 +18,9 @@ tokens {
     PACK;
     CHORD;
     NOTEASSIGN;
+    SPEED;
+    NOTE;
+    MELODY;
 }
 
 @header {
@@ -70,8 +73,8 @@ instruction
         ;
 
 // Assignment
-assign  :   type ID eq=EQ n_expr -> ^(ASSIGN[$eq,":="] type ID n_expr)
-		|	notetype NOTEID eq=EQ musicnotation -> ^(NOTEASSIGN[$eq,":="] notetype NOTEID musicnotation)
+assign  :   type ID eq=EQ n_expr -> ^(ASSIGN[$eq,":="] ID n_expr)
+		|	notetype NOTEID EQ musicnotation -> ^(NOTEASSIGN NOTEID musicnotation)
         ;
 
 type	:   'int'
@@ -81,13 +84,14 @@ type	:   'int'
 notetype:   'Note'
         |   'Chord'
         |   'Melody'
-        |   'Ensemble'
+        |   'Poli'
         ;
-        
-musicnotation	:	'Note' '(' NOTA ')'
-				|	'Chord' '(' chord ')'
-				|	'Melody' '(' melodia ')'
+     
+musicnotation	:	'Note' notabasica ('.' num_expr)? -> ^(NOTE notabasica (num_expr)?)
+				|	'Chord'! '('! chord ')'!
+				|	'Melody'! '('! melodia ')'!
 				|	polifon
+				|	NOTEID
 				;
 
 
@@ -104,47 +108,50 @@ for_stmt  :   FOR^ LP! assign ';' n_expr ';' assign RP! LB! block_instructions R
             ;
 
 // Return statement with an expression
-return_stmt :   RETURN^ expr?
+return_stmt :   RETURN^ (n_expr | musicnotation)?
         ;
 
 //A playable is  something that can be turned into sound
 playable: melodia
         | polifon
+        | NOTEID
         ;
 
-melodia: (notas '.' duration ('*')?)+
+melodia: notelist+ -> ^(MELODY notelist+)
         ;
 
-notas: nota 
-     | '[' pack ']'
-     | '(' chord ')'
+notelist: notas '.' duration MUL? -> ^(notas MUL? duration);
+
+notas: nota
+     | '['! pack ']'!
+     | '('! chord ')'!
      ;
      
-nota: NOTA
-	| NOTEID (PLUS num_expr)?
+nota: notabasica
+	| NOTEID ( PLUS^ num_expr)?
 	;
 	
 	
 chord:	sub_chord -> ^(CHORD sub_chord)
 	;
 	
-sub_chord: nota ( ',' (nota))*
+sub_chord: nota ( ','! (nota))*
 	;
 	
-pack: sub_pack -> ^(PACK sub_pack)
+pack: sub_chord -> ^(PACK sub_chord)
 	;
 	
-sub_pack: nota+ 
-	;
 
 duration: INT 
     | '('! num_expr ')'!
     ;
 
-polifon : 'Poli' ID LB! (VOICE ID (melodia '|'!))* RB!
+polifon : 'Poli'! ID LB! voices+ RB!
         ;
+        
+voices:	VOICE^ ID (melodia '|'!);
 
-speed	:	'Speed' n_expr;
+speed	:	'Speed' n_expr -> ^(SPEED n_expr);
 
 // Grammar for expressions with boolean, relational and aritmetic operators
 expr    : playable
@@ -185,7 +192,7 @@ funcall :   ID '(' expr_list? ')' -> ^(FUNCALL ID ^(ARGLIST expr_list?))
 expr_list:  expr (','! expr)*
         ;
 
-
+notabasica : PITCH^ ALT? INT? ;
 //Tokens
 AND:    '&&' | 'and';
 OR:     '||' | 'or';
@@ -215,18 +222,17 @@ ELSE    : 'else' ;
 WHILE   : 'while' ;
 FOR		: 'for'	;
 RETURN  : 'return';
-NOTA: ('C' | 'D' | 'E' | 'F' | 'G' | 'A' | 'B') ('0'..'9')? ('#' | 'b')? 
-    |'Z'
-    ;
-ID  :   ('a'..'z')('a'..'z'|'A'..'Z'|'0'..'9')* ;
-NOTEID  :   ('A'..'Z')('a'..'z'|'A'..'Z'|'0'..'9')+ ;
+PITCH	: ('C' | 'D' | 'E' | 'F' | 'G' | 'A' | 'B');
+ALT		: ('#' | 'b');
+QUIET	: 'Z';
+ID  	:   ('a'..'z')('a'..'z'|'A'..'Z'|'0'..'9')* ;
+NOTEID  :   ('A'..'Z')('a'..'z'|'A'..'Z'|'0'..'9')+;
 INT :   '0'..'9'+ ;
 // C-style comments
 COMMENT : '//' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
         | '/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN;}
         ;
-NEWLINE:'\r'? '\n' ;
-
+        
 fragment
 ESC_SEQ
     :   '\\' ('b'|'t'|'n'|'f'|'r'|'\"'|'\''|'\\')
