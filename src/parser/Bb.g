@@ -89,7 +89,7 @@ notetype:   'Note'
         |   'Poli'
         ;
      
-musicnotation	:	'Note' notabasica ('.' num_expr)? -> ^(NOTE notabasica (num_expr)?)
+musicnotation	:	'Note' notabasica ('.' num_expr MUL?)? -> ^(PLAYABLE ^(NOTE notabasica) (num_expr MUL?)?)
 				|	'Chord'! '('! chord ')'!
 				|	'Melody'! '('! melodia ')'!
 				|	polifon
@@ -148,10 +148,10 @@ duration: INT
     | '('! num_expr ')'!
     ;
 
-polifon : 'Poli' NOTEID LB voices+ RB -> ^(POLIFONE NOTEID voices+)
+polifon : 'Poli' LB voices+ RB -> ^(POLIFONE voices+)
         ;
         
-voices:	VOICE^ NOTEID (melodia '|'!);
+voices:	VOICE! NOTEID^ melodia '|'!;
 
 speed	:	'Speed' n_expr -> ^(SPEED n_expr);
 
