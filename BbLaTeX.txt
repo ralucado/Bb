@@ -1,0 +1,45 @@
+ 
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Bb: Lenguaje Musical}
+\author{Raluca Vijulie, Victor Hugo Rivero }
+\date{Abril 2017}
+
+\begin{document}
+
+\maketitle
+
+\section{Introducción}
+Bb es un lenguaje que expresa música.
+
+\section{Funcionalidades}
+
+\subsection{Tipos de datos}
+Los tipos de datos que usan los programas escritos en Bb son:
+\begin{enumerate}
+    \item Int (número entero)
+    \item Note
+    \item Chord (conjunto de Notas, incluso una)
+    \item Playable (Chord con duración)
+    \item Melody (conjunto de Playable, incluso uno)
+    \item Ensemble (conjunto de Melodia, incluso una)
+\end{enumerate}
+También se podrán usar arrays de los tipos ya mencionados, y acceder a ellos mediante índices.
+
+\subsection{Operaciones}
+Se incluye, aparte de las operaciones aritméticas comunes en los lenguajes de programación, operaciones con Tipos Musicales. 
+
+Se puede alterar la nota sumando o restando expresiones matemáticas, aumentando o disminuyendo en semitonos la nota original.
+
+Se puede obtener el intervalo entre 2 notas en semitonos, como un entero (Int).
+
+\section{Arquitectura}
+
+\subsection{Lenguaje Compilado}
+Los programas escritos en Bb se compilan, es decir, a partir del código se genera un archivo MIDI con la música descrita por el código.
+
+\subsection{Software Adicional}
+Java tiene una librería para MIDI, javax.sound.midi, que se usara para generar la música en formato MIDI a partir del código.
+
+\end{document}
