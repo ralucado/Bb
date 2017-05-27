@@ -65,6 +65,10 @@ public class Interp {
     /** Nested levels of function calls. */
     private int function_nesting = -1;
     
+    private int speed;
+    
+    private ArrayList<Data> music; //list of playable data to transform into MIDI
+    
     /**
      * Constructor of the interpreter. It prepares the main
      * data structures for the execution of the main program.
@@ -319,6 +323,7 @@ public class Interp {
             	
             //Speed
             case BbLexer.SPEED:
+            	speed = t.getChild(0).getIntValue();
             	return null;
              
             default: assert false; // Should never happen
@@ -346,7 +351,12 @@ public class Interp {
         switch (type) {
         	//A note variable
         	case BbLexer.NOTEID:
-        		value = new Data(Stack.getVariable(t.getText()));
+        		String name = t.getText();
+        		if(! Stack.definedVariable(name))
+        			throw new RuntimeException ("Variable "+name+" is not defined");
+        		else{
+        			value = new Data(Stack.getVariable(name));
+        		}
         		break;
         	case BbLexer.NOTE:
         		Note n = new Note(t.getPitchValue());
@@ -362,14 +372,80 @@ public class Interp {
         		break;
         	case BbLexer.MELODY:
         		ArrayList<Sound> sounds = new ArrayList<Sound>();
-        		for (int i = 0; i < t.getChildCount(); ++i){
-        			
+        		for (int i = 1; i < t.getChildCount(); ++i){
+        			ArrayList<Data> d = evaluatePlayable(t.getChild(i));
+        			for(int j = 0; j < d.size(); ++j){	
+        				sounds.add(d.get(j).getSound());
+        			}
         		}
         		break;
+        	case BbLexer.PLUS:
+        		Data left = evaluateMusicNotation(t.getChild(0));
+        		Data right = evaluateExpression(t.getChild(1));
+        		assert(right.isInteger());
+        		left.raisePitch(right.getIntegerValue());
+        		value = left;
+        		break;
+
         		
         }
         
-        return null;
+        return value;
+	}
+
+	private ArrayList<Data> evaluatePlayable(BbTree t) {
+		assert t != null;
+        
+        int previous_line = lineNumber();
+        setLineNumber(t);
+        int type = t.getChild(0).getType();
+        
+        ArrayList<Data> values = new ArrayList<Data>();
+        Data d = null;
+        double duration = 0;
+        switch (type) {
+        	//A note variable
+        	case BbLexer.NOTEID:
+        	case BbLexer.CHORD:
+        	case BbLexer.NOTE:
+        		d = evaluateMusicNotation(t);
+        		if(!(d.isChord() || d.isNote())) throw new RuntimeException ("Variable "+ t.getChild(0).getText() +" is not suitable");
+        		duration = evaluateDuration(t);
+        		d.setDuration(duration);
+        		values.add(d);
+        		break;
+        	case BbLexer.PACK:
+        		duration = evaluateDuration(t);
+        		for (int i = 0; i < t.getChild(0).getChildCount(); ++i){
+        			d = evaluateMusicNotation(t.getChild(0).getChild(i));
+        			d.setDuration(duration);
+        			values.add(d);
+        		}
+        		break;
+        	
+        }
+        
+        return values;
+	}
+	
+	
+	/*
+	 * 1  ->  4  beats
+	 * 2  ->  2  beats
+	 * 4  ->  1  beat
+	 * 8  -> 1/2 beat
+	 * 16 -> 1/4 beat
+	 * etc.
+	 */
+
+	private double evaluateDuration(BbTree t) {
+		assert (t != null);
+		assert(t.getChildCount() >= 2);
+		double beat = 60/speed; //duration of a beat (in seconds)
+		double times = 4/t.getChild(1).getIntValue(); //number of beats for note
+		double duration = beat * times;
+		if(t.getChildCount() > 2) duration += duration/2; //has a dot
+		return duration;
 	}
 
 	/**

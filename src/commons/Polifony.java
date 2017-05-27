@@ -13,5 +13,11 @@ public class Polifony{
 	public Polifony(){
 		voices = new  ArrayList< Melody >();
 	}
+
+	public void raisePitch(int x) {
+		for (int i = 0; i < voices.size(); ++i){
+			voices.get(i).raisePitch(x);
+		}
+	}
 	
 }

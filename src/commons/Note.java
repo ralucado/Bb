@@ -10,6 +10,12 @@ public class Note extends Sound{
 		notes.add(a);
 	}
 	
+	public Note(int a, double d){
+		notes = new ArrayList<Integer>();
+		notes.add(a);
+		duration = d;
+	}
+	
 	public Note(){
 
 	}

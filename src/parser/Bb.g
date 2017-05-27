@@ -78,7 +78,7 @@ instruction
         ;
 
 // Assignment
-assign  :   (type)? ID eq=EQ expr -> ^(ASSIGN[$eq,":="] ID expr)
+assign  :   (type)? ID eq=EQ expr -> ^(ASSIGN ID expr)
 		|	NOTEID EQ musicnotation -> ^(NOTEASSIGN NOTEID musicnotation)
         ;
 
@@ -95,7 +95,7 @@ notetype:   'Note'
      
 musicnotation	:	'Note' notabasica -> ^(NOTE notabasica)
 				|	'Chord'! '('! chord ')'!
-				|	'Melody'! '('! melodia ')'!
+				|	melodia
 				|	polifon
 				|	NOTEID
 				;
@@ -121,6 +121,7 @@ return_stmt :   RETURN^ (expr | musicnotation)?
 playable: melodia
         | polifon
         | NOTEID
+        | notelist
         ;
         
 
@@ -133,7 +134,7 @@ write	:   WRITE^ (expr | STRING )
         ;
 
 
-melodia: notelist+ -> ^(MELODY notelist+)
+melodia: 'Melody' '(' INT notelist+ ')' -> ^(MELODY INT notelist+)
         ;
 
 notelist: notas '.' duration MUL? -> ^(PLAYABLE notas duration MUL?);
@@ -149,7 +150,7 @@ nota: notabasica  -> ^(NOTE notabasica)
 	;
 	
 	
-chord:	sub_chord -> ^(CHORD sub_chord)
+chord: sub_chord -> ^(CHORD sub_chord)
 	;
 	
 sub_chord: nota ( ','! (nota))*
@@ -166,7 +167,8 @@ duration: INT
 polifon : 'Poli' LB voices+ RB -> ^(POLIFONE voices+)
         ;
         
-voices:	VOICE num_expr EQ melodia '|' -> ^(INST num_expr melodia)
+voices:	melodia '|'!
+	|	NOTEID  '|'!
 		;
 
 speed	:	'Speed' num_expr -> ^(SPEED num_expr);

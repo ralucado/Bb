@@ -1,18 +1,22 @@
 void main(){
 	Speed 160;
-	Note Aux = Note A;
-	Note Aux2 = Note A#2;
-	Chord Patata = Chord(C,E,G,B,A,D);
-	Chord Min = Chord(C,E b 4,G);
-	int a = 3;
+	Aux = Note A;
+	Aux2 = Note A#2;
+	Patata = Chord(C,E,G,B,A,D);
+	Min = Chord(C,E b 4,G);
+	a = 3;
+	MyPoli = Poli {
+		Melody(40 A.8* [A,B,C].4) |
+		Shooting |
+		Melody(21 Aux.4* C#3.2) |
+	};	
 	while(i < 8){
 		if(i % 2 = 0) {
 			C.8;
-	/*	}else{
-			(D, F, A).8;*/
-		}
-	};
-	Melody Shooting = Melody(Aux.4 (C,E b 4,G).4* F#4.8* Patata.16 Min.8 Patata.8);
-	Chord Lol = Chord(Aux, Aux(+a), Aux2(+7));
 
+
+		}
+};
+	Shooting = Melody(40 Aux(+1*3-5).4 (C,E b 4,G).4* F#4.8* [Patata,Min,Patata(+3)].8*);
+	Lol = Chord(Aux, Aux(+a), Aux2(+7));
 }

@@ -8,6 +8,11 @@ public class Chord extends Sound{
 		notes = a;
 	}
 	
+	public Chord(ArrayList<Integer> a, double d){
+		notes = a;
+		duration = d;
+	}
+	
 	public Chord(){
 	}
 	

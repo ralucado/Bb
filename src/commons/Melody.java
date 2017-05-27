@@ -36,6 +36,13 @@ public class Melody{
 	public void setInstrument(int instrument) {
 		this.instrument = instrument;
 	}
+
+
+	public void raisePitch(int x) {
+		for(int i = 0; i < sounds.size(); ++i){
+			sounds.get(i).raisePitch(x);
+		}
+	}
 		
 	
 }

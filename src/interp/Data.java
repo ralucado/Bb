@@ -112,18 +112,32 @@ public class Data {
 	public Chord getChordValue(){return c;}
 	public Melody getMelodyValue(){return m;}
 	public Polifony getPolifonyValue(){return p;}
+	
+	public Sound getSound() {
+		assert (isChord() || isNote());
+		if(isChord()){
+			return c;
+		} 
+		else return n;
+	}
     
 
     /** Defines a Boolean value for the data */
     public void setValue(boolean b) { type = Type.BOOL; value = b ? 1 : 0; }
 
-    /** Defines an integer value for the data */
+    /** Defines value for the data */
     public void setValue(int v) { type = Type.INT; value = v;}
-    
 	public void setValue(Note a){ type = Type.NOTE; nullValues(); n = a;}
 	public void setValue(Chord a){  type = Type.CHORD; nullValues(); c = a; }
 	public void setValue(Melody a){  type = Type.MELODY; nullValues(); m = a;}
 	public void setValue(Polifony a){ type = Type.POLIFONY; nullValues(); p = a;}
+	
+	/** Defines duration for the data. Must be chord or note*/
+	public void setDuration(double duration) {
+		assert(type == Type.NOTE || type == Type.CHORD);
+		if(type == Type.CHORD) c.setDuration(duration);
+		else n.setDuration(duration);
+	}
 	
 	//avoid storing unnecessary data
 	private void nullValues() {
@@ -204,4 +218,24 @@ public class Data {
         }
         return null;
     }
+
+	public void raisePitch(int i) {
+		switch(type){
+			case NOTE:
+				n.raisePitch(i);
+				break;
+			case CHORD:
+				c.raisePitch(i);
+				break;
+			case MELODY:
+				m.raisePitch(i);
+				break;
+			case POLIFONY:
+				p.raisePitch(i);
+				break;
+			default:
+				break;
+		}
+	}
+
 }

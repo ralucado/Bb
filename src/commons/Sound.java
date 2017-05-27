@@ -13,6 +13,12 @@ public abstract class Sound{
 		
 	}
 	
+	public void raisePitch(int x){
+		for(int i = 0; i < notes.size(); ++i){
+			notes.set(i, notes.get(i)+x);
+		}
+	}
+	
 	public Pair<Double, ArrayList<Integer>> getSound(){
 		return new Pair<Double, ArrayList<Integer> >(duration, notes);
 	}
@@ -23,5 +29,9 @@ public abstract class Sound{
 	
 	public boolean hasDuration(){
 		return duration != 0;
+	}
+	
+	public void setDuration(double d){
+		duration = d;
 	}
 }
