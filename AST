@@ -13,225 +13,260 @@ digraph {
   n3 [label="PARAMS"];
   n4 [label="LIST_INSTR"];
   n4 [label="LIST_INSTR"];
-  n5 [label="MELODY"];
-  n5 [label="MELODY"];
-  n6 [label="PLAYABLE"];
-  n6 [label="PLAYABLE"];
-  n7 [label="+"];
-  n7 [label="+"];
-  n8 [label="Lol"];
-  n9 [label="-"];
-  n9 [label="-"];
-  n10 [label="*"];
-  n10 [label="*"];
-  n11 [label="2"];
-  n12 [label="3"];
-  n13 [label="5"];
-  n14 [label="8"];
-  n15 [label="PLAYABLE"];
-  n15 [label="PLAYABLE"];
-  n16 [label="Lol"];
-  n17 [label="4"];
-  n18 [label="*"];
-  n19 [label="MELODY"];
-  n19 [label="MELODY"];
-  n20 [label="PLAYABLE"];
-  n20 [label="PLAYABLE"];
-  n21 [label="CHORD"];
-  n21 [label="CHORD"];
+  n5 [label="SPEED"];
+  n5 [label="SPEED"];
+  n6 [label="160"];
+  n7 [label="NOTEASSIGN"];
+  n7 [label="NOTEASSIGN"];
+  n8 [label="Aux"];
+  n9 [label="NOTE"];
+  n9 [label="NOTE"];
+  n10 [label="A"];
+  n11 [label="NOTEASSIGN"];
+  n11 [label="NOTEASSIGN"];
+  n12 [label="Aux2"];
+  n13 [label="NOTE"];
+  n13 [label="NOTE"];
+  n14 [label="A"];
+  n15 [label="#"];
+  n16 [label="2"];
+  n17 [label="NOTEASSIGN"];
+  n17 [label="NOTEASSIGN"];
+  n18 [label="Patata"];
+  n19 [label="CHORD"];
+  n19 [label="CHORD"];
+  n20 [label="NOTE"];
+  n20 [label="NOTE"];
+  n21 [label="C"];
   n22 [label="NOTE"];
   n22 [label="NOTE"];
-  n23 [label="C"];
+  n23 [label="E"];
   n24 [label="NOTE"];
   n24 [label="NOTE"];
-  n25 [label="E"];
+  n25 [label="G"];
   n26 [label="NOTE"];
   n26 [label="NOTE"];
   n27 [label="B"];
-  n28 [label="#"];
-  n29 [label="8"];
-  n30 [label="*"];
-  n31 [label="NOTEASSIGN"];
-  n31 [label="NOTEASSIGN"];
-  n32 [label="Shoot"];
-  n33 [label="POLIFONE"];
-  n33 [label="POLIFONE"];
-  n34 [label="Singer"];
-  n34 [label="Singer"];
-  n35 [label="MELODY"];
-  n35 [label="MELODY"];
-  n36 [label="PLAYABLE"];
-  n36 [label="PLAYABLE"];
+  n28 [label="NOTE"];
+  n28 [label="NOTE"];
+  n29 [label="A"];
+  n30 [label="NOTE"];
+  n30 [label="NOTE"];
+  n31 [label="D"];
+  n32 [label="NOTEASSIGN"];
+  n32 [label="NOTEASSIGN"];
+  n33 [label="Min"];
+  n34 [label="CHORD"];
+  n34 [label="CHORD"];
+  n35 [label="NOTE"];
+  n35 [label="NOTE"];
+  n36 [label="C"];
   n37 [label="NOTE"];
   n37 [label="NOTE"];
-  n38 [label="C"];
-  n39 [label="#"];
+  n38 [label="E"];
+  n39 [label="b"];
   n40 [label="4"];
-  n41 [label="PLAYABLE"];
-  n41 [label="PLAYABLE"];
-  n42 [label="NOTE"];
-  n42 [label="NOTE"];
-  n43 [label="C"];
-  n44 [label="b"];
-  n45 [label="1"];
-  n46 [label="16"];
-  n47 [label="*"];
-  n48 [label="Other"];
-  n48 [label="Other"];
-  n49 [label="MELODY"];
-  n49 [label="MELODY"];
-  n50 [label="PLAYABLE"];
-  n50 [label="PLAYABLE"];
-  n51 [label="NOTE"];
-  n51 [label="NOTE"];
-  n52 [label="C"];
-  n53 [label="b"];
-  n54 [label="7"];
-  n55 [label="4"];
-  n56 [label="*"];
-  n57 [label="PLAYABLE"];
-  n57 [label="PLAYABLE"];
-  n58 [label="CHORD"];
-  n58 [label="CHORD"];
-  n59 [label="Aux"];
-  n60 [label="+"];
-  n60 [label="+"];
-  n61 [label="Aux"];
-  n62 [label="2"];
-  n63 [label="16"];
-  n64 [label="*"];
-  n65 [label="PLAYABLE"];
-  n65 [label="PLAYABLE"];
-  n66 [label="PACK"];
-  n66 [label="PACK"];
-  n67 [label="+"];
-  n67 [label="+"];
-  n68 [label="Aux"];
-  n69 [label="4"];
-  n70 [label="NOTE"];
-  n70 [label="NOTE"];
-  n71 [label="D"];
-  n72 [label="b"];
-  n73 [label="7"];
-  n74 [label="NOTE"];
-  n74 [label="NOTE"];
-  n75 [label="E"];
-  n76 [label="5"];
-  n77 [label="16"];
-  n78 [label="*"];
-  n79 [label="Whatevr"];
-  n79 [label="Whatevr"];
-  n80 [label="MELODY"];
-  n80 [label="MELODY"];
+  n41 [label="NOTE"];
+  n41 [label="NOTE"];
+  n42 [label="G"];
+  n43 [label=":="];
+  n43 [label=":="];
+  n44 [label="a"];
+  n45 [label="3"];
+  n46 [label="while"];
+  n46 [label="while"];
+  n47 [label="<"];
+  n47 [label="<"];
+  n48 [label="i"];
+  n49 [label="8"];
+  n50 [label="LIST_INSTR"];
+  n50 [label="LIST_INSTR"];
+  n51 [label="if"];
+  n51 [label="if"];
+  n52 [label="="];
+  n52 [label="="];
+  n53 [label="%"];
+  n53 [label="%"];
+  n54 [label="i"];
+  n55 [label="2"];
+  n56 [label="0"];
+  n57 [label="LIST_INSTR"];
+  n57 [label="LIST_INSTR"];
+  n58 [label="MELODY"];
+  n58 [label="MELODY"];
+  n59 [label="PLAYABLE"];
+  n59 [label="PLAYABLE"];
+  n60 [label="NOTE"];
+  n60 [label="NOTE"];
+  n61 [label="C"];
+  n62 [label="8"];
+  n63 [label="NOTEASSIGN"];
+  n63 [label="NOTEASSIGN"];
+  n64 [label="Shooting"];
+  n65 [label="MELODY"];
+  n65 [label="MELODY"];
+  n66 [label="PLAYABLE"];
+  n66 [label="PLAYABLE"];
+  n67 [label="Aux"];
+  n68 [label="4"];
+  n69 [label="PLAYABLE"];
+  n69 [label="PLAYABLE"];
+  n70 [label="CHORD"];
+  n70 [label="CHORD"];
+  n71 [label="NOTE"];
+  n71 [label="NOTE"];
+  n72 [label="C"];
+  n73 [label="NOTE"];
+  n73 [label="NOTE"];
+  n74 [label="E"];
+  n75 [label="b"];
+  n76 [label="4"];
+  n77 [label="NOTE"];
+  n77 [label="NOTE"];
+  n78 [label="G"];
+  n79 [label="4"];
+  n80 [label="*"];
   n81 [label="PLAYABLE"];
   n81 [label="PLAYABLE"];
-  n82 [label="Lol"];
-  n83 [label="4"];
-  n84 [label="Aux"];
-  n85 [label="return"];
-  n85 [label="return"];
-  n86 [label="+"];
-  n86 [label="+"];
+  n82 [label="NOTE"];
+  n82 [label="NOTE"];
+  n83 [label="F"];
+  n84 [label="#"];
+  n85 [label="4"];
+  n86 [label="8"];
   n87 [label="*"];
-  n87 [label="*"];
-  n88 [label="2"];
-  n89 [label="3"];
-  n90 [label="%"];
-  n90 [label="%"];
-  n91 [label="1"];
-  n92 [label="25"];
+  n88 [label="PLAYABLE"];
+  n88 [label="PLAYABLE"];
+  n89 [label="Patata"];
+  n90 [label="16"];
+  n91 [label="PLAYABLE"];
+  n91 [label="PLAYABLE"];
+  n92 [label="Min"];
+  n93 [label="8"];
+  n94 [label="PLAYABLE"];
+  n94 [label="PLAYABLE"];
+  n95 [label="Patata"];
+  n96 [label="8"];
+  n97 [label="NOTEASSIGN"];
+  n97 [label="NOTEASSIGN"];
+  n98 [label="Lol"];
+  n99 [label="CHORD"];
+  n99 [label="CHORD"];
+  n100 [label="Aux"];
+  n101 [label="+"];
+  n101 [label="+"];
+  n102 [label="Aux"];
+  n103 [label="a"];
+  n104 [label="+"];
+  n104 [label="+"];
+  n105 [label="Aux2"];
+  n106 [label="7"];
 
   n0 -> n1 // "LIST_FUNCTIONS" -> "main"
   n1 -> n2 // "main" -> "void"
   n1 -> n3 // "main" -> "PARAMS"
   n1 -> n4 // "main" -> "LIST_INSTR"
-  n4 -> n5 // "LIST_INSTR" -> "MELODY"
-  n5 -> n6 // "MELODY" -> "PLAYABLE"
-  n6 -> n7 // "PLAYABLE" -> "+"
-  n7 -> n8 // "+" -> "Lol"
-  n7 -> n9 // "+" -> "-"
-  n9 -> n10 // "-" -> "*"
-  n10 -> n11 // "*" -> "2"
-  n10 -> n12 // "*" -> "3"
-  n9 -> n13 // "-" -> "5"
-  n6 -> n14 // "PLAYABLE" -> "8"
-  n5 -> n15 // "MELODY" -> "PLAYABLE"
-  n15 -> n16 // "PLAYABLE" -> "Lol"
-  n15 -> n17 // "PLAYABLE" -> "4"
-  n15 -> n18 // "PLAYABLE" -> "*"
-  n4 -> n19 // "LIST_INSTR" -> "MELODY"
-  n19 -> n20 // "MELODY" -> "PLAYABLE"
-  n20 -> n21 // "PLAYABLE" -> "CHORD"
-  n21 -> n22 // "CHORD" -> "NOTE"
-  n22 -> n23 // "NOTE" -> "C"
-  n21 -> n24 // "CHORD" -> "NOTE"
-  n24 -> n25 // "NOTE" -> "E"
-  n21 -> n26 // "CHORD" -> "NOTE"
+  n4 -> n5 // "LIST_INSTR" -> "SPEED"
+  n5 -> n6 // "SPEED" -> "160"
+  n4 -> n7 // "LIST_INSTR" -> "NOTEASSIGN"
+  n7 -> n8 // "NOTEASSIGN" -> "Aux"
+  n7 -> n9 // "NOTEASSIGN" -> "NOTE"
+  n9 -> n10 // "NOTE" -> "A"
+  n4 -> n11 // "LIST_INSTR" -> "NOTEASSIGN"
+  n11 -> n12 // "NOTEASSIGN" -> "Aux2"
+  n11 -> n13 // "NOTEASSIGN" -> "NOTE"
+  n13 -> n14 // "NOTE" -> "A"
+  n13 -> n15 // "NOTE" -> "#"
+  n13 -> n16 // "NOTE" -> "2"
+  n4 -> n17 // "LIST_INSTR" -> "NOTEASSIGN"
+  n17 -> n18 // "NOTEASSIGN" -> "Patata"
+  n17 -> n19 // "NOTEASSIGN" -> "CHORD"
+  n19 -> n20 // "CHORD" -> "NOTE"
+  n20 -> n21 // "NOTE" -> "C"
+  n19 -> n22 // "CHORD" -> "NOTE"
+  n22 -> n23 // "NOTE" -> "E"
+  n19 -> n24 // "CHORD" -> "NOTE"
+  n24 -> n25 // "NOTE" -> "G"
+  n19 -> n26 // "CHORD" -> "NOTE"
   n26 -> n27 // "NOTE" -> "B"
-  n26 -> n28 // "NOTE" -> "#"
-  n20 -> n29 // "PLAYABLE" -> "8"
-  n20 -> n30 // "PLAYABLE" -> "*"
-  n4 -> n31 // "LIST_INSTR" -> "NOTEASSIGN"
-  n31 -> n32 // "NOTEASSIGN" -> "Shoot"
-  n31 -> n33 // "NOTEASSIGN" -> "POLIFONE"
-  n33 -> n34 // "POLIFONE" -> "Singer"
-  n34 -> n35 // "Singer" -> "MELODY"
-  n35 -> n36 // "MELODY" -> "PLAYABLE"
-  n36 -> n37 // "PLAYABLE" -> "NOTE"
-  n37 -> n38 // "NOTE" -> "C"
-  n37 -> n39 // "NOTE" -> "#"
-  n36 -> n40 // "PLAYABLE" -> "4"
-  n35 -> n41 // "MELODY" -> "PLAYABLE"
-  n41 -> n42 // "PLAYABLE" -> "NOTE"
-  n42 -> n43 // "NOTE" -> "C"
-  n42 -> n44 // "NOTE" -> "b"
-  n42 -> n45 // "NOTE" -> "1"
-  n41 -> n46 // "PLAYABLE" -> "16"
-  n41 -> n47 // "PLAYABLE" -> "*"
-  n33 -> n48 // "POLIFONE" -> "Other"
-  n48 -> n49 // "Other" -> "MELODY"
-  n49 -> n50 // "MELODY" -> "PLAYABLE"
-  n50 -> n51 // "PLAYABLE" -> "NOTE"
-  n51 -> n52 // "NOTE" -> "C"
-  n51 -> n53 // "NOTE" -> "b"
-  n51 -> n54 // "NOTE" -> "7"
-  n50 -> n55 // "PLAYABLE" -> "4"
-  n50 -> n56 // "PLAYABLE" -> "*"
-  n49 -> n57 // "MELODY" -> "PLAYABLE"
-  n57 -> n58 // "PLAYABLE" -> "CHORD"
-  n58 -> n59 // "CHORD" -> "Aux"
-  n58 -> n60 // "CHORD" -> "+"
-  n60 -> n61 // "+" -> "Aux"
-  n60 -> n62 // "+" -> "2"
-  n57 -> n63 // "PLAYABLE" -> "16"
-  n57 -> n64 // "PLAYABLE" -> "*"
-  n49 -> n65 // "MELODY" -> "PLAYABLE"
-  n65 -> n66 // "PLAYABLE" -> "PACK"
-  n66 -> n67 // "PACK" -> "+"
-  n67 -> n68 // "+" -> "Aux"
-  n67 -> n69 // "+" -> "4"
-  n66 -> n70 // "PACK" -> "NOTE"
-  n70 -> n71 // "NOTE" -> "D"
-  n70 -> n72 // "NOTE" -> "b"
-  n70 -> n73 // "NOTE" -> "7"
-  n66 -> n74 // "PACK" -> "NOTE"
-  n74 -> n75 // "NOTE" -> "E"
-  n74 -> n76 // "NOTE" -> "5"
-  n65 -> n77 // "PLAYABLE" -> "16"
-  n65 -> n78 // "PLAYABLE" -> "*"
-  n33 -> n79 // "POLIFONE" -> "Whatevr"
-  n79 -> n80 // "Whatevr" -> "MELODY"
-  n80 -> n81 // "MELODY" -> "PLAYABLE"
-  n81 -> n82 // "PLAYABLE" -> "Lol"
-  n81 -> n83 // "PLAYABLE" -> "4"
-  n4 -> n84 // "LIST_INSTR" -> "Aux"
-  n4 -> n85 // "LIST_INSTR" -> "return"
-  n85 -> n86 // "return" -> "+"
-  n86 -> n87 // "+" -> "*"
-  n87 -> n88 // "*" -> "2"
-  n87 -> n89 // "*" -> "3"
-  n86 -> n90 // "+" -> "%"
-  n90 -> n91 // "%" -> "1"
-  n90 -> n92 // "%" -> "25"
+  n19 -> n28 // "CHORD" -> "NOTE"
+  n28 -> n29 // "NOTE" -> "A"
+  n19 -> n30 // "CHORD" -> "NOTE"
+  n30 -> n31 // "NOTE" -> "D"
+  n4 -> n32 // "LIST_INSTR" -> "NOTEASSIGN"
+  n32 -> n33 // "NOTEASSIGN" -> "Min"
+  n32 -> n34 // "NOTEASSIGN" -> "CHORD"
+  n34 -> n35 // "CHORD" -> "NOTE"
+  n35 -> n36 // "NOTE" -> "C"
+  n34 -> n37 // "CHORD" -> "NOTE"
+  n37 -> n38 // "NOTE" -> "E"
+  n37 -> n39 // "NOTE" -> "b"
+  n37 -> n40 // "NOTE" -> "4"
+  n34 -> n41 // "CHORD" -> "NOTE"
+  n41 -> n42 // "NOTE" -> "G"
+  n4 -> n43 // "LIST_INSTR" -> ":="
+  n43 -> n44 // ":=" -> "a"
+  n43 -> n45 // ":=" -> "3"
+  n4 -> n46 // "LIST_INSTR" -> "while"
+  n46 -> n47 // "while" -> "<"
+  n47 -> n48 // "<" -> "i"
+  n47 -> n49 // "<" -> "8"
+  n46 -> n50 // "while" -> "LIST_INSTR"
+  n50 -> n51 // "LIST_INSTR" -> "if"
+  n51 -> n52 // "if" -> "="
+  n52 -> n53 // "=" -> "%"
+  n53 -> n54 // "%" -> "i"
+  n53 -> n55 // "%" -> "2"
+  n52 -> n56 // "=" -> "0"
+  n51 -> n57 // "if" -> "LIST_INSTR"
+  n57 -> n58 // "LIST_INSTR" -> "MELODY"
+  n58 -> n59 // "MELODY" -> "PLAYABLE"
+  n59 -> n60 // "PLAYABLE" -> "NOTE"
+  n60 -> n61 // "NOTE" -> "C"
+  n59 -> n62 // "PLAYABLE" -> "8"
+  n4 -> n63 // "LIST_INSTR" -> "NOTEASSIGN"
+  n63 -> n64 // "NOTEASSIGN" -> "Shooting"
+  n63 -> n65 // "NOTEASSIGN" -> "MELODY"
+  n65 -> n66 // "MELODY" -> "PLAYABLE"
+  n66 -> n67 // "PLAYABLE" -> "Aux"
+  n66 -> n68 // "PLAYABLE" -> "4"
+  n65 -> n69 // "MELODY" -> "PLAYABLE"
+  n69 -> n70 // "PLAYABLE" -> "CHORD"
+  n70 -> n71 // "CHORD" -> "NOTE"
+  n71 -> n72 // "NOTE" -> "C"
+  n70 -> n73 // "CHORD" -> "NOTE"
+  n73 -> n74 // "NOTE" -> "E"
+  n73 -> n75 // "NOTE" -> "b"
+  n73 -> n76 // "NOTE" -> "4"
+  n70 -> n77 // "CHORD" -> "NOTE"
+  n77 -> n78 // "NOTE" -> "G"
+  n69 -> n79 // "PLAYABLE" -> "4"
+  n69 -> n80 // "PLAYABLE" -> "*"
+  n65 -> n81 // "MELODY" -> "PLAYABLE"
+  n81 -> n82 // "PLAYABLE" -> "NOTE"
+  n82 -> n83 // "NOTE" -> "F"
+  n82 -> n84 // "NOTE" -> "#"
+  n82 -> n85 // "NOTE" -> "4"
+  n81 -> n86 // "PLAYABLE" -> "8"
+  n81 -> n87 // "PLAYABLE" -> "*"
+  n65 -> n88 // "MELODY" -> "PLAYABLE"
+  n88 -> n89 // "PLAYABLE" -> "Patata"
+  n88 -> n90 // "PLAYABLE" -> "16"
+  n65 -> n91 // "MELODY" -> "PLAYABLE"
+  n91 -> n92 // "PLAYABLE" -> "Min"
+  n91 -> n93 // "PLAYABLE" -> "8"
+  n65 -> n94 // "MELODY" -> "PLAYABLE"
+  n94 -> n95 // "PLAYABLE" -> "Patata"
+  n94 -> n96 // "PLAYABLE" -> "8"
+  n4 -> n97 // "LIST_INSTR" -> "NOTEASSIGN"
+  n97 -> n98 // "NOTEASSIGN" -> "Lol"
+  n97 -> n99 // "NOTEASSIGN" -> "CHORD"
+  n99 -> n100 // "CHORD" -> "Aux"
+  n99 -> n101 // "CHORD" -> "+"
+  n101 -> n102 // "+" -> "Aux"
+  n101 -> n103 // "+" -> "a"
+  n99 -> n104 // "CHORD" -> "+"
+  n104 -> n105 // "+" -> "Aux2"
+  n104 -> n106 // "+" -> "7"
 
 }

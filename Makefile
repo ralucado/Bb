@@ -8,6 +8,7 @@ CLASSDIR = 	$(ROOT)/classes
 MAIN =		$(SRCDIR)/$(TARGET)
 PARSER =	$(SRCDIR)/parser
 INTERP =	$(SRCDIR)/interp
+COMMONS = 	$(SRCDIR)/commons
 JAVADOC =	$(ROOT)/javadoc
 BIN =		$(ROOT)/bin
 
@@ -46,9 +47,15 @@ INTERP_SRC =	$(INTERP)/Interp.java \
 				$(INTERP)/Stack.java \
 				$(INTERP)/Data.java \
 				$(INTERP)/$(TARGET)Tree.java \
-				$(INTERP)/BbTreeAdaptor.java
+				$(INTERP)/$(TARGET)TreeAdaptor.java
+COMMONS_SRC = $(COMMONS)/Sound.java \
+				$(COMMONS)/Note.java \
+				$(COMMONS)/Chord.java \
+				$(COMMONS)/Melody.java \
+				$(COMMONS)/Polifony.java \
+				$(COMMONS)/Pair.java
 
-ALL_SRC =		$(MAIN_SRC) $(PARSER_SRC) $(INTERP_SRC)
+ALL_SRC =		$(MAIN_SRC) $(PARSER_SRC) $(INTERP_SRC) $(COMMONS_SRC)
 
 all: compile exec docs
 run: compile exec

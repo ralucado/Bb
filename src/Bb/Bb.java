@@ -30,8 +30,6 @@ package Bb;
 // Imports for ANTLR
 import org.antlr.runtime.*;
 import org.antlr.runtime.tree.*;
-import org.antlr.stringtemplate.*;
-
 // Imports from Java
 import org.apache.commons.cli.*; // Command Language Interface
 import java.io.*;
@@ -149,15 +147,21 @@ public class Bb{
         Option help = new Option("help", "print this message");
         Option noexec = new Option("noexec", "do not execute the program");
         Option dot = new Option("dot", "dump the AST in dot format");
-        Option ast = OptionBuilder
-                        .withArgName ("file")
-                        .hasArg()
-                        .withDescription ("write the AST")
+        OptionBuilder
+                        .withArgName ("file");
+		OptionBuilder
+                        .hasArg();
+		OptionBuilder
+                        .withDescription ("write the AST");
+		Option ast = OptionBuilder
                         .create ("ast");
-        Option trace = OptionBuilder
-                        .withArgName ("file")
-                        .hasArg()
-                        .withDescription ("write a trace of function calls during the execution of the program")
+        OptionBuilder
+                        .withArgName ("file");
+		OptionBuilder
+                        .hasArg();
+		OptionBuilder
+                        .withDescription ("write a trace of function calls during the execution of the program");
+		Option trace = OptionBuilder
                         .create ("trace");
                                        
         Options options = new Options();

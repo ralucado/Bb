@@ -38,61 +38,63 @@ package interp;
  */
 
 import parser.*;
-import java.util.*;
-
+import commons.*;
 public class Data {
     /** Types of data */
-    public enum Type {VOID, BOOLEAN, INTEGER, ARRAYYINT, ARRAYYBOOL;}
+    public enum Type {VOID, INT, BOOL, NOTE, CHORD, MELODY, POLIFONY;}
 
     /** Type of data*/
     private Type type;
 
     /** Value of the data */
     private int value;
-    private ArrayList<Integer> arrvalue;
-
+	private Note n;
+	private Chord c;
+	private Melody m;
+	private Polifony p;
+    
+    
     /** Constructor for integers */
-    Data(int v) { type = Type.INTEGER; value = v; }
+    Data(int v) { type = Type.INT; value = v;}
 
     /** Constructor for Booleans */
-    Data(boolean b) { type = Type.BOOLEAN; value = b ? 1 : 0; }
+    Data(boolean b) { type = Type.BOOL; value = b ? 1 : 0;}
 
+    /**Constructors for music data*/
+    Data (Note a){setValue(a);}
+    Data (Chord a){setValue(a);}
+    Data (Melody a){setValue(a);}
+    Data (Polifony a){setValue(a);}
+    
     /** Constructor for void data */
     Data() {type = Type.VOID; }
     
-     /** Constructor for Arrays */
-    Data(ArrayList<Integer> a, Boolean isInteger) {
-        if (isInteger) type = Type.ARRAYYINT; else type = Type.ARRAYYBOOL;
-        arrvalue = a;
-        //throw new RuntimeException("arrvalue is "+arrvalue.toString());
-    }
     
     /** Copy constructor */
-    Data(Data d) { type = d.type; value = d.value; if(d.arrvalue != null) arrvalue = (ArrayList<Integer>) d.arrvalue.clone();}
+    Data(Data a) { type = a.type; value = a.value;  n = a.n; c = a.c; m = a.m; p = a.p;}
 
     /** Returns the type of data */
     public Type getType() { return type; }
 
     /** Indicates whether the data is Boolean */
-    public boolean isBoolean() { return type == Type.BOOLEAN; }
+    public boolean isBoolean() { return type == Type.BOOL; }
 
     /** Indicates whether the data is integer */
-    public boolean isInteger() { return type == Type.INTEGER; }
+    public boolean isInteger() { return type == Type.INT; }
 
     /** Indicates whether the data is void */
     public boolean isVoid() { return type == Type.VOID; }
-
-     /** Indicates whether the data is array */
-    public boolean isIntArr() { return type == Type.ARRAYYINT; }
-
-    /** Indicates whether the data is array */
-   public boolean isBoolArr() { return type == Type.ARRAYYBOOL; }
+    /** Indicates whether the data is music */
+	public boolean isNote(){return type == Type.NOTE;}
+	public boolean isChord(){return type == Type.CHORD;}
+	public boolean isMelody(){return type == Type.MELODY;}
+	public boolean isPolifony(){return type == Type.POLIFONY;}
     /**
      * Gets the value of an integer data. The method asserts that
      * the data is an integer.
      */
     public int getIntegerValue() {
-        assert type == Type.INTEGER;
+        assert type == Type.INT;
         return value;
     }
 
@@ -101,61 +103,59 @@ public class Data {
      * the data is a Boolean.
      */
     public boolean getBooleanValue() {
-        assert type == Type.BOOLEAN;
+        assert type == Type.BOOL;
         return value == 1;
     }
     
-    /**
-     * Gets the value of an integer arrayy data. The method asserts that
-     * the data is an integer arrayy.
-     */
-    public ArrayList<Integer> getArrayValue() {
-        assert type == Type.ARRAYYINT || type == Type.ARRAYYBOOL;
-        return arrvalue;
-    }
-    
-    public Data arrayAcess(int i){
-    	assert type == Type.ARRAYYINT || type == Type.ARRAYYBOOL;
-    	if (type == Type.ARRAYYBOOL) return new Data(arrvalue.get(i) > 0);
-    	else return new Data(arrvalue.get(i));
-    }
+	//value getters
+	public Note getNoteValue(){return n;}
+	public Chord getChordValue(){return c;}
+	public Melody getMelodyValue(){return m;}
+	public Polifony getPolifonyValue(){return p;}
     
 
     /** Defines a Boolean value for the data */
-    public void setValue(boolean b) { type = Type.BOOLEAN; value = b ? 1 : 0; }
+    public void setValue(boolean b) { type = Type.BOOL; value = b ? 1 : 0; }
 
     /** Defines an integer value for the data */
-    public void setValue(int v) { type = Type.INTEGER; value = v;}
+    public void setValue(int v) { type = Type.INT; value = v;}
     
-    //TODO this doesnt work dude
-    /** Defines an integer value for the data at index */
-    public void setValue(int v, int index) {
-        if(type != Type.ARRAYYINT && type != Type.ARRAYYBOOL){
-        		arrvalue = new ArrayList<Integer>(Collections.nCopies(index+1,0));
-        		arrvalue.set(index,v);
-        }
-        else if (arrvalue.size() <= index){
-        	ArrayList<Integer> newarr = new ArrayList<Integer>(Collections.nCopies(index+1,0));
-        	for(int i = 0; i < arrvalue.size(); ++i){
-        		newarr.set(i, arrvalue.get(i));
-        	}
-        	for (int i = arrvalue.size(); i < index; ++i){
-        		newarr.set(index, 0);
-        	}
-        	newarr.set(index, v);
-        }
-        else arrvalue.set(index,v);
-    }
-    
+	public void setValue(Note a){ type = Type.NOTE; nullValues(); n = a;}
+	public void setValue(Chord a){  type = Type.CHORD; nullValues(); c = a; }
+	public void setValue(Melody a){  type = Type.MELODY; nullValues(); m = a;}
+	public void setValue(Polifony a){ type = Type.POLIFONY; nullValues(); p = a;}
+	
+	//avoid storing unnecessary data
+	private void nullValues() {
+		n = null;
+		c = null;
+		m = null;
+		p = null;
+	}
 
     /** Copies the value from another data */
-    public void setData(Data d) { type = d.type; value = d.value; if(arrvalue != null) arrvalue = (ArrayList<Integer>) d.arrvalue.clone(); }
+    public void setData(Data a) {type = a.type; value = a.value;  n = a.n; c = a.c; m = a.m; p = a.p;}
     
     /** Returns a string representing the data in textual form. */
     public String toString() {
-        if (type == Type.BOOLEAN) return value == 1 ? "true" : "false";
-        else if (type == Type.ARRAYYINT || type == Type.ARRAYYBOOL) return arrvalue.toString();
-        return Integer.toString(value);
+    	switch(type){
+    		case BOOL:
+    			return value == 1 ? "true" : "false";
+    		case INT:
+    			 return  Integer.toString(value);
+    		case NOTE:
+    			return n.toString();
+    		case CHORD:
+    			return c.toString();
+    		case MELODY:
+    			return m.toString();
+    		case POLIFONY:
+    			return p.toString();
+    		default:
+    			return null;
+    			
+    	}
+
     }
     
     /**
@@ -174,7 +174,7 @@ public class Data {
      */
      
     public void evaluateArithmetic (int op, Data d) {
-        assert (type == Type.INTEGER && d.type == Type.INTEGER);
+        assert (type == Type.INT && d.type == Type.INT);
         switch (op) {
             case BbLexer.PLUS: value += d.value; break;
             case BbLexer.MINUS: value -= d.value; break;

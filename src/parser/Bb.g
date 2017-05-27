@@ -15,7 +15,7 @@ tokens {
     BOOLEAN;    // Boolean atom (for Boolean constants "true" or "false")
     PVALUE;     // Parameter by value in the list of parameters
     PREF;       // Parameter by reference in the list of parameters
-    PACK;
+    PACK;		
     CHORD;
     NOTEASSIGN;
     SPEED;
@@ -23,6 +23,7 @@ tokens {
     MELODY;
     PLAYABLE;
     POLIFONE;
+    INST;
 }
 
 @header {
@@ -71,15 +72,18 @@ instruction
         |   return_stmt     // Return statement
         |   playable        // Play
         |	speed			//Defines the playing speed
+        |	read            // Read a variable
+        | 	write           // Write a string or an expression
         |                   // Nothing
         ;
 
 // Assignment
-assign  :   (type)? ID eq=EQ n_expr -> ^(ASSIGN[$eq,":="] ID n_expr)
-		|	(notetype)? NOTEID EQ musicnotation -> ^(NOTEASSIGN NOTEID musicnotation)
+assign  :   (type)? ID eq=EQ expr -> ^(ASSIGN[$eq,":="] ID expr)
+		|	NOTEID EQ musicnotation -> ^(NOTEASSIGN NOTEID musicnotation)
         ;
 
 type	:   'int'
+		|	'bool'
         |	'void'
         ;
         
@@ -89,7 +93,7 @@ notetype:   'Note'
         |   'Poli'
         ;
      
-musicnotation	:	'Note' notabasica ('.' num_expr MUL?)? -> ^(PLAYABLE ^(NOTE notabasica) (num_expr MUL?)?)
+musicnotation	:	'Note' notabasica -> ^(NOTE notabasica)
 				|	'Chord'! '('! chord ')'!
 				|	'Melody'! '('! melodia ')'!
 				|	polifon
@@ -98,19 +102,19 @@ musicnotation	:	'Note' notabasica ('.' num_expr MUL?)? -> ^(PLAYABLE ^(NOTE nota
 
 
 // if-then-else (else is optional)
-ite_stmt    :   IF^ LP! n_expr RP! LB! block_instructions RB! (ELSE! LB! block_instructions RB!)?
+ite_stmt    :   IF^ LP! expr RP! LB! block_instructions RB! (ELSE! LB! block_instructions RB!)?
             ;
 
 // while statement
-while_stmt  :   WHILE^ LP! n_expr RP! LB! block_instructions RB!
+while_stmt  :   WHILE^ LP! expr RP! LB! block_instructions RB!
             ;
             
 // for statement
-for_stmt  :   FOR^ LP! assign ';'! n_expr ';'! assign RP! LB! block_instructions RB!
+for_stmt  :   FOR^ LP! assign ';'! expr ';'! assign RP! LB! block_instructions RB!
             ;
 
 // Return statement with an expression
-return_stmt :   RETURN^ (n_expr | musicnotation)?
+return_stmt :   RETURN^ (expr | musicnotation)?
         ;
 
 //A playable is  something that can be turned into sound
@@ -118,6 +122,16 @@ playable: melodia
         | polifon
         | NOTEID
         ;
+        
+
+// Read a variable
+read	:	READ^ ID
+        ;
+
+// Write an expression or a string
+write	:   WRITE^ (expr | STRING )
+        ;
+
 
 melodia: notelist+ -> ^(MELODY notelist+)
         ;
@@ -131,6 +145,7 @@ notas: nota
      
 nota: notabasica  -> ^(NOTE notabasica)
 	| NOTEID ( '('! PLUS^ num_expr ')'!)?
+	| QUIET
 	;
 	
 	
@@ -151,16 +166,13 @@ duration: INT
 polifon : 'Poli' LB voices+ RB -> ^(POLIFONE voices+)
         ;
         
-voices:	VOICE! NOTEID^ melodia '|'!;
+voices:	VOICE num_expr EQ melodia '|' -> ^(INST num_expr melodia)
+		;
 
-speed	:	'Speed' n_expr -> ^(SPEED n_expr);
+speed	:	'Speed' num_expr -> ^(SPEED num_expr);
 
 // Grammar for expressions with boolean, relational and aritmetic operators
-expr    : playable
-		| n_expr
-        ;
-
-n_expr	:	boolterm (OR^ boolterm)*;
+expr	:	boolterm (OR^ boolterm)*;
 
 boolterm:   boolfact (AND^ boolfact)*
         ;
@@ -184,7 +196,7 @@ atom    :   ID
         |   INT
         |   (b=TRUE | b=FALSE)  -> ^(BOOLEAN[$b,$b.text])
         |	funcall
-        |   '('! n_expr ')'!
+        |   '('! expr ')'!
         ;
 // A function call has a lits of arguments in parenthesis (possibly empty)
 funcall :   ID '(' expr_list? ')' -> ^(FUNCALL ID ^(ARGLIST expr_list?))
@@ -224,6 +236,8 @@ ELSE    : 'else' ;
 WHILE   : 'while' ;
 FOR		: 'for'	;
 RETURN  : 'return';
+READ	: 'read';
+WRITE	: 'write';
 PITCH	: ('C' | 'D' | 'E' | 'F' | 'G' | 'A' | 'B');
 ALT		: ('#' | 'b');
 QUIET	: 'Z';
@@ -234,7 +248,9 @@ INT :   '0'..'9'+ ;
 COMMENT : '//' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
         | '/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN;}
         ;
-        
+// Strings (in quotes) with escape sequences        
+STRING  :  '"' ( ESC_SEQ | ~('\\'|'"') )* '"'
+        ;
 fragment
 ESC_SEQ
     :   '\\' ('b'|'t'|'n'|'f'|'r'|'\"'|'\''|'\\')

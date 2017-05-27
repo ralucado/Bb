@@ -28,6 +28,9 @@
 package interp;
 
 import org.antlr.runtime.tree.*;
+
+import parser.BbLexer;
+
 import org.antlr.runtime.Token;
 
 /**
@@ -41,6 +44,9 @@ import org.antlr.runtime.Token;
 public class BbTree extends CommonTree {
     /** Field to store integer literals */
     private int intValue;
+    
+    /** Field to store note name literals */
+    private int pitchValue;
 
     /** Field to store string literals (without the enclosing quotes) */
     private String strValue;
@@ -57,7 +63,7 @@ public class BbTree extends CommonTree {
 
     /** Get the integer value of the node. */
     public int getIntValue() { return intValue;}
-
+    
     /** Define the integer value of the node. */
     public void setIntValue() { intValue = Integer.parseInt(getText()); }
 
@@ -69,7 +75,17 @@ public class BbTree extends CommonTree {
         intValue = getText().equals("true") ? 1 : 0;
     }
 
-    /** Get the string value of the node. */
+    public int getPitchValue(){
+    	return pitchValue;
+    }
+    
+    public void setPitchValue(){
+    	
+    	pitchValue = noteNameToPitch(getChild(0).getText());
+    	
+    }
+
+	/** Get the string value of the node. */
     public String getStringValue() { return strValue; }
 
     /**
@@ -80,5 +96,28 @@ public class BbTree extends CommonTree {
         String s = getText();
         // Do not store the " at the extremes of the string
         strValue = s.substring(1,s.length()-1);
+    }
+    
+    private int noteNameToPitch(String text) {
+    	char note = text.charAt(0);
+    	int offset = (int)note - (int)'A';
+    	offset = offset*2 -1;
+    	BbTree octave = (BbTree) super.getFirstChildWithType(BbLexer.INT);
+    	
+    	//if we have an octave specification we make sure the
+    	//note is according to the midi chart
+    	if(octave != null){
+    		offset += (Integer.parseInt(octave.getText())+1) * 12 + 3;
+    	}
+    	//else we make the A2 - G3 the default octave
+    	else offset+=45;
+    	
+    	
+    	BbTree alt = (BbTree) super.getFirstChildWithType(BbLexer.ALT);
+    	if(alt != null){
+    		if(alt.getText().equals("#")) ++offset;
+    		else --offset;
+    	}
+    	return offset;
     }
 }

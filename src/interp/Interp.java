@@ -34,6 +34,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.io.*;
+import commons.*;
 
 /** Class that implements the interpreter of the language. */
 
@@ -45,7 +46,7 @@ public class Interp {
     /**
      * Map between function names (keys) and ASTs (values).
      * Each entry of the map stores the root of the AST
-     * correponding to the function.
+     * corresponding to the function.
      */
     private HashMap<String,BbTree> FuncName2Tree;
 
@@ -71,7 +72,7 @@ public class Interp {
     public Interp(BbTree T, String tracefile) {
         assert T != null;
         MapFunctions(T);  // Creates the table to map function names into AST nodes
-        PreProcessAST(T); // Some internal pre-processing ot the AST
+        PreProcessAST(T); // Some internal pre-processing of the AST
         Stack = new Stack(); // Creates the memory of the virtual machine
         // Initializes the standard input of the program
         stdin = new Scanner (new BufferedReader(new InputStreamReader(System.in)));
@@ -89,6 +90,8 @@ public class Interp {
     /** Runs the program by calling the main function without parameters. */
     public void Run() {
         executeFunction ("main", null);
+        writeMIDI();
+        //play midi maybe?
     }
 
     /** Returns the contents of the stack trace */
@@ -128,8 +131,10 @@ public class Interp {
     private void PreProcessAST(BbTree T) {
         if (T == null) return;
         switch(T.getType()) {
-            case BbLexer.INT: T.setIntValue(); break;
-            case BbLexer.BOOLEAN: T.setBooleanValue(); break;
+	        case BbLexer.INT: T.setIntValue(); break;
+	        case BbLexer.STRING: T.setStringValue(); break;
+	        case BbLexer.BOOLEAN: T.setBooleanValue(); break;
+            case BbLexer.NOTE: T.setPitchValue(); break;
             default: break;
         }
         int n = T.getChildCount();
@@ -234,16 +239,18 @@ public class Interp {
 
         // A big switch for all type of instructions
         switch (t.getType()) {
-
-            // Assignment
-            case BbLexer.ASSIGN:
-                value = evaluateExpression(t.getChild(1));
-                switch (t.getChild(0).getType()){
-                	case BbLexer.ID: 
-                		Stack.defineVariable (t.getChild(0).getText(), value);
-                		break;
-                }
-                return null;
+        
+	        // Assignment
+	        case BbLexer.ASSIGN:
+	            value = evaluateExpression(t.getChild(1));
+	            Stack.defineVariable (t.getChild(0).getText(), value);
+	            return null;
+            
+            //Note assignment
+            case BbLexer.NOTEASSIGN:
+            	value = evaluateMusicNotation(t.getChild(1));
+            	Stack.defineVariable(t.getChild(0).getText(), value);
+            	return null;
 
             // If-then-else
             case BbLexer.IF:
@@ -263,18 +270,56 @@ public class Interp {
                     Data r = executeListInstructions(t.getChild(1));
                     if (r != null) return r;
                 }
-
+                
+            //For
+            case BbLexer.FOR:
+            	return null;
+            	
+            // Function call
+            case BbLexer.FUNCALL:
+            	executeFunction(t.getChild(0).getText(), t.getChild(1));
+            	return null;
             // Return
             case BbLexer.RETURN:
                 if (t.getChildCount() != 0) {
                     return evaluateExpression(t.getChild(0));
                 }
                 return new Data(); // No expression: returns void data
-
-            // Function call
-            case BbLexer.FUNCALL:
-                executeFunction(t.getChild(0).getText(), t.getChild(1));
+                
+            //Playable
+            case BbLexer.PLAYABLE:
+            	return null;
+            	
+        	// Read statement: reads a variable and raises an exception
+            // in case of a format error.
+            case BbLexer.READ:
+                String token = null;
+                Data val = new Data(0);;
+                try {
+                    token = stdin.next();
+                    val.setValue(Integer.parseInt(token)); 
+                } catch (NumberFormatException ex) {
+                    throw new RuntimeException ("Format error when reading a number: " + token);
+                }
+                Stack.defineVariable (t.getChild(0).getText(), val);
                 return null;
+
+            // Write statement: it can write an expression or a string.
+            case BbLexer.WRITE:
+                BbTree v = t.getChild(0);
+                // Special case for strings
+                if (v.getType() == BbLexer.STRING) {
+                    System.out.format(v.getStringValue());
+                    return null;
+                }
+
+                // Write an expression
+                System.out.print(evaluateExpression(v).toString());
+                return null;
+            	
+            //Speed
+            case BbLexer.SPEED:
+            	return null;
              
             default: assert false; // Should never happen
         }
@@ -284,7 +329,50 @@ public class Interp {
         return null;
     }
 
-    /**
+	/**
+     * Evaluates the music notation represented in the AST t.
+     * @param t The AST of the expression
+     * @return The value of the expression.
+     */
+    private Data evaluateMusicNotation(BbTree t) {
+        assert t != null;
+        
+        int previous_line = lineNumber();
+        setLineNumber(t);
+        int type = t.getType();
+        
+        Data value = null;
+        
+        switch (type) {
+        	//A note variable
+        	case BbLexer.NOTEID:
+        		value = new Data(Stack.getVariable(t.getText()));
+        		break;
+        	case BbLexer.NOTE:
+        		Note n = new Note(t.getPitchValue());
+        		value = new Data(n);
+        		break;
+        	case BbLexer.CHORD:
+        		ArrayList<Integer> notes = new ArrayList<Integer>();
+        		for(int i = 0; i < t.getChildCount(); ++i){
+        			notes.add(t.getChild(i).getPitchValue());
+        		}
+        		Chord c = new Chord(notes);
+        		value = new Data(c);
+        		break;
+        	case BbLexer.MELODY:
+        		ArrayList<Sound> sounds = new ArrayList<Sound>();
+        		for (int i = 0; i < t.getChildCount(); ++i){
+        			
+        		}
+        		break;
+        		
+        }
+        
+        return null;
+	}
+
+	/**
      * Evaluates the expression represented in the AST t.
      * @param t The AST of the expression
      * @return The value of the expression.
@@ -319,24 +407,6 @@ public class Interp {
                 if (value.isVoid()) {
                     throw new RuntimeException ("function expected to return a value");
                 }
-                break;
-            case BbLexer.ARGLIST:
-                ArrayList<Integer> array = new ArrayList<Integer>();
-                Boolean isInt = true;
-                for(int i = 0; i < t.getChildCount(); ++i){
-                	BbTree node = t.getChild(i);
-                	if (node.getType() == BbLexer.BOOLEAN){
-                		isInt = false;
-                		array.add(i,(node.getBooleanValue())?1:0);
-                	}
-                	else array.add(i,node.getIntValue());
-                }
-                //if(true) throw new RuntimeException("my array is: "+array.toString());
-                //we set isInt to true only on creation.
-                //At the first boolean we encounter reading the array
-                //we switch isInt and interpret the whole array as booleans when stored in memory
-                value = new Data(array,isInt);
-               // if(true) throw new RuntimeException("data is: " + value.toString());
                 break;
             default: break;
         }
@@ -575,6 +645,12 @@ public class Interp {
     	Data index = evaluateExpression(arracc.getChild(1));
 		if (index.isInteger()) return index.getIntegerValue();
 		else throw new RuntimeException ("Index should be an integer");
+    }
+    
+    private void writeMIDI(){
+    	//magic happens here
+    	//if data is not music there is no output
+    	//if data is music we call some class that converts it to MIDI
     }
     
 }
