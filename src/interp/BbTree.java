@@ -75,10 +75,12 @@ public class BbTree extends CommonTree {
         intValue = getText().equals("true") ? 1 : 0;
     }
 
+    /** Get the note pitch value of the node */
     public int getPitchValue(){
     	return pitchValue;
     }
     
+    /** Define a note pitch value for tge node */
     public void setPitchValue(){
     	
     	pitchValue = noteNameToPitch(getChild(0).getText());
@@ -98,6 +100,8 @@ public class BbTree extends CommonTree {
         strValue = s.substring(1,s.length()-1);
     }
     
+    /** Calculates the pitch of the note as a MIDI value */
+ 
     private int noteNameToPitch(String text) {
     	char note = text.charAt(0);
     	int offset = (int)note - (int)'A';

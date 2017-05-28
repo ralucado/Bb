@@ -30,7 +30,6 @@ package interp;
 import parser.*;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.io.*;
@@ -65,9 +64,17 @@ public class Interp {
     /** Nested levels of function calls. */
     private int function_nesting = -1;
     
+    /**Stores the current playing speed of the piece.
+     * Can be changed in runtime and it's used to calculate the duration of each note
+     */
     private int speed;
     
-    private ArrayList<Data> music; //list of playable data to transform into MIDI
+    /**
+     * List of playable data to transform into MIDI
+     * When a PLAYABLE type node is reached, the Data it represents is added to this array
+     * 
+     */
+    private ArrayList<Data> music; 
     
     /**
      * Constructor of the interpreter. It prepares the main
@@ -292,6 +299,7 @@ public class Interp {
                 
             //Playable
             case BbLexer.PLAYABLE:
+            	music.addAll(evaluatePlayable(t));
             	return null;
             	
         	// Read statement: reads a variable and raises an exception
@@ -389,7 +397,7 @@ public class Interp {
 
         		
         }
-        
+        setLineNumber(previous_line);
         return value;
 	}
 
@@ -424,7 +432,7 @@ public class Interp {
         		break;
         	
         }
-        
+        setLineNumber(previous_line);
         return values;
 	}
 	
@@ -709,19 +717,6 @@ public class Interp {
         if (function_nesting < 0) trace.close();
     }
     
-    private Data getArrAccData(BbTree arracc){
-    	return Stack.getVariable(arracc.getChild(0).getText());
-    }
-    
-    private Boolean existsArray(BbTree arracc){
-    	return Stack.definedVariable(arracc.getChild(0).getText());
-    }
-    
-    private int getArrAccIndex(BbTree arracc){
-    	Data index = evaluateExpression(arracc.getChild(1));
-		if (index.isInteger()) return index.getIntegerValue();
-		else throw new RuntimeException ("Index should be an integer");
-    }
     
     private void writeMIDI(){
     	//magic happens here
