@@ -40,7 +40,7 @@ prog    : func+ EOF -> ^(LIST_FUNCTIONS func+)
         ;
 
 // A function has a name, a list of parameters and a block of instructions  
-func    : (type | notetype) ID^ params LB! block_instructions RB!
+func    : FUNC^ ID params LB! block_instructions RB!
         ;
 
 // The list of parameters grouped in a subtree (it can be empty)
@@ -70,15 +70,17 @@ instruction
         |	for_stmt		//for statement
         |   funcall         // Call to a procedure (when no result is produced)
         |   return_stmt     // Return statement
-        |   playable        // Play
+        |   playable       // Play
         |	speed			//Defines the playing speed
+        |	instrument		//Defines the default instrument
+        |	volume			//Defines the default volume
         |	read            // Read a variable
         | 	write           // Write a string or an expression
         |                   // Nothing
         ;
 
 // Assignment
-assign  :   (type)? ID eq=EQ expr -> ^(ASSIGN ID expr)
+assign  :   (type)? ID EQ expr -> ^(ASSIGN ID expr)
 		|	NOTEID EQ musicnotation -> ^(NOTEASSIGN NOTEID musicnotation)
         ;
 
@@ -120,7 +122,7 @@ return_stmt :   RETURN^ (expr | musicnotation)?
 //A playable is  something that can be turned into sound
 playable: melodia
         | polifon
-        | NOTEID
+        | NOTEID -> ^(PLAYABLE NOTEID)
         | notelist
         ;
         
@@ -133,6 +135,9 @@ read	:	READ^ ID
 write	:   WRITE^ (expr | STRING )
         ;
 
+instrument	:	INSTRUMENT^ INT;
+			
+volume		: VOL^ INT; //between 1 and 127
 
 melodia: 'Melody' '(' INT notelist+ ')' -> ^(MELODY INT notelist+)
         ;
@@ -240,6 +245,8 @@ FOR		: 'for'	;
 RETURN  : 'return';
 READ	: 'read';
 WRITE	: 'write';
+INSTRUMENT: 'instrument';
+VOL		: 'vol';
 PITCH	: ('C' | 'D' | 'E' | 'F' | 'G' | 'A' | 'B');
 ALT		: ('#' | 'b');
 QUIET	: 'Z';

@@ -5,16 +5,13 @@ import java.util.ArrayList;
 public class Melody{
 	
 	private ArrayList<Sound> sounds;
-	private int instrument;
 	
-	public Melody(ArrayList<Sound> s, int i){
+	public Melody(ArrayList<Sound> s){
 		sounds = s;
-		setInstrument(i);
 	}
 	
 	public Melody(){
 		sounds = new ArrayList<Sound>();
-		setInstrument(0);
 	}
 	
 	public ArrayList<Sound> getSounds(){
@@ -30,18 +27,26 @@ public class Melody{
 	}
 
 	public int getInstrument() {
-		return instrument;
+		assert sounds.size() > 0;
+		return sounds.get(0).getInstrument();
 	}
-
-	public void setInstrument(int instrument) {
-		this.instrument = instrument;
-	}
-
 
 	public void raisePitch(int x) {
 		for(int i = 0; i < sounds.size(); ++i){
 			sounds.get(i).raisePitch(x);
 		}
+	}
+	
+	@Override
+	public String toString(){
+		String r = "";
+		for (int i = 0; i < sounds.size(); ++i){
+			r += sounds.get(i).toString();
+			if( i <= sounds.size()-1 ) r += " , ";
+		}
+		
+		return "Melody( " + r + " )"; 
+		
 	}
 		
 	

@@ -67,14 +67,18 @@ public class Interp {
     /**Stores the current playing speed of the piece.
      * Can be changed in runtime and it's used to calculate the duration of each note
      */
-    private int speed;
+    private int  speed = 1;
+    
+    private int vol = 0;
     
     /**
      * List of playable data to transform into MIDI
      * When a PLAYABLE type node is reached, the Data it represents is added to this array
      * 
      */
-    private ArrayList<Data> music; 
+    private ArrayList<Data> music = new ArrayList<Data>();
+
+	private int instrument = 0; 
     
     /**
      * Constructor of the interpreter. It prepares the main
@@ -184,7 +188,7 @@ public class Interp {
         // Dumps trace information (function call and arguments)
         if (trace != null) traceFunctionCall(f, Arg_values);
         
-        // List of parameters of the callee
+        // List of parameters of the called function
         BbTree p = f.getChild(1);
         int nparam = p.getChildCount(); // Number of parameters
 
@@ -250,7 +254,7 @@ public class Interp {
 
         // A big switch for all type of instructions
         switch (t.getType()) {
-        
+        	
 	        // Assignment
 	        case BbLexer.ASSIGN:
 	            value = evaluateExpression(t.getChild(1));
@@ -260,6 +264,7 @@ public class Interp {
             //Note assignment
             case BbLexer.NOTEASSIGN:
             	value = evaluateMusicNotation(t.getChild(1));
+            	d(value,t.getChild(0).getText());
             	Stack.defineVariable(t.getChild(0).getText(), value);
             	return null;
 
@@ -279,10 +284,10 @@ public class Interp {
                     checkBoolean(value);
                     if (!value.getBooleanValue()) return null;
                     Data r = executeListInstructions(t.getChild(1));
-                    if (r != null) return r;
+                    return r;
                 }
                 
-            //For
+            //TODO
             case BbLexer.FOR:
             	return null;
             	
@@ -299,7 +304,10 @@ public class Interp {
                 
             //Playable
             case BbLexer.PLAYABLE:
-            	music.addAll(evaluatePlayable(t));
+            	ArrayList<Data> aux = evaluatePlayable(t);
+            	//System.out.format("aux is " + aux.toString()+"\n");
+            	music.addAll(aux);
+            	//System.out.format("music is "+music.toString()+"\n");
             	return null;
             	
         	// Read statement: reads a variable and raises an exception
@@ -333,7 +341,18 @@ public class Interp {
             case BbLexer.SPEED:
             	speed = t.getChild(0).getIntValue();
             	return null;
-             
+            case BbLexer.INSTRUMENT:
+            	instrument = t.getChild(0).getIntValue();
+
+            	return null;
+            	
+            case BbLexer.VOL:
+            	vol = t.getChild(0).getIntValue();
+            	//volume should be between 0 and 127
+            	vol = Integer.min(vol,127);
+            	vol = Integer.max(vol,0);
+            	return null;
+            	
             default: assert false; // Should never happen
         }
 
@@ -341,6 +360,11 @@ public class Interp {
         assert false;
         return null;
     }
+
+	private void d(Object value, String string) {
+		// TODO Auto-generated method stub
+		System.out.println(string+": "+value.toString());
+	}
 
 	/**
      * Evaluates the music notation represented in the AST t.
@@ -369,6 +393,8 @@ public class Interp {
         	case BbLexer.NOTE:
         		Note n = new Note(t.getPitchValue());
         		value = new Data(n);
+				value.setInstrument(instrument );
+				value.setVolume(vol);;
         		break;
         	case BbLexer.CHORD:
         		ArrayList<Integer> notes = new ArrayList<Integer>();
@@ -377,15 +403,35 @@ public class Interp {
         		}
         		Chord c = new Chord(notes);
         		value = new Data(c);
+				value.setInstrument(instrument );
+				value.setVolume(vol);
         		break;
         	case BbLexer.MELODY:
+        		int instrument = t.getChild(0).getIntValue();
         		ArrayList<Sound> sounds = new ArrayList<Sound>();
         		for (int i = 1; i < t.getChildCount(); ++i){
         			ArrayList<Data> d = evaluatePlayable(t.getChild(i));
         			for(int j = 0; j < d.size(); ++j){	
-        				sounds.add(d.get(j).getSound());
+        				Sound s = d.get(j).getSound();
+        				s.setInstrument(instrument);
+        				s.setVolume(vol);
+        				sounds.add(s);
         			}
         		}
+        		Melody m = new Melody(sounds);
+        		value = new Data(m);
+        		break;
+        	case BbLexer.POLIFONE:
+        		ArrayList<Melody> voices = new ArrayList<Melody>();
+        		for(int i = 0; i < t.getChildCount(); ++i){
+        			ArrayList<Data> d = evaluatePlayable(t.getChild(i)); //should return melody
+        			for(int j = 0; j < d.size(); ++j){	
+        				Melody mel = d.get(j).getMelodyValue();
+        				voices.add(mel);
+        			}
+        		}
+        		Polifony p = new Polifony(voices);
+        		value = new Data(p);
         		break;
         	case BbLexer.PLUS:
         		Data left = evaluateMusicNotation(t.getChild(0));
@@ -416,11 +462,13 @@ public class Interp {
         	case BbLexer.NOTEID:
         	case BbLexer.CHORD:
         	case BbLexer.NOTE:
-        		d = evaluateMusicNotation(t);
+        		d = evaluateMusicNotation(t.getChild(0));
         		if(!(d.isChord() || d.isNote())) throw new RuntimeException ("Variable "+ t.getChild(0).getText() +" is not suitable");
         		duration = evaluateDuration(t);
+        		//System.out.format("duration: "+Double.toString(duration));
         		d.setDuration(duration);
         		values.add(d);
+        		//System.out.format(values.toString());
         		break;
         	case BbLexer.PACK:
         		duration = evaluateDuration(t);
@@ -430,6 +478,10 @@ public class Interp {
         			values.add(d);
         		}
         		break;
+        	case BbLexer.MELODY:
+        		return null;
+        	case BbLexer.POLIFONE:
+        		return null;
         	
         }
         setLineNumber(previous_line);
@@ -446,13 +498,23 @@ public class Interp {
 	 * etc.
 	 */
 
+	/** 
+	 * Evaluates the duration of the playable represented in AST t
+	 * @param t is a PLAYABLE node 
+	 * @return The value of the duration in seconds
+	 * 
+	 * */
 	private double evaluateDuration(BbTree t) {
-		assert (t != null);
-		assert(t.getChildCount() >= 2);
-		double beat = 60/speed; //duration of a beat (in seconds)
-		double times = 4/t.getChild(1).getIntValue(); //number of beats for note
+        assert t != null;
+        assert(t.getChildCount() >= 2);
+		double beat = 60.0/(double)speed; //duration of a beat (in seconds)
+		//System.out.format(" Speed:"+Integer.toString(speed));
+		///System.out.format(" Beat:"+Double.toString(beat));
+		double times = 4.0/(double)t.getChild(1).getIntValue(); //number of beats for note
+		//System.out.format(" times:"+Double.toString(times));
 		double duration = beat * times;
 		if(t.getChildCount() > 2) duration += duration/2; //has a dot
+		//System.out.format(" Duration:"+Double.toString(duration));
 		return duration;
 	}
 
@@ -578,7 +640,7 @@ public class Interp {
      */
     private Data evaluateBoolean (int type, Data v, BbTree t) {
         // Boolean evaluation with short-circuit
-
+        assert t != null;
         switch (type) {
             case BbLexer.AND:
                 // Short circuit if v is false
@@ -722,6 +784,11 @@ public class Interp {
     	//magic happens here
     	//if data is not music there is no output
     	//if data is music we call some class that converts it to MIDI
+    	System.out.format("The result of the song is:\n");
+    	for (int i = 0; i < music.size(); ++i){
+    		assert music.get(i).isPlayable();
+            System.out.println(music.get(i).toString());
+    	}
     }
     
 }

@@ -238,4 +238,31 @@ public class Data {
 		}
 	}
 
+	public boolean isPlayable() {
+		switch(type){
+			case NOTE:
+					return n != null && n.hasDuration();
+			case CHORD:
+					return c != null && c.hasDuration();
+			case MELODY:
+					return m != null;
+			case POLIFONY:
+					return p != null;
+			default:
+				break;
+		}
+		return false;
+	}
+
+	public void setInstrument(int instrument) {
+		assert(type == Type.NOTE || type == Type.CHORD);
+		if(type == Type.CHORD) c.setInstrument(instrument);
+		else n.setInstrument(instrument);
+	}
+
+	public void setVolume(int vol) {	
+		assert(type == Type.NOTE || type == Type.CHORD);
+		if(type == Type.CHORD) c.setVolume(vol);
+		else n.setVolume(vol);
+	}
 }

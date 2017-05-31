@@ -23,5 +23,11 @@ public class Pair<L,R> {
 	    return this.left.equals(pairo.getLeft()) &&
 	           this.right.equals(pairo.getRight());
 	  }
+	  
+		@Override
+		public String toString(){
+			return "( " + left.toString() + " , " + right.toString() + " )";
+			
+		}
 
 }

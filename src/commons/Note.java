@@ -10,14 +10,20 @@ public class Note extends Sound{
 		notes.add(a);
 	}
 	
-	public Note(int a, double d){
+	public Note(int a, double d, int i){
 		notes = new ArrayList<Integer>();
 		notes.add(a);
 		duration = d;
+		instrument = i;
 	}
 	
 	public Note(){
 
+	}
+	@Override
+	public String toString(){
+		return "Note( "+notes.get(0).toString()+" -> " + Double.toString(duration) + " )";
+		
 	}
 	
 	

@@ -6,7 +6,11 @@ public abstract class Sound{
 	
 	protected ArrayList<Integer> notes = new ArrayList<Integer>();
 
-	protected Double duration = (double) 0;
+	protected double duration = 0.0;
+	
+	protected int instrument = 0;
+	
+	protected int volume = 0;
 	
 	public ArrayList<Integer> getPitch() {
 		return notes;
@@ -23,6 +27,14 @@ public abstract class Sound{
 		return new Pair<Double, ArrayList<Integer> >(duration, notes);
 	}
 	
+	public int getInstrument(){
+		return instrument;
+	}
+	
+	public void setInstrument(int i){
+		instrument = i;
+	}
+	
 	public double getDuration(){
 		return duration;
 	}
@@ -33,5 +45,10 @@ public abstract class Sound{
 	
 	public void setDuration(double d){
 		duration = d;
+	}
+
+	public void setVolume(int vol) {
+		// TODO Auto-generated method stub
+		volume = vol;
 	}
 }
