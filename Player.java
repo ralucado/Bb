@@ -22,7 +22,7 @@ public class Player {
 			MidiEvent me = new MidiEvent(sm,(long)0);
 			t.add(me);
 			
-			setTempo(b);
+			//setTempo(b,0);
 
 			//****  set track name (meta event)  ****	
 			MetaMessage mt = new MetaMessage();
@@ -68,7 +68,7 @@ public class Player {
 			MidiEvent me = new MidiEvent(sm,(long)0);
 			t.add(me);
 			
-			setTempo(bpm);
+			//setTempo(bpm,0);
 
 			//****  set track name (meta event)  ****	
 			MetaMessage mt = new MetaMessage();
@@ -103,7 +103,8 @@ public class Player {
 		} 
 	}
 	
-	private void setTempo(double b)throws InvalidMidiDataException  {
+	private void setTempo(double b, long start)  {
+		try{
 		bpm = b;
 		// calcular bpm en microsegundos;
 		Double duracion = 25 / bpm; //duracion de quarter note en segundos
@@ -115,13 +116,16 @@ public class Player {
 		MetaMessage mt = new MetaMessage();
         byte[] bt = {primerbyte, segundobyte, tercerbyte};
 		mt.setMessage(0x51 ,bt, 3);
-		MidiEvent me = new MidiEvent(mt,(long)0);
+		MidiEvent me = new MidiEvent(mt,start);
 		t.add(me);
+		}catch (Exception e){
+			System.out.println("Exception caught " + e.toString());
+		}
 
 	}
 	
-	private int messageSound(int channel, Sound s, int start){
-		int auxstart = start;
+	private long messageSound(int channel, Sound s, long start){
+		long auxstart = start;
 		if(channel >= 0 && channel < 16){
 
 			Pair<Double, ArrayList<Integer>> sound = s.getSound();
@@ -156,9 +160,9 @@ public class Player {
 		return auxstart;
 	}
 	
-	private int writeSounds(int channel, ArrayList<Sound> s, int start){
+	private long writeSounds(int channel, ArrayList<Sound> s, long start){
 		
-		int auxstart = start;
+		long auxstart = start;
 		
 		for(int i = 0; i < s.size(); i++){
 			auxstart = messageSound(channel, s.get(i), auxstart);
@@ -166,7 +170,7 @@ public class Player {
 		return auxstart;
 	}
 	
-	private void setInstrument(int channel,int inst, int start){
+	private void setInstrument(int channel,int inst, long start){
 
 		if(channel < 16 && channel >= 0){
 
@@ -182,7 +186,7 @@ public class Player {
 		}
 	}
 	
-	private void setEnd(int end){
+	private void setEnd(long end){
 		try{
 		MetaMessage mt = new MetaMessage();
         byte[] bet2 = {}; // empty array
@@ -195,29 +199,29 @@ public class Player {
 		}
 	}
 	
-	public Sequence writeMidi(ArrayList<Data> d){
-		int start = 1;	
+	public Sequence writeMidi(ArrayList<Pair<Data, Double>> d){
+		long start = 1;	
 		for(int i = 0; i < d.size() ; ++i){
 
-			Data.Type dtype = d.get(i).getType();
-			
+			Data.Type dtype = d.get(i).getLeft().getType();
+			setTempo(d.get(i).getRight(), start);
 			switch(dtype){
 			case NOTE:{
-				Note n = d.get(i).getNoteValue();
+				Note n = d.get(i).getLeft().getNoteValue();
 				ArrayList<Sound> AuxSound = new ArrayList<Sound>();
 				AuxSound.add(n);
 				start = writeSounds(0, AuxSound, start);
 				break;
 			}
 			case CHORD:{
-				Chord c = d.get(i).getChordValue();
+				Chord c = d.get(i).getLeft().getChordValue();
 				ArrayList<Sound> AuxSound = new ArrayList<Sound>();
 				AuxSound.add(c);
 				start = writeSounds(0, AuxSound, start);
 				break;
 			}
 			case MELODY:{
-				Melody m = d.get(i).getMelodyValue();
+				Melody m = d.get(i).getLeft().getMelodyValue();
 				ArrayList<Sound> AuxSound = m.getSounds();
 				int inst = m.getInstrument();
 				setInstrument(0, inst, start);
@@ -225,12 +229,12 @@ public class Player {
 				break;
 			}
 			case POLIFONY:{
-				Polifony p = d.get(i).getPolifonyValue();
+				Polifony p = d.get(i).getLeft().getPolifonyValue();
 				ArrayList<Melody> v = p.getVoices();
-				int maxstart = start;
+				long maxstart = start;
 				for(int j = 0; j < v.size();j++){
 					setInstrument(j, v.get(j).getInstrument(), start);
-					int auxstart = writeSounds(j, v.get(j).getSounds(),start);
+					long auxstart = writeSounds(j, v.get(j).getSounds(),start);
 					if(maxstart < auxstart){
 						maxstart = auxstart;
 					}

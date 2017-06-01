@@ -53,12 +53,12 @@ public class Test {
 		n.add(0x3D - 12 + 11);
 		Chord Dmaj7 = new Chord(n, 4);		
 		
-		ArrayList<Data> d = new ArrayList();
+		ArrayList<Pair<Data, Double>> d = new ArrayList<Pair<Data, Double>>();
 		
-		d.add(new Data(Emaj7));
-		d.add(new Data(BlackadderBb));
-		d.add(new Data(Amaj7));
-		d.add(new Data(Dmaj7));
+		d.add(new Pair(new Data(Emaj7),120.0));
+		d.add(new Pair(new Data(BlackadderBb),120.0));
+		d.add(new Pair(new Data(Amaj7),120.0));
+		d.add(new Pair(new Data(Dmaj7),120.0));
 
 		ArrayList<Sound> as = new ArrayList<Sound>();
 		
@@ -69,17 +69,19 @@ public class Test {
 		
 		Melody m = new Melody(as, 0x45);
 		
-		d.add(new Data(m));
+		d.add(new Pair(new Data(m),100.0));
 		
 		Note note1 = new Note(0x3C, 3);
 		Note note2 = new Note(0x3F, 3);
-		Note note3 = new Note(0x3E, 3);
+		Note note3 = new Note(0x44, 0.5);
+		Note note4 = new Note(0x4E, 3);
 		
 		ArrayList<Sound> a = new ArrayList<Sound>();
 		
 		a.add(note1);
 		a.add(note2);
 		a.add(note3);
+		a.add(note4);
 		
 		ArrayList<Melody> mp = new ArrayList<Melody>();
 		mp.add(m);
@@ -87,7 +89,8 @@ public class Test {
 		
 		Polifony p = new Polifony(mp);
 		
-		d.add(new Data(p));
+		d.add(new Pair(new Data(p),130.0));
+		d.add(new Pair(new Data(Emaj7), 100.0));
 		
 		File f = new File("midifile.mid");
 		try{
