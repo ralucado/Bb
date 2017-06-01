@@ -8,7 +8,7 @@ public class Player {
 	private double bpm = 120;
 	private byte[] setup = {(byte)0xF0, 0x7E, 0x7F, 0x09, 0x01, (byte)0xF7};
 	private Sequence s;
-	private int ticks = 24;
+	private int ticks = 48;
 	private Track t;
 	
 	public Player(int b){
@@ -126,7 +126,7 @@ public class Player {
 
 			Pair<Double, ArrayList<Integer>> sound = s.getSound();
 
-			int duration = sound.getLeft().intValue();
+			Double duration = sound.getLeft();
 			ArrayList<Integer> notes = sound.getRight();
 			try{
 
