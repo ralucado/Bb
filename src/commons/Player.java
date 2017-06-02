@@ -13,52 +13,6 @@ public class Player {
 	private int ticks = 48;
 	private Track t;
 	
-	public Player(int b){
-		try{
-			s = new Sequence(javax.sound.midi.Sequence.PPQ,ticks);
-			t = s.createTrack();
-			
-			//****  General MIDI sysex -- turn on General MIDI sound set  ****
-			SysexMessage sm = new SysexMessage();
-			sm.setMessage(setup, 6);
-			MidiEvent me = new MidiEvent(sm,(long)0);
-			t.add(me);
-			
-			//setTempo(b,0);
-
-			//****  set track name (meta event)  ****	
-			MetaMessage mt = new MetaMessage();
-			String TrackName = new String("midifile track");
-			mt.setMessage(0x03 ,TrackName.getBytes(), TrackName.length());
-			me = new MidiEvent(mt,(long)0);
-			t.add(me);
-			
-			//****  set omni on  ****
-			ShortMessage mm = new ShortMessage();
-			mm.setMessage(0xB0, 0x7D,0x00);
-			me = new MidiEvent(mm,(long)0);
-			t.add(me);
-
-			//****  set poly on  ****
-			mm = new ShortMessage();
-			mm.setMessage(0xB0, 0x7F,0x00);
-			me = new MidiEvent(mm,(long)0);
-			t.add(me);
-
-			//****  set instrument to Piano by default ****
-			mm = new ShortMessage();
-			mm.setMessage(0xC0, 0x00, 0x00);
-			me = new MidiEvent(mm,(long)0);
-			t.add(me);
-
-			
-		}
-		catch(Exception e)
-		{
-			System.out.println("Exception caught " + e.toString());
-		} 
-	}
-	
 	public Player(){
 		try{
 			s = new Sequence(javax.sound.midi.Sequence.PPQ,ticks);
@@ -139,7 +93,7 @@ public class Player {
 				for(int i = 0; i < notes.size(); i++){
 					if(notes.get(i) != -1){
 					ShortMessage mm = new ShortMessage();
-					mm.setMessage(0x90 | channel, notes.get(i), 0x60); // 0x90 es NOTE_ON, 0x3C es middle C
+					mm.setMessage(0x90 | channel, notes.get(i), Math.min(s.getVolume(), 127)); // 0x90 es NOTE_ON, 0x3C es middle C
 					MidiEvent me = new MidiEvent(mm,auxstart);
 					t.add(me);
 					}
@@ -208,15 +162,20 @@ public class Player {
 			Data.Type dtype = d.get(i).getLeft().getType();
 			setTempo(d.get(i).getRight(), start);
 			ArrayList<Sound> AuxSound = null;
+			int ninst = 0;
 			switch(dtype){
 			case NOTE:
 				Note n = d.get(i).getLeft().getNoteValue();
+				ninst = Math.min(n.getInstrument(),0x7F);
+				setInstrument(0,ninst,start);
 				AuxSound = new ArrayList<Sound>();
 				AuxSound.add(n);
 				start = writeSounds(0, AuxSound, start);
 				break;
 			case CHORD:
 				Chord c = d.get(i).getLeft().getChordValue();
+				ninst = Math.min(c.getInstrument(),0x7F);
+				setInstrument(0,ninst,start);
 				AuxSound = new ArrayList<Sound>();
 				AuxSound.add(c);
 				start = writeSounds(0, AuxSound, start);
@@ -232,7 +191,7 @@ public class Player {
 				Polifony p = d.get(i).getLeft().getPolifonyValue();
 				ArrayList<Melody> v = p.getVoices();
 				long maxstart = start;
-				for(int j = 0; j < v.size();j++){
+				for(int j = 0; j < Math.min(16,v.size());j++){
 					setInstrument(j, v.get(j).getInstrument(), start);
 					long auxstart = writeSounds(j, v.get(j).getSounds(),start);
 					if(maxstart < auxstart){
