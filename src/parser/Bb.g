@@ -24,6 +24,8 @@ tokens {
     PLAYABLE;
     POLIFONE;
     INST;
+    INSTRUMENT;
+    VOL;
 }
 
 @header {
@@ -135,9 +137,9 @@ read	:	READ^ ID
 write	:   WRITE^ (expr | STRING )
         ;
 
-instrument	:	INSTRUMENT^ INT;
+instrument	: 'Instrument' INT -> ^(INSTRUMENT INT);
 			
-volume		: VOL^ INT; //between 1 and 127
+volume		: 'Vol' INT -> ^(VOL INT); //between 1 and 127
 
 melodia: 'Melody' '(' INT notelist+ ')' -> ^(MELODY INT notelist+)
         ;
@@ -151,7 +153,7 @@ notas: nota
      
 nota: notabasica  -> ^(NOTE notabasica)
 	| NOTEID ( '('! PLUS^ num_expr ')'!)?
-	| QUIET
+	| QUIET -> ^(NOTE QUIET)
 	;
 	
 	
@@ -245,8 +247,6 @@ FOR		: 'for'	;
 RETURN  : 'return';
 READ	: 'read';
 WRITE	: 'write';
-INSTRUMENT: 'instrument';
-VOL		: 'vol';
 PITCH	: ('C' | 'D' | 'E' | 'F' | 'G' | 'A' | 'B');
 ALT		: ('#' | 'b');
 QUIET	: 'Z';

@@ -264,7 +264,7 @@ public class Interp {
             //Note assignment
             case BbLexer.NOTEASSIGN:
             	value = evaluateMusicNotation(t.getChild(1));
-            	d(value,t.getChild(0).getText());
+            	//d(value,t.getChild(0).getText());
             	Stack.defineVariable(t.getChild(0).getText(), value);
             	return null;
 
@@ -284,7 +284,7 @@ public class Interp {
                     checkBoolean(value);
                     if (!value.getBooleanValue()) return null;
                     Data r = executeListInstructions(t.getChild(1));
-                    return r;
+                    if (r != null)  return r;
                 }
                 
             //TODO
@@ -361,6 +361,7 @@ public class Interp {
         return null;
     }
 
+	@SuppressWarnings("unused")
 	private void d(Object value, String string) {
 		// TODO Auto-generated method stub
 		System.out.println(string+": "+value.toString());
@@ -394,12 +395,18 @@ public class Interp {
         		Note n = new Note(t.getPitchValue());
         		value = new Data(n);
 				value.setInstrument(instrument );
-				value.setVolume(vol);;
+				value.setVolume(vol);
         		break;
         	case BbLexer.CHORD:
         		ArrayList<Integer> notes = new ArrayList<Integer>();
         		for(int i = 0; i < t.getChildCount(); ++i){
-        			notes.add(t.getChild(i).getPitchValue());
+        			if(t.getChild(i).getType() == BbLexer.NOTE) notes.add(t.getChild(i).getPitchValue());
+        			else{
+        				Data d = new Data(evaluateMusicNotation(t.getChild(i)));
+        				if(!d.isNote()) throw new RuntimeException("Variable "+ t.getChild(i).getText() +" is not a note!");
+        				Note no = new Note(d.getNoteValue());
+        				notes.add(no.getPitch().get(0));
+        			}
         		}
         		Chord c = new Chord(notes);
         		value = new Data(c);
@@ -411,7 +418,9 @@ public class Interp {
         		ArrayList<Sound> sounds = new ArrayList<Sound>();
         		for (int i = 1; i < t.getChildCount(); ++i){
         			ArrayList<Data> d = evaluatePlayable(t.getChild(i));
-        			for(int j = 0; j < d.size(); ++j){	
+        			//d(d, "evaluated playable");
+        			for(int j = 0; j < d.size(); ++j){
+        				if (!(d.get(j).isChord() || d.get(j).isNote())) throw new RuntimeException("Variable must be a note or chord");
         				Sound s = d.get(j).getSound();
         				s.setInstrument(instrument);
         				s.setVolume(vol);
@@ -424,18 +433,18 @@ public class Interp {
         	case BbLexer.POLIFONE:
         		ArrayList<Melody> voices = new ArrayList<Melody>();
         		for(int i = 0; i < t.getChildCount(); ++i){
-        			ArrayList<Data> d = evaluatePlayable(t.getChild(i)); //should return melody
-        			for(int j = 0; j < d.size(); ++j){	
-        				Melody mel = d.get(j).getMelodyValue();
-        				voices.add(mel);
-        			}
+        			Data d = evaluateMusicNotation(t.getChild(i)); //should return melody
+        			if(!d.isMelody())
+        				throw new RuntimeException ("Variable "+t.getChild(i).getText()+" is not a MELODY");
+        			Melody mel = new Melody(d.getMelodyValue());
+        			voices.add(mel);
         		}
         		Polifony p = new Polifony(voices);
         		value = new Data(p);
         		break;
         	case BbLexer.PLUS:
-        		Data left = evaluateMusicNotation(t.getChild(0));
-        		Data right = evaluateExpression(t.getChild(1));
+        		Data left = new Data(evaluateMusicNotation(t.getChild(0)));
+        		Data right = new Data(evaluateExpression(t.getChild(1)));
         		assert(right.isInteger());
         		left.raisePitch(right.getIntegerValue());
         		value = left;
@@ -455,27 +464,33 @@ public class Interp {
         int type = t.getChild(0).getType();
         
         ArrayList<Data> values = new ArrayList<Data>();
-        Data d = null;
+        Data data = null;
         double duration = 0;
         switch (type) {
         	//A note variable
         	case BbLexer.NOTEID:
         	case BbLexer.CHORD:
         	case BbLexer.NOTE:
-        		d = evaluateMusicNotation(t.getChild(0));
-        		if(!(d.isChord() || d.isNote())) throw new RuntimeException ("Variable "+ t.getChild(0).getText() +" is not suitable");
-        		duration = evaluateDuration(t);
+        	case BbLexer.PLUS:
+        		data = evaluateMusicNotation(t.getChild(0));
+        		if (data.isChord() || data.isNote()){
+        			duration = evaluateDuration(t);
+        			data.setDuration(duration);
+        		}
         		//System.out.format("duration: "+Double.toString(duration));
-        		d.setDuration(duration);
-        		values.add(d);
+        		values.add(data);
         		//System.out.format(values.toString());
         		break;
         	case BbLexer.PACK:
         		duration = evaluateDuration(t);
         		for (int i = 0; i < t.getChild(0).getChildCount(); ++i){
-        			d = evaluateMusicNotation(t.getChild(0).getChild(i));
-        			d.setDuration(duration);
-        			values.add(d);
+        			d(i, "looking at pos");
+        			d(values, "values BEFORE");
+        			data = new Data(evaluateMusicNotation(t.getChild(0).getChild(i)));
+        			d(data.getSound(), "data is");
+        			data.setDuration(duration);
+        			values.add(data);
+        			d(values, "values AFTER");
         		}
         		break;
         	case BbLexer.MELODY:

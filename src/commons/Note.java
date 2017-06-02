@@ -20,6 +20,12 @@ public class Note extends Sound{
 	public Note(){
 
 	}
+	public Note(Note n) {
+		notes = n.notes;
+		duration = n.duration;
+		instrument = n.instrument;
+	}
+
 	@Override
 	public String toString(){
 		return "Note( "+notes.get(0).toString()+" -> " + Double.toString(duration) + " )";

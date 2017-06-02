@@ -14,6 +14,11 @@ public class Melody{
 		sounds = new ArrayList<Sound>();
 	}
 	
+	//Copy contructor
+	public Melody(Melody m) {
+		sounds = m.sounds;
+	}
+
 	public ArrayList<Sound> getSounds(){
 		return sounds;
 	}
@@ -42,7 +47,7 @@ public class Melody{
 		String r = "";
 		for (int i = 0; i < sounds.size(); ++i){
 			r += sounds.get(i).toString();
-			if( i <= sounds.size()-1 ) r += " , ";
+			if( i < sounds.size()-1 ) r += " , ";
 		}
 		
 		return "Melody( " + r + " )"; 

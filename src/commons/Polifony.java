@@ -10,6 +10,10 @@ public class Polifony{
 		voices = v;
 	}
 	
+	public Polifony(Polifony p){
+		voices = p.voices;
+	}
+	
 	public Polifony(){
 		voices = new  ArrayList< Melody >();
 	}

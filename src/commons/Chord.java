@@ -17,6 +17,12 @@ public class Chord extends Sound{
 	public Chord(){
 	}
 	
+	public Chord(Chord c) {
+		notes = new ArrayList<Integer>(c.notes);
+		duration = c.duration;
+		instrument = c.instrument;
+	}
+
 	@Override
 	public String toString(){
 		String r = "";

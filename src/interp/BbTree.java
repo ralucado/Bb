@@ -104,6 +104,7 @@ public class BbTree extends CommonTree {
  
     private int noteNameToPitch(String text) {
     	char note = text.charAt(0);
+    	if(note == 'Z') return -1;
     	int offset = (int)note - (int)'A';
     	offset = offset*2 -1;
     	BbTree octave = (BbTree) super.getFirstChildWithType(BbLexer.INT);

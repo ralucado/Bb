@@ -48,7 +48,10 @@ public abstract class Sound{
 	}
 
 	public void setVolume(int vol) {
-		// TODO Auto-generated method stub
 		volume = vol;
+	}
+	
+	public int getVolume(){
+		return volume;
 	}
 }

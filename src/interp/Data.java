@@ -116,9 +116,9 @@ public class Data {
 	public Sound getSound() {
 		assert (isChord() || isNote());
 		if(isChord()){
-			return c;
+			return new Chord(c);
 		} 
-		else return n;
+		else return new Note(n);
 	}
     
 
@@ -222,15 +222,19 @@ public class Data {
 	public void raisePitch(int i) {
 		switch(type){
 			case NOTE:
+				n = new Note(n);
 				n.raisePitch(i);
 				break;
 			case CHORD:
+				c = new Chord(c);
 				c.raisePitch(i);
 				break;
 			case MELODY:
+				m = new Melody(m);
 				m.raisePitch(i);
 				break;
 			case POLIFONY:
+				p = new Polifony(p);
 				p.raisePitch(i);
 				break;
 			default:
@@ -265,4 +269,5 @@ public class Data {
 		if(type == Type.CHORD) c.setVolume(vol);
 		else n.setVolume(vol);
 	}
+	
 }

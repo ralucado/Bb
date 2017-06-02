@@ -104,8 +104,8 @@ public class Stack {
      * @return The value of the variable
      */
     public Data getVariable(String name) {
-        Data v = CurrentAR.get(name);
-        if (v == null) {
+        Data v = new Data(CurrentAR.get(name));
+        if (v.isVoid()) {
             throw new RuntimeException ("Variable " + name + " not defined");
         }
         return v;
