@@ -53,7 +53,8 @@ COMMONS_SRC = $(COMMONS)/Sound.java \
 				$(COMMONS)/Chord.java \
 				$(COMMONS)/Melody.java \
 				$(COMMONS)/Polifony.java \
-				$(COMMONS)/Pair.java
+				$(COMMONS)/Pair.java \
+				$(COMMONS)/Player.java
 
 ALL_SRC =		$(MAIN_SRC) $(PARSER_SRC) $(INTERP_SRC) $(COMMONS_SRC)
 

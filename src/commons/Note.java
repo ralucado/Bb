@@ -21,7 +21,7 @@ public class Note extends Sound{
 
 	}
 	public Note(Note n) {
-		notes = n.notes;
+		notes =  new ArrayList<Integer>(n.notes);
 		duration = n.duration;
 		instrument = n.instrument;
 	}

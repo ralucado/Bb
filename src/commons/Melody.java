@@ -16,7 +16,7 @@ public class Melody{
 	
 	//Copy contructor
 	public Melody(Melody m) {
-		sounds = m.sounds;
+		sounds = new ArrayList<Sound>(m.sounds);
 	}
 
 	public ArrayList<Sound> getSounds(){

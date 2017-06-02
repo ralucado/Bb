@@ -127,10 +127,10 @@ public class Data {
 
     /** Defines value for the data */
     public void setValue(int v) { type = Type.INT; value = v;}
-	public void setValue(Note a){ type = Type.NOTE; nullValues(); n = a;}
-	public void setValue(Chord a){  type = Type.CHORD; nullValues(); c = a; }
-	public void setValue(Melody a){  type = Type.MELODY; nullValues(); m = a;}
-	public void setValue(Polifony a){ type = Type.POLIFONY; nullValues(); p = a;}
+	public void setValue(Note a){ type = Type.NOTE; nullValues(); n = new Note(a);}
+	public void setValue(Chord a){  type = Type.CHORD; nullValues(); c = new Chord(a); }
+	public void setValue(Melody a){  type = Type.MELODY; nullValues(); m = new Melody(a);}
+	public void setValue(Polifony a){ type = Type.POLIFONY; nullValues(); p = new Polifony(a);}
 	
 	/** Defines duration for the data. Must be chord or note*/
 	public void setDuration(double duration) {

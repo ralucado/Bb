@@ -1,7 +1,9 @@
-package midicompiler; //si se cambia el package cambiar esto
+package commons; //si se cambia el package cambiar esto
 
 import javax.sound.midi.*;
-import commons.*;
+
+import interp.Data;
+
 import java.util.ArrayList;
 public class Player {
 	
@@ -205,30 +207,28 @@ public class Player {
 
 			Data.Type dtype = d.get(i).getLeft().getType();
 			setTempo(d.get(i).getRight(), start);
+			ArrayList<Sound> AuxSound = null;
 			switch(dtype){
-			case NOTE:{
+			case NOTE:
 				Note n = d.get(i).getLeft().getNoteValue();
-				ArrayList<Sound> AuxSound = new ArrayList<Sound>();
+				AuxSound = new ArrayList<Sound>();
 				AuxSound.add(n);
 				start = writeSounds(0, AuxSound, start);
 				break;
-			}
-			case CHORD:{
+			case CHORD:
 				Chord c = d.get(i).getLeft().getChordValue();
-				ArrayList<Sound> AuxSound = new ArrayList<Sound>();
+				AuxSound = new ArrayList<Sound>();
 				AuxSound.add(c);
 				start = writeSounds(0, AuxSound, start);
 				break;
-			}
-			case MELODY:{
+			case MELODY:
 				Melody m = d.get(i).getLeft().getMelodyValue();
-				ArrayList<Sound> AuxSound = m.getSounds();
+				AuxSound = m.getSounds();
 				int inst = m.getInstrument();
 				setInstrument(0, inst, start);
 				start = writeSounds(0, AuxSound, start);
 				break;
-			}
-			case POLIFONY:{
+			case POLIFONY:
 				Polifony p = d.get(i).getLeft().getPolifonyValue();
 				ArrayList<Melody> v = p.getVoices();
 				long maxstart = start;
@@ -241,7 +241,8 @@ public class Player {
 				}
 				start = maxstart;
 				break;
-			}
+			default:
+				break;
 			}
 			
 		}

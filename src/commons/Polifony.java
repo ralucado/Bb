@@ -11,7 +11,7 @@ public class Polifony{
 	}
 	
 	public Polifony(Polifony p){
-		voices = p.voices;
+		voices = new ArrayList< Melody >(p.voices);
 	}
 	
 	public Polifony(){

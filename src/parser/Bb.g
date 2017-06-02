@@ -91,10 +91,10 @@ type	:   'int'
         |	'void'
         ;
         
-notetype:   'Note'
-        |   'Chord'
-        |   'Melody'
-        |   'Poli'
+notetype:   'Note' -> NOTE
+        |   'Chord' -> CHORD
+        |   'Melody' -> MELODY
+        |   'Poli' -> POLIFONE
         ;
      
 musicnotation	:	'Note' notabasica -> ^(NOTE notabasica)
@@ -181,6 +181,7 @@ voices:	melodia '|'!
 speed	:	'Speed' num_expr -> ^(SPEED num_expr);
 
 // Grammar for expressions with boolean, relational and aritmetic operators
+all_expr:  expr | musicnotation;
 expr	:	boolterm (OR^ boolterm)*;
 
 boolterm:   boolfact (AND^ boolfact)*
@@ -212,7 +213,7 @@ funcall :   ID '(' expr_list? ')' -> ^(FUNCALL ID ^(ARGLIST expr_list?))
         ;
 
 // A list of expressions separated by commas
-expr_list:  expr (','! expr)*
+expr_list:  all_expr (','! all_expr)*
         ;
 
 notabasica : PITCH ALT? INT? ;

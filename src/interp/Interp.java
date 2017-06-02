@@ -34,6 +34,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.io.*;
 import commons.*;
+import javax.sound.midi.*;
 
 /** Class that implements the interpreter of the language. */
 
@@ -76,9 +77,11 @@ public class Interp {
      * When a PLAYABLE type node is reached, the Data it represents is added to this array
      * 
      */
-    private ArrayList<Data> music = new ArrayList<Data>();
+    private ArrayList<Pair<Data, Double > > music = new ArrayList<Pair<Data,Double> >();
 
 	private int instrument = 0; 
+	
+	private Player midiPlayer = new Player();
     
     /**
      * Constructor of the interpreter. It prepares the main
@@ -200,7 +203,7 @@ public class Interp {
          
         // Copy the parameters to the current activation record
         for (int i = 0; i < nparam; ++i) {
-            String param_name = p.getChild(i).getText();
+            String param_name = p.getChild(i).getChild(0).getText();
             Stack.defineVariable(param_name, Arg_values.get(i));
         }
 
@@ -289,7 +292,18 @@ public class Interp {
                 
             //TODO
             case BbLexer.FOR:
-            	return null;
+            	//initial instruction
+            	executeInstruction(t.getChild(0));
+            	 while (true) {
+            		 //check condition
+                     value = evaluateExpression(t.getChild(1));
+                     checkBoolean(value);
+                     if (!value.getBooleanValue()) return null;
+                     Data r = executeListInstructions(t.getChild(3));
+                     if (r != null)  return r;
+                     //post condition
+                     executeInstruction(t.getChild(2));
+                 }
             	
             // Function call
             case BbLexer.FUNCALL:
@@ -306,7 +320,11 @@ public class Interp {
             case BbLexer.PLAYABLE:
             	ArrayList<Data> aux = evaluatePlayable(t);
             	//System.out.format("aux is " + aux.toString()+"\n");
-            	music.addAll(aux);
+            	for(int i = 0; i < aux.size(); ++i){
+            		Data d = aux.get(i);
+            		Double bpm = (double) speed;
+            		music.add(new Pair<Data,Double>(d,bpm));
+            	}
             	//System.out.format("music is "+music.toString()+"\n");
             	return null;
             	
@@ -363,7 +381,6 @@ public class Interp {
 
 	@SuppressWarnings("unused")
 	private void d(Object value, String string) {
-		// TODO Auto-generated method stub
 		System.out.println(string+": "+value.toString());
 	}
 
@@ -472,7 +489,7 @@ public class Interp {
         	case BbLexer.CHORD:
         	case BbLexer.NOTE:
         	case BbLexer.PLUS:
-        		data = evaluateMusicNotation(t.getChild(0));
+        		data = new Data(evaluateMusicNotation(t.getChild(0)));
         		if (data.isChord() || data.isNote()){
         			duration = evaluateDuration(t);
         			data.setDuration(duration);
@@ -484,13 +501,13 @@ public class Interp {
         	case BbLexer.PACK:
         		duration = evaluateDuration(t);
         		for (int i = 0; i < t.getChild(0).getChildCount(); ++i){
-        			d(i, "looking at pos");
-        			d(values, "values BEFORE");
+        			//d(i, "looking at pos");
+        			//d(values, "values BEFORE");
         			data = new Data(evaluateMusicNotation(t.getChild(0).getChild(i)));
-        			d(data.getSound(), "data is");
+        			//d(data.getSound(), "data is");
         			data.setDuration(duration);
         			values.add(data);
-        			d(values, "values AFTER");
+        			//d(values, "values AFTER");
         		}
         		break;
         	case BbLexer.MELODY:
@@ -522,12 +539,10 @@ public class Interp {
 	private double evaluateDuration(BbTree t) {
         assert t != null;
         assert(t.getChildCount() >= 2);
-		double beat = 60.0/(double)speed; //duration of a beat (in seconds)
 		//System.out.format(" Speed:"+Integer.toString(speed));
 		///System.out.format(" Beat:"+Double.toString(beat));
-		double times = 4.0/(double)t.getChild(1).getIntValue(); //number of beats for note
+		double duration = 4.0/(double)t.getChild(1).getIntValue(); //number of beats for note
 		//System.out.format(" times:"+Double.toString(times));
-		double duration = beat * times;
 		if(t.getChildCount() > 2) duration += duration/2; //has a dot
 		//System.out.format(" Duration:"+Double.toString(duration));
 		return duration;
@@ -722,17 +737,19 @@ public class Interp {
             BbTree p = pars.getChild(i); // Parameters of the callee
             BbTree a = args.getChild(i); // Arguments passed by the caller
             setLineNumber(a);
-            if (p.getType() == BbLexer.PVALUE) {
-                // Pass by value: evaluate the expression
+           // d(p.getType(), "type of p");
+            switch(p.getType()){
+            
+            case BbLexer.NOTE:
+            case BbLexer.CHORD:
+            case BbLexer.MELODY:
+            case BbLexer.POLIFONE:
+            case BbLexer.NOTEID:
+            	Params.add(i, evaluateMusicNotation(a));
+            	break;
+            default:
                 Params.add(i,evaluateExpression(a));
-            } else {
-                // Pass by reference: check that it is a variable
-                if (a.getType() != BbLexer.ID) {
-                    throw new RuntimeException("Wrong argument for pass by reference");
-                }
-                // Find the variable and pass the reference
-                Data v = Stack.getVariable(a.getText());
-                Params.add(i,v);
+                break;
             }
         }
         return Params;
@@ -801,9 +818,15 @@ public class Interp {
     	//if data is music we call some class that converts it to MIDI
     	System.out.format("The result of the song is:\n");
     	for (int i = 0; i < music.size(); ++i){
-    		assert music.get(i).isPlayable();
-            System.out.println(music.get(i).toString());
+    		assert music.get(i).getLeft().isPlayable();
+            System.out.println(music.get(i).getLeft().toString());
     	}
+    	File f = new File("song.mid");
+		try{
+			MidiSystem.write(midiPlayer.writeMidi(music),1,f);
+		}catch(Exception e){
+			System.out.println("Exception caught " + e.toString());
+		}
     }
     
 }
