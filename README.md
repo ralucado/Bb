@@ -1,13 +1,13 @@
 Desciption of the directories:
 ==============================
 
-src:      all the source files
-classes:  all the class files
-bin:      the executable Asl
-libs:     directory with external libraries
-examples: some examples of Asl programs
-javadoc:  the doc files produced by javadoc
-doc:      a simple user guide (Asl.pdf)
+* src:      all the source files
+* classes:  all the class files
+* bin:      the executable Asl
+* libs:     directory with external libraries
+* examples: some examples of Asl programs
+* javadoc:  the doc files produced by javadoc
+* doc:      a simple user guide (Asl.pdf)
 
 Installation:
 =============
