@@ -7,7 +7,7 @@ Desciption of the directories:
 * libs:     directory with external libraries
 * examples: some examples of Asl programs
 * javadoc:  the doc files produced by javadoc
-* doc:      a simple user guide (Asl.pdf)
+* doc:      a simple user guide (Bb.pdf)
 
 Installation:
 =============
