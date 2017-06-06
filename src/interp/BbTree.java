@@ -104,19 +104,42 @@ public class BbTree extends CommonTree {
  
     private int noteNameToPitch(String text) {
     	char note = text.charAt(0);
-    	if(note == 'Z') return -1;
-    	int offset = (int)note - (int)'A';
-    	offset = offset*2 -1;
+    	int offset = 0;
+    	switch(note){
+    		case 'C':
+    			offset = 0;
+    			break;
+    		case 'D':
+    			offset = 2;
+    			break;
+    		case 'E':
+    			offset = 4;
+    			break;
+    		case 'F':
+    			offset = 5;
+    			break;
+    		case 'G':
+    			offset = 7;
+    			break;
+    		case 'A':
+    			offset = 9;
+    			break;
+    		case 'B':
+    			offset = 11;
+    			break;
+    		case 'Z':
+    			return -1;
+    	}
+
     	BbTree octave = (BbTree) super.getFirstChildWithType(BbLexer.INT);
     	
     	//if we have an octave specification we make sure the
     	//note is according to the midi chart
     	if(octave != null){
-    		offset += (Integer.parseInt(octave.getText())+1) * 12 + 3;
-    	}
-    	//else we make the A2 - G3 the default octave
-    	else offset+=45;
-    	
+    		offset += (Integer.parseInt(octave.getText())+1) * 12;
+    	} 
+    	//else we put it in the 3rd octave
+    	else offset += 48;
     	
     	BbTree alt = (BbTree) super.getFirstChildWithType(BbLexer.ALT);
     	if(alt != null){

@@ -230,13 +230,8 @@ public class Data {
 				c.raisePitch(i);
 				break;
 			case MELODY:
-				m = new Melody(m);
-				m.raisePitch(i);
-				break;
 			case POLIFONY:
-				p = new Polifony(p);
-				p.raisePitch(i);
-				break;
+				throw new RuntimeException("Melodies and polifonies can't be raised");
 			default:
 				break;
 		}

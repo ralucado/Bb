@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g 2017-06-02 13:18:00
+// $ANTLR 3.4 /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g 2017-06-06 22:40:48
 
 package parser;
 import interp.BbTree;
@@ -2211,7 +2211,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "return_stmt"
-    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:121:1: return_stmt : RETURN ^ ( expr | musicnotation )? ;
+    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:121:1: return_stmt : RETURN ^ ( all_expr )? ;
     public final BbParser.return_stmt_return return_stmt() throws RecognitionException {
         BbParser.return_stmt_return retval = new BbParser.return_stmt_return();
         retval.start = input.LT(1);
@@ -2220,16 +2220,14 @@ public TreeAdaptor getTreeAdaptor() {
         BbTree root_0 = null;
 
         Token RETURN84=null;
-        BbParser.expr_return expr85 =null;
-
-        BbParser.musicnotation_return musicnotation86 =null;
+        BbParser.all_expr_return all_expr85 =null;
 
 
         BbTree RETURN84_tree=null;
 
         try {
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:121:13: ( RETURN ^ ( expr | musicnotation )? )
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:121:17: RETURN ^ ( expr | musicnotation )?
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:121:13: ( RETURN ^ ( all_expr )? )
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:121:17: RETURN ^ ( all_expr )?
             {
             root_0 = (BbTree)adaptor.nil();
 
@@ -2241,38 +2239,23 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (BbTree)adaptor.becomeRoot(RETURN84_tree, root_0);
 
 
-            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:121:25: ( expr | musicnotation )?
-            int alt12=3;
+            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:121:25: ( all_expr )?
+            int alt12=2;
             int LA12_0 = input.LA(1);
 
-            if ( (LA12_0==FALSE||LA12_0==ID||LA12_0==INT||LA12_0==LP||LA12_0==MINUS||LA12_0==NOT||LA12_0==PLUS||LA12_0==TRUE) ) {
+            if ( (LA12_0==FALSE||LA12_0==ID||LA12_0==INT||LA12_0==LP||LA12_0==MINUS||LA12_0==NOT||LA12_0==NOTEID||LA12_0==PLUS||LA12_0==TRUE||LA12_0==67||(LA12_0 >= 69 && LA12_0 <= 71)) ) {
                 alt12=1;
-            }
-            else if ( (LA12_0==NOTEID||LA12_0==67||(LA12_0 >= 69 && LA12_0 <= 71)) ) {
-                alt12=2;
             }
             switch (alt12) {
                 case 1 :
-                    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:121:26: expr
+                    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:121:25: all_expr
                     {
-                    pushFollow(FOLLOW_expr_in_return_stmt1183);
-                    expr85=expr();
+                    pushFollow(FOLLOW_all_expr_in_return_stmt1182);
+                    all_expr85=all_expr();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, expr85.getTree());
-
-                    }
-                    break;
-                case 2 :
-                    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:121:33: musicnotation
-                    {
-                    pushFollow(FOLLOW_musicnotation_in_return_stmt1187);
-                    musicnotation86=musicnotation();
-
-                    state._fsp--;
-
-                    adaptor.addChild(root_0, musicnotation86.getTree());
+                    adaptor.addChild(root_0, all_expr85.getTree());
 
                     }
                     break;
@@ -2319,15 +2302,15 @@ public TreeAdaptor getTreeAdaptor() {
 
         BbTree root_0 = null;
 
-        Token NOTEID89=null;
-        BbParser.melodia_return melodia87 =null;
+        Token NOTEID88=null;
+        BbParser.melodia_return melodia86 =null;
 
-        BbParser.polifon_return polifon88 =null;
+        BbParser.polifon_return polifon87 =null;
 
-        BbParser.notelist_return notelist90 =null;
+        BbParser.notelist_return notelist89 =null;
 
 
-        BbTree NOTEID89_tree=null;
+        BbTree NOTEID88_tree=null;
         RewriteRuleTokenStream stream_NOTEID=new RewriteRuleTokenStream(adaptor,"token NOTEID");
 
         try {
@@ -2386,12 +2369,12 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (BbTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_melodia_in_playable1206);
-                    melodia87=melodia();
+                    pushFollow(FOLLOW_melodia_in_playable1200);
+                    melodia86=melodia();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, melodia87.getTree());
+                    adaptor.addChild(root_0, melodia86.getTree());
 
                     }
                     break;
@@ -2401,20 +2384,20 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (BbTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_polifon_in_playable1218);
-                    polifon88=polifon();
+                    pushFollow(FOLLOW_polifon_in_playable1212);
+                    polifon87=polifon();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, polifon88.getTree());
+                    adaptor.addChild(root_0, polifon87.getTree());
 
                     }
                     break;
                 case 3 :
                     // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:127:11: NOTEID
                     {
-                    NOTEID89=(Token)match(input,NOTEID,FOLLOW_NOTEID_in_playable1230);  
-                    stream_NOTEID.add(NOTEID89);
+                    NOTEID88=(Token)match(input,NOTEID,FOLLOW_NOTEID_in_playable1224);  
+                    stream_NOTEID.add(NOTEID88);
 
 
                     // AST REWRITE
@@ -2457,12 +2440,12 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (BbTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_notelist_in_playable1250);
-                    notelist90=notelist();
+                    pushFollow(FOLLOW_notelist_in_playable1244);
+                    notelist89=notelist();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, notelist90.getTree());
+                    adaptor.addChild(root_0, notelist89.getTree());
 
                     }
                     break;
@@ -2505,11 +2488,11 @@ public TreeAdaptor getTreeAdaptor() {
 
         BbTree root_0 = null;
 
-        Token READ91=null;
-        Token ID92=null;
+        Token READ90=null;
+        Token ID91=null;
 
-        BbTree READ91_tree=null;
-        BbTree ID92_tree=null;
+        BbTree READ90_tree=null;
+        BbTree ID91_tree=null;
 
         try {
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:133:6: ( READ ^ ID )
@@ -2518,18 +2501,18 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (BbTree)adaptor.nil();
 
 
-            READ91=(Token)match(input,READ,FOLLOW_READ_in_read1277); 
-            READ91_tree = 
-            (BbTree)adaptor.create(READ91)
+            READ90=(Token)match(input,READ,FOLLOW_READ_in_read1271); 
+            READ90_tree = 
+            (BbTree)adaptor.create(READ90)
             ;
-            root_0 = (BbTree)adaptor.becomeRoot(READ91_tree, root_0);
+            root_0 = (BbTree)adaptor.becomeRoot(READ90_tree, root_0);
 
 
-            ID92=(Token)match(input,ID,FOLLOW_ID_in_read1280); 
-            ID92_tree = 
-            (BbTree)adaptor.create(ID92)
+            ID91=(Token)match(input,ID,FOLLOW_ID_in_read1274); 
+            ID91_tree = 
+            (BbTree)adaptor.create(ID91)
             ;
-            adaptor.addChild(root_0, ID92_tree);
+            adaptor.addChild(root_0, ID91_tree);
 
 
             }
@@ -2571,13 +2554,13 @@ public TreeAdaptor getTreeAdaptor() {
 
         BbTree root_0 = null;
 
-        Token WRITE93=null;
-        Token STRING95=null;
-        BbParser.expr_return expr94 =null;
+        Token WRITE92=null;
+        Token STRING94=null;
+        BbParser.expr_return expr93 =null;
 
 
-        BbTree WRITE93_tree=null;
-        BbTree STRING95_tree=null;
+        BbTree WRITE92_tree=null;
+        BbTree STRING94_tree=null;
 
         try {
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:137:7: ( WRITE ^ ( expr | STRING ) )
@@ -2586,11 +2569,11 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (BbTree)adaptor.nil();
 
 
-            WRITE93=(Token)match(input,WRITE,FOLLOW_WRITE_in_write1300); 
-            WRITE93_tree = 
-            (BbTree)adaptor.create(WRITE93)
+            WRITE92=(Token)match(input,WRITE,FOLLOW_WRITE_in_write1294); 
+            WRITE92_tree = 
+            (BbTree)adaptor.create(WRITE92)
             ;
-            root_0 = (BbTree)adaptor.becomeRoot(WRITE93_tree, root_0);
+            root_0 = (BbTree)adaptor.becomeRoot(WRITE92_tree, root_0);
 
 
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:137:18: ( expr | STRING )
@@ -2614,23 +2597,23 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:137:19: expr
                     {
-                    pushFollow(FOLLOW_expr_in_write1304);
-                    expr94=expr();
+                    pushFollow(FOLLOW_expr_in_write1298);
+                    expr93=expr();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, expr94.getTree());
+                    adaptor.addChild(root_0, expr93.getTree());
 
                     }
                     break;
                 case 2 :
                     // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:137:26: STRING
                     {
-                    STRING95=(Token)match(input,STRING,FOLLOW_STRING_in_write1308); 
-                    STRING95_tree = 
-                    (BbTree)adaptor.create(STRING95)
+                    STRING94=(Token)match(input,STRING,FOLLOW_STRING_in_write1302); 
+                    STRING94_tree = 
+                    (BbTree)adaptor.create(STRING94)
                     ;
-                    adaptor.addChild(root_0, STRING95_tree);
+                    adaptor.addChild(root_0, STRING94_tree);
 
 
                     }
@@ -2678,11 +2661,11 @@ public TreeAdaptor getTreeAdaptor() {
 
         BbTree root_0 = null;
 
-        Token string_literal96=null;
-        Token INT97=null;
+        Token string_literal95=null;
+        Token INT96=null;
 
-        BbTree string_literal96_tree=null;
-        BbTree INT97_tree=null;
+        BbTree string_literal95_tree=null;
+        BbTree INT96_tree=null;
         RewriteRuleTokenStream stream_68=new RewriteRuleTokenStream(adaptor,"token 68");
         RewriteRuleTokenStream stream_INT=new RewriteRuleTokenStream(adaptor,"token INT");
 
@@ -2690,12 +2673,12 @@ public TreeAdaptor getTreeAdaptor() {
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:140:12: ( 'Instrument' INT -> ^( INSTRUMENT INT ) )
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:140:14: 'Instrument' INT
             {
-            string_literal96=(Token)match(input,68,FOLLOW_68_in_instrument1327);  
-            stream_68.add(string_literal96);
+            string_literal95=(Token)match(input,68,FOLLOW_68_in_instrument1321);  
+            stream_68.add(string_literal95);
 
 
-            INT97=(Token)match(input,INT,FOLLOW_INT_in_instrument1329);  
-            stream_INT.add(INT97);
+            INT96=(Token)match(input,INT,FOLLOW_INT_in_instrument1323);  
+            stream_INT.add(INT96);
 
 
             // AST REWRITE
@@ -2769,11 +2752,11 @@ public TreeAdaptor getTreeAdaptor() {
 
         BbTree root_0 = null;
 
-        Token string_literal98=null;
-        Token INT99=null;
+        Token string_literal97=null;
+        Token INT98=null;
 
-        BbTree string_literal98_tree=null;
-        BbTree INT99_tree=null;
+        BbTree string_literal97_tree=null;
+        BbTree INT98_tree=null;
         RewriteRuleTokenStream stream_73=new RewriteRuleTokenStream(adaptor,"token 73");
         RewriteRuleTokenStream stream_INT=new RewriteRuleTokenStream(adaptor,"token INT");
 
@@ -2781,12 +2764,12 @@ public TreeAdaptor getTreeAdaptor() {
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:142:9: ( 'Vol' INT -> ^( VOL INT ) )
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:142:11: 'Vol' INT
             {
-            string_literal98=(Token)match(input,73,FOLLOW_73_in_volume1349);  
-            stream_73.add(string_literal98);
+            string_literal97=(Token)match(input,73,FOLLOW_73_in_volume1343);  
+            stream_73.add(string_literal97);
 
 
-            INT99=(Token)match(input,INT,FOLLOW_INT_in_volume1351);  
-            stream_INT.add(INT99);
+            INT98=(Token)match(input,INT,FOLLOW_INT_in_volume1345);  
+            stream_INT.add(INT98);
 
 
             // AST REWRITE
@@ -2860,17 +2843,17 @@ public TreeAdaptor getTreeAdaptor() {
 
         BbTree root_0 = null;
 
-        Token string_literal100=null;
-        Token char_literal101=null;
-        Token INT102=null;
-        Token char_literal104=null;
-        BbParser.notelist_return notelist103 =null;
+        Token string_literal99=null;
+        Token char_literal100=null;
+        Token INT101=null;
+        Token char_literal103=null;
+        BbParser.notelist_return notelist102 =null;
 
 
-        BbTree string_literal100_tree=null;
-        BbTree char_literal101_tree=null;
-        BbTree INT102_tree=null;
-        BbTree char_literal104_tree=null;
+        BbTree string_literal99_tree=null;
+        BbTree char_literal100_tree=null;
+        BbTree INT101_tree=null;
+        BbTree char_literal103_tree=null;
         RewriteRuleTokenStream stream_69=new RewriteRuleTokenStream(adaptor,"token 69");
         RewriteRuleTokenStream stream_LP=new RewriteRuleTokenStream(adaptor,"token LP");
         RewriteRuleTokenStream stream_RP=new RewriteRuleTokenStream(adaptor,"token RP");
@@ -2880,16 +2863,16 @@ public TreeAdaptor getTreeAdaptor() {
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:144:8: ( 'Melody' '(' INT ( notelist )+ ')' -> ^( MELODY INT ( notelist )+ ) )
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:144:10: 'Melody' '(' INT ( notelist )+ ')'
             {
-            string_literal100=(Token)match(input,69,FOLLOW_69_in_melodia1367);  
-            stream_69.add(string_literal100);
+            string_literal99=(Token)match(input,69,FOLLOW_69_in_melodia1361);  
+            stream_69.add(string_literal99);
 
 
-            char_literal101=(Token)match(input,LP,FOLLOW_LP_in_melodia1369);  
-            stream_LP.add(char_literal101);
+            char_literal100=(Token)match(input,LP,FOLLOW_LP_in_melodia1363);  
+            stream_LP.add(char_literal100);
 
 
-            INT102=(Token)match(input,INT,FOLLOW_INT_in_melodia1371);  
-            stream_INT.add(INT102);
+            INT101=(Token)match(input,INT,FOLLOW_INT_in_melodia1365);  
+            stream_INT.add(INT101);
 
 
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:144:27: ( notelist )+
@@ -2908,12 +2891,12 @@ public TreeAdaptor getTreeAdaptor() {
             	case 1 :
             	    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:144:27: notelist
             	    {
-            	    pushFollow(FOLLOW_notelist_in_melodia1373);
-            	    notelist103=notelist();
+            	    pushFollow(FOLLOW_notelist_in_melodia1367);
+            	    notelist102=notelist();
 
             	    state._fsp--;
 
-            	    stream_notelist.add(notelist103.getTree());
+            	    stream_notelist.add(notelist102.getTree());
 
             	    }
             	    break;
@@ -2928,12 +2911,12 @@ public TreeAdaptor getTreeAdaptor() {
             } while (true);
 
 
-            char_literal104=(Token)match(input,RP,FOLLOW_RP_in_melodia1376);  
-            stream_RP.add(char_literal104);
+            char_literal103=(Token)match(input,RP,FOLLOW_RP_in_melodia1370);  
+            stream_RP.add(char_literal103);
 
 
             // AST REWRITE
-            // elements: notelist, INT
+            // elements: INT, notelist
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -3012,15 +2995,15 @@ public TreeAdaptor getTreeAdaptor() {
 
         BbTree root_0 = null;
 
-        Token char_literal106=null;
-        Token MUL108=null;
-        BbParser.notas_return notas105 =null;
+        Token char_literal105=null;
+        Token MUL107=null;
+        BbParser.notas_return notas104 =null;
 
-        BbParser.duration_return duration107 =null;
+        BbParser.duration_return duration106 =null;
 
 
-        BbTree char_literal106_tree=null;
-        BbTree MUL108_tree=null;
+        BbTree char_literal105_tree=null;
+        BbTree MUL107_tree=null;
         RewriteRuleTokenStream stream_MUL=new RewriteRuleTokenStream(adaptor,"token MUL");
         RewriteRuleTokenStream stream_65=new RewriteRuleTokenStream(adaptor,"token 65");
         RewriteRuleSubtreeStream stream_duration=new RewriteRuleSubtreeStream(adaptor,"rule duration");
@@ -3029,23 +3012,23 @@ public TreeAdaptor getTreeAdaptor() {
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:147:9: ( notas '.' duration ( MUL )? -> ^( PLAYABLE notas duration ( MUL )? ) )
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:147:11: notas '.' duration ( MUL )?
             {
-            pushFollow(FOLLOW_notas_in_notelist1403);
-            notas105=notas();
+            pushFollow(FOLLOW_notas_in_notelist1397);
+            notas104=notas();
 
             state._fsp--;
 
-            stream_notas.add(notas105.getTree());
+            stream_notas.add(notas104.getTree());
 
-            char_literal106=(Token)match(input,65,FOLLOW_65_in_notelist1405);  
-            stream_65.add(char_literal106);
+            char_literal105=(Token)match(input,65,FOLLOW_65_in_notelist1399);  
+            stream_65.add(char_literal105);
 
 
-            pushFollow(FOLLOW_duration_in_notelist1407);
-            duration107=duration();
+            pushFollow(FOLLOW_duration_in_notelist1401);
+            duration106=duration();
 
             state._fsp--;
 
-            stream_duration.add(duration107.getTree());
+            stream_duration.add(duration106.getTree());
 
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:147:30: ( MUL )?
             int alt16=2;
@@ -3058,8 +3041,8 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:147:30: MUL
                     {
-                    MUL108=(Token)match(input,MUL,FOLLOW_MUL_in_notelist1409);  
-                    stream_MUL.add(MUL108);
+                    MUL107=(Token)match(input,MUL,FOLLOW_MUL_in_notelist1403);  
+                    stream_MUL.add(MUL107);
 
 
                     }
@@ -3069,7 +3052,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: MUL, notas, duration
+            // elements: notas, duration, MUL
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -3148,21 +3131,21 @@ public TreeAdaptor getTreeAdaptor() {
 
         BbTree root_0 = null;
 
-        Token char_literal110=null;
+        Token char_literal109=null;
+        Token char_literal111=null;
         Token char_literal112=null;
-        Token char_literal113=null;
-        Token char_literal115=null;
-        BbParser.nota_return nota109 =null;
+        Token char_literal114=null;
+        BbParser.nota_return nota108 =null;
 
-        BbParser.pack_return pack111 =null;
+        BbParser.pack_return pack110 =null;
 
-        BbParser.chord_return chord114 =null;
+        BbParser.chord_return chord113 =null;
 
 
-        BbTree char_literal110_tree=null;
+        BbTree char_literal109_tree=null;
+        BbTree char_literal111_tree=null;
         BbTree char_literal112_tree=null;
-        BbTree char_literal113_tree=null;
-        BbTree char_literal115_tree=null;
+        BbTree char_literal114_tree=null;
 
         try {
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:149:6: ( nota | '[' ! pack ']' !| '(' ! chord ')' !)
@@ -3200,12 +3183,12 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (BbTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_nota_in_notas1430);
-                    nota109=nota();
+                    pushFollow(FOLLOW_nota_in_notas1424);
+                    nota108=nota();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, nota109.getTree());
+                    adaptor.addChild(root_0, nota108.getTree());
 
                     }
                     break;
@@ -3215,16 +3198,16 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (BbTree)adaptor.nil();
 
 
-                    char_literal110=(Token)match(input,74,FOLLOW_74_in_notas1439); 
+                    char_literal109=(Token)match(input,74,FOLLOW_74_in_notas1433); 
 
-                    pushFollow(FOLLOW_pack_in_notas1442);
-                    pack111=pack();
+                    pushFollow(FOLLOW_pack_in_notas1436);
+                    pack110=pack();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, pack111.getTree());
+                    adaptor.addChild(root_0, pack110.getTree());
 
-                    char_literal112=(Token)match(input,75,FOLLOW_75_in_notas1444); 
+                    char_literal111=(Token)match(input,75,FOLLOW_75_in_notas1438); 
 
                     }
                     break;
@@ -3234,16 +3217,16 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (BbTree)adaptor.nil();
 
 
-                    char_literal113=(Token)match(input,LP,FOLLOW_LP_in_notas1454); 
+                    char_literal112=(Token)match(input,LP,FOLLOW_LP_in_notas1448); 
 
-                    pushFollow(FOLLOW_chord_in_notas1457);
-                    chord114=chord();
+                    pushFollow(FOLLOW_chord_in_notas1451);
+                    chord113=chord();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, chord114.getTree());
+                    adaptor.addChild(root_0, chord113.getTree());
 
-                    char_literal115=(Token)match(input,RP,FOLLOW_RP_in_notas1459); 
+                    char_literal114=(Token)match(input,RP,FOLLOW_RP_in_notas1453); 
 
                     }
                     break;
@@ -3286,21 +3269,21 @@ public TreeAdaptor getTreeAdaptor() {
 
         BbTree root_0 = null;
 
-        Token NOTEID117=null;
-        Token char_literal118=null;
-        Token PLUS119=null;
-        Token char_literal121=null;
-        Token QUIET122=null;
-        BbParser.notabasica_return notabasica116 =null;
+        Token NOTEID116=null;
+        Token char_literal117=null;
+        Token PLUS118=null;
+        Token char_literal120=null;
+        Token QUIET121=null;
+        BbParser.notabasica_return notabasica115 =null;
 
-        BbParser.num_expr_return num_expr120 =null;
+        BbParser.num_expr_return num_expr119 =null;
 
 
-        BbTree NOTEID117_tree=null;
-        BbTree char_literal118_tree=null;
-        BbTree PLUS119_tree=null;
-        BbTree char_literal121_tree=null;
-        BbTree QUIET122_tree=null;
+        BbTree NOTEID116_tree=null;
+        BbTree char_literal117_tree=null;
+        BbTree PLUS118_tree=null;
+        BbTree char_literal120_tree=null;
+        BbTree QUIET121_tree=null;
         RewriteRuleTokenStream stream_QUIET=new RewriteRuleTokenStream(adaptor,"token QUIET");
         RewriteRuleSubtreeStream stream_notabasica=new RewriteRuleSubtreeStream(adaptor,"rule notabasica");
         try {
@@ -3334,12 +3317,12 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:154:7: notabasica
                     {
-                    pushFollow(FOLLOW_notabasica_in_nota1478);
-                    notabasica116=notabasica();
+                    pushFollow(FOLLOW_notabasica_in_nota1472);
+                    notabasica115=notabasica();
 
                     state._fsp--;
 
-                    stream_notabasica.add(notabasica116.getTree());
+                    stream_notabasica.add(notabasica115.getTree());
 
                     // AST REWRITE
                     // elements: notabasica
@@ -3379,11 +3362,11 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (BbTree)adaptor.nil();
 
 
-                    NOTEID117=(Token)match(input,NOTEID,FOLLOW_NOTEID_in_nota1492); 
-                    NOTEID117_tree = 
-                    (BbTree)adaptor.create(NOTEID117)
+                    NOTEID116=(Token)match(input,NOTEID,FOLLOW_NOTEID_in_nota1486); 
+                    NOTEID116_tree = 
+                    (BbTree)adaptor.create(NOTEID116)
                     ;
-                    adaptor.addChild(root_0, NOTEID117_tree);
+                    adaptor.addChild(root_0, NOTEID116_tree);
 
 
                     // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:155:11: ( '(' ! PLUS ^ num_expr ')' !)?
@@ -3397,23 +3380,23 @@ public TreeAdaptor getTreeAdaptor() {
                         case 1 :
                             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:155:13: '(' ! PLUS ^ num_expr ')' !
                             {
-                            char_literal118=(Token)match(input,LP,FOLLOW_LP_in_nota1496); 
+                            char_literal117=(Token)match(input,LP,FOLLOW_LP_in_nota1490); 
 
-                            PLUS119=(Token)match(input,PLUS,FOLLOW_PLUS_in_nota1499); 
-                            PLUS119_tree = 
-                            (BbTree)adaptor.create(PLUS119)
+                            PLUS118=(Token)match(input,PLUS,FOLLOW_PLUS_in_nota1493); 
+                            PLUS118_tree = 
+                            (BbTree)adaptor.create(PLUS118)
                             ;
-                            root_0 = (BbTree)adaptor.becomeRoot(PLUS119_tree, root_0);
+                            root_0 = (BbTree)adaptor.becomeRoot(PLUS118_tree, root_0);
 
 
-                            pushFollow(FOLLOW_num_expr_in_nota1502);
-                            num_expr120=num_expr();
+                            pushFollow(FOLLOW_num_expr_in_nota1496);
+                            num_expr119=num_expr();
 
                             state._fsp--;
 
-                            adaptor.addChild(root_0, num_expr120.getTree());
+                            adaptor.addChild(root_0, num_expr119.getTree());
 
-                            char_literal121=(Token)match(input,RP,FOLLOW_RP_in_nota1504); 
+                            char_literal120=(Token)match(input,RP,FOLLOW_RP_in_nota1498); 
 
                             }
                             break;
@@ -3426,8 +3409,8 @@ public TreeAdaptor getTreeAdaptor() {
                 case 3 :
                     // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:156:4: QUIET
                     {
-                    QUIET122=(Token)match(input,QUIET,FOLLOW_QUIET_in_nota1512);  
-                    stream_QUIET.add(QUIET122);
+                    QUIET121=(Token)match(input,QUIET,FOLLOW_QUIET_in_nota1506);  
+                    stream_QUIET.add(QUIET121);
 
 
                     // AST REWRITE
@@ -3503,7 +3486,7 @@ public TreeAdaptor getTreeAdaptor() {
 
         BbTree root_0 = null;
 
-        BbParser.sub_chord_return sub_chord123 =null;
+        BbParser.sub_chord_return sub_chord122 =null;
 
 
         RewriteRuleSubtreeStream stream_sub_chord=new RewriteRuleSubtreeStream(adaptor,"rule sub_chord");
@@ -3511,12 +3494,12 @@ public TreeAdaptor getTreeAdaptor() {
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:160:6: ( sub_chord -> ^( CHORD sub_chord ) )
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:160:8: sub_chord
             {
-            pushFollow(FOLLOW_sub_chord_in_chord1532);
-            sub_chord123=sub_chord();
+            pushFollow(FOLLOW_sub_chord_in_chord1526);
+            sub_chord122=sub_chord();
 
             state._fsp--;
 
-            stream_sub_chord.add(sub_chord123.getTree());
+            stream_sub_chord.add(sub_chord122.getTree());
 
             // AST REWRITE
             // elements: sub_chord
@@ -3587,13 +3570,13 @@ public TreeAdaptor getTreeAdaptor() {
 
         BbTree root_0 = null;
 
-        Token char_literal125=null;
-        BbParser.nota_return nota124 =null;
+        Token char_literal124=null;
+        BbParser.nota_return nota123 =null;
 
-        BbParser.nota_return nota126 =null;
+        BbParser.nota_return nota125 =null;
 
 
-        BbTree char_literal125_tree=null;
+        BbTree char_literal124_tree=null;
 
         try {
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:163:10: ( nota ( ',' ! ( nota ) )* )
@@ -3602,12 +3585,12 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (BbTree)adaptor.nil();
 
 
-            pushFollow(FOLLOW_nota_in_sub_chord1550);
-            nota124=nota();
+            pushFollow(FOLLOW_nota_in_sub_chord1544);
+            nota123=nota();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, nota124.getTree());
+            adaptor.addChild(root_0, nota123.getTree());
 
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:163:17: ( ',' ! ( nota ) )*
             loop20:
@@ -3624,17 +3607,17 @@ public TreeAdaptor getTreeAdaptor() {
             	case 1 :
             	    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:163:19: ',' ! ( nota )
             	    {
-            	    char_literal125=(Token)match(input,64,FOLLOW_64_in_sub_chord1554); 
+            	    char_literal124=(Token)match(input,64,FOLLOW_64_in_sub_chord1548); 
 
             	    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:163:24: ( nota )
             	    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:163:25: nota
             	    {
-            	    pushFollow(FOLLOW_nota_in_sub_chord1558);
-            	    nota126=nota();
+            	    pushFollow(FOLLOW_nota_in_sub_chord1552);
+            	    nota125=nota();
 
             	    state._fsp--;
 
-            	    adaptor.addChild(root_0, nota126.getTree());
+            	    adaptor.addChild(root_0, nota125.getTree());
 
             	    }
 
@@ -3687,7 +3670,7 @@ public TreeAdaptor getTreeAdaptor() {
 
         BbTree root_0 = null;
 
-        BbParser.sub_chord_return sub_chord127 =null;
+        BbParser.sub_chord_return sub_chord126 =null;
 
 
         RewriteRuleSubtreeStream stream_sub_chord=new RewriteRuleSubtreeStream(adaptor,"rule sub_chord");
@@ -3695,12 +3678,12 @@ public TreeAdaptor getTreeAdaptor() {
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:166:5: ( sub_chord -> ^( PACK sub_chord ) )
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:166:7: sub_chord
             {
-            pushFollow(FOLLOW_sub_chord_in_pack1571);
-            sub_chord127=sub_chord();
+            pushFollow(FOLLOW_sub_chord_in_pack1565);
+            sub_chord126=sub_chord();
 
             state._fsp--;
 
-            stream_sub_chord.add(sub_chord127.getTree());
+            stream_sub_chord.add(sub_chord126.getTree());
 
             // AST REWRITE
             // elements: sub_chord
@@ -3771,15 +3754,15 @@ public TreeAdaptor getTreeAdaptor() {
 
         BbTree root_0 = null;
 
-        Token INT128=null;
-        Token char_literal129=null;
-        Token char_literal131=null;
-        BbParser.num_expr_return num_expr130 =null;
+        Token INT127=null;
+        Token char_literal128=null;
+        Token char_literal130=null;
+        BbParser.num_expr_return num_expr129 =null;
 
 
-        BbTree INT128_tree=null;
-        BbTree char_literal129_tree=null;
-        BbTree char_literal131_tree=null;
+        BbTree INT127_tree=null;
+        BbTree char_literal128_tree=null;
+        BbTree char_literal130_tree=null;
 
         try {
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:170:9: ( INT | '(' ! num_expr ')' !)
@@ -3806,11 +3789,11 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (BbTree)adaptor.nil();
 
 
-                    INT128=(Token)match(input,INT,FOLLOW_INT_in_duration1590); 
-                    INT128_tree = 
-                    (BbTree)adaptor.create(INT128)
+                    INT127=(Token)match(input,INT,FOLLOW_INT_in_duration1584); 
+                    INT127_tree = 
+                    (BbTree)adaptor.create(INT127)
                     ;
-                    adaptor.addChild(root_0, INT128_tree);
+                    adaptor.addChild(root_0, INT127_tree);
 
 
                     }
@@ -3821,16 +3804,16 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (BbTree)adaptor.nil();
 
 
-                    char_literal129=(Token)match(input,LP,FOLLOW_LP_in_duration1599); 
+                    char_literal128=(Token)match(input,LP,FOLLOW_LP_in_duration1593); 
 
-                    pushFollow(FOLLOW_num_expr_in_duration1602);
-                    num_expr130=num_expr();
+                    pushFollow(FOLLOW_num_expr_in_duration1596);
+                    num_expr129=num_expr();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, num_expr130.getTree());
+                    adaptor.addChild(root_0, num_expr129.getTree());
 
-                    char_literal131=(Token)match(input,RP,FOLLOW_RP_in_duration1604); 
+                    char_literal130=(Token)match(input,RP,FOLLOW_RP_in_duration1598); 
 
                     }
                     break;
@@ -3873,15 +3856,15 @@ public TreeAdaptor getTreeAdaptor() {
 
         BbTree root_0 = null;
 
-        Token string_literal132=null;
-        Token LB133=null;
-        Token RB135=null;
-        BbParser.voices_return voices134 =null;
+        Token string_literal131=null;
+        Token LB132=null;
+        Token RB134=null;
+        BbParser.voices_return voices133 =null;
 
 
-        BbTree string_literal132_tree=null;
-        BbTree LB133_tree=null;
-        BbTree RB135_tree=null;
+        BbTree string_literal131_tree=null;
+        BbTree LB132_tree=null;
+        BbTree RB134_tree=null;
         RewriteRuleTokenStream stream_RB=new RewriteRuleTokenStream(adaptor,"token RB");
         RewriteRuleTokenStream stream_LB=new RewriteRuleTokenStream(adaptor,"token LB");
         RewriteRuleTokenStream stream_71=new RewriteRuleTokenStream(adaptor,"token 71");
@@ -3890,12 +3873,12 @@ public TreeAdaptor getTreeAdaptor() {
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:174:9: ( 'Poli' LB ( voices )+ RB -> ^( POLIFONE ( voices )+ ) )
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:174:11: 'Poli' LB ( voices )+ RB
             {
-            string_literal132=(Token)match(input,71,FOLLOW_71_in_polifon1618);  
-            stream_71.add(string_literal132);
+            string_literal131=(Token)match(input,71,FOLLOW_71_in_polifon1612);  
+            stream_71.add(string_literal131);
 
 
-            LB133=(Token)match(input,LB,FOLLOW_LB_in_polifon1620);  
-            stream_LB.add(LB133);
+            LB132=(Token)match(input,LB,FOLLOW_LB_in_polifon1614);  
+            stream_LB.add(LB132);
 
 
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:174:21: ( voices )+
@@ -3914,12 +3897,12 @@ public TreeAdaptor getTreeAdaptor() {
             	case 1 :
             	    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:174:21: voices
             	    {
-            	    pushFollow(FOLLOW_voices_in_polifon1622);
-            	    voices134=voices();
+            	    pushFollow(FOLLOW_voices_in_polifon1616);
+            	    voices133=voices();
 
             	    state._fsp--;
 
-            	    stream_voices.add(voices134.getTree());
+            	    stream_voices.add(voices133.getTree());
 
             	    }
             	    break;
@@ -3934,8 +3917,8 @@ public TreeAdaptor getTreeAdaptor() {
             } while (true);
 
 
-            RB135=(Token)match(input,RB,FOLLOW_RB_in_polifon1625);  
-            stream_RB.add(RB135);
+            RB134=(Token)match(input,RB,FOLLOW_RB_in_polifon1619);  
+            stream_RB.add(RB134);
 
 
             // AST REWRITE
@@ -4014,15 +3997,15 @@ public TreeAdaptor getTreeAdaptor() {
 
         BbTree root_0 = null;
 
-        Token char_literal137=null;
-        Token NOTEID138=null;
-        Token char_literal139=null;
-        BbParser.melodia_return melodia136 =null;
+        Token char_literal136=null;
+        Token NOTEID137=null;
+        Token char_literal138=null;
+        BbParser.melodia_return melodia135 =null;
 
 
-        BbTree char_literal137_tree=null;
-        BbTree NOTEID138_tree=null;
-        BbTree char_literal139_tree=null;
+        BbTree char_literal136_tree=null;
+        BbTree NOTEID137_tree=null;
+        BbTree char_literal138_tree=null;
 
         try {
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:177:7: ( melodia '|' !| NOTEID '|' !)
@@ -4049,14 +4032,14 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (BbTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_melodia_in_voices1658);
-                    melodia136=melodia();
+                    pushFollow(FOLLOW_melodia_in_voices1652);
+                    melodia135=melodia();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, melodia136.getTree());
+                    adaptor.addChild(root_0, melodia135.getTree());
 
-                    char_literal137=(Token)match(input,79,FOLLOW_79_in_voices1660); 
+                    char_literal136=(Token)match(input,79,FOLLOW_79_in_voices1654); 
 
                     }
                     break;
@@ -4066,14 +4049,14 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (BbTree)adaptor.nil();
 
 
-                    NOTEID138=(Token)match(input,NOTEID,FOLLOW_NOTEID_in_voices1666); 
-                    NOTEID138_tree = 
-                    (BbTree)adaptor.create(NOTEID138)
+                    NOTEID137=(Token)match(input,NOTEID,FOLLOW_NOTEID_in_voices1660); 
+                    NOTEID137_tree = 
+                    (BbTree)adaptor.create(NOTEID137)
                     ;
-                    adaptor.addChild(root_0, NOTEID138_tree);
+                    adaptor.addChild(root_0, NOTEID137_tree);
 
 
-                    char_literal139=(Token)match(input,79,FOLLOW_79_in_voices1669); 
+                    char_literal138=(Token)match(input,79,FOLLOW_79_in_voices1663); 
 
                     }
                     break;
@@ -4116,27 +4099,27 @@ public TreeAdaptor getTreeAdaptor() {
 
         BbTree root_0 = null;
 
-        Token string_literal140=null;
-        BbParser.num_expr_return num_expr141 =null;
+        Token string_literal139=null;
+        BbParser.num_expr_return num_expr140 =null;
 
 
-        BbTree string_literal140_tree=null;
+        BbTree string_literal139_tree=null;
         RewriteRuleTokenStream stream_72=new RewriteRuleTokenStream(adaptor,"token 72");
         RewriteRuleSubtreeStream stream_num_expr=new RewriteRuleSubtreeStream(adaptor,"rule num_expr");
         try {
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:181:7: ( 'Speed' num_expr -> ^( SPEED num_expr ) )
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:181:9: 'Speed' num_expr
             {
-            string_literal140=(Token)match(input,72,FOLLOW_72_in_speed1681);  
-            stream_72.add(string_literal140);
+            string_literal139=(Token)match(input,72,FOLLOW_72_in_speed1675);  
+            stream_72.add(string_literal139);
 
 
-            pushFollow(FOLLOW_num_expr_in_speed1683);
-            num_expr141=num_expr();
+            pushFollow(FOLLOW_num_expr_in_speed1677);
+            num_expr140=num_expr();
 
             state._fsp--;
 
-            stream_num_expr.add(num_expr141.getTree());
+            stream_num_expr.add(num_expr140.getTree());
 
             // AST REWRITE
             // elements: num_expr
@@ -4207,9 +4190,9 @@ public TreeAdaptor getTreeAdaptor() {
 
         BbTree root_0 = null;
 
-        BbParser.expr_return expr142 =null;
+        BbParser.expr_return expr141 =null;
 
-        BbParser.musicnotation_return musicnotation143 =null;
+        BbParser.musicnotation_return musicnotation142 =null;
 
 
 
@@ -4238,12 +4221,12 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (BbTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_expr_in_all_expr1700);
-                    expr142=expr();
+                    pushFollow(FOLLOW_expr_in_all_expr1694);
+                    expr141=expr();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, expr142.getTree());
+                    adaptor.addChild(root_0, expr141.getTree());
 
                     }
                     break;
@@ -4253,12 +4236,12 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (BbTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_musicnotation_in_all_expr1704);
-                    musicnotation143=musicnotation();
+                    pushFollow(FOLLOW_musicnotation_in_all_expr1698);
+                    musicnotation142=musicnotation();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, musicnotation143.getTree());
+                    adaptor.addChild(root_0, musicnotation142.getTree());
 
                     }
                     break;
@@ -4301,13 +4284,13 @@ public TreeAdaptor getTreeAdaptor() {
 
         BbTree root_0 = null;
 
-        Token OR145=null;
-        BbParser.boolterm_return boolterm144 =null;
+        Token OR144=null;
+        BbParser.boolterm_return boolterm143 =null;
 
-        BbParser.boolterm_return boolterm146 =null;
+        BbParser.boolterm_return boolterm145 =null;
 
 
-        BbTree OR145_tree=null;
+        BbTree OR144_tree=null;
 
         try {
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:185:6: ( boolterm ( OR ^ boolterm )* )
@@ -4316,12 +4299,12 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (BbTree)adaptor.nil();
 
 
-            pushFollow(FOLLOW_boolterm_in_expr1711);
-            boolterm144=boolterm();
+            pushFollow(FOLLOW_boolterm_in_expr1705);
+            boolterm143=boolterm();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, boolterm144.getTree());
+            adaptor.addChild(root_0, boolterm143.getTree());
 
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:185:17: ( OR ^ boolterm )*
             loop25:
@@ -4338,19 +4321,19 @@ public TreeAdaptor getTreeAdaptor() {
             	case 1 :
             	    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:185:18: OR ^ boolterm
             	    {
-            	    OR145=(Token)match(input,OR,FOLLOW_OR_in_expr1714); 
-            	    OR145_tree = 
-            	    (BbTree)adaptor.create(OR145)
+            	    OR144=(Token)match(input,OR,FOLLOW_OR_in_expr1708); 
+            	    OR144_tree = 
+            	    (BbTree)adaptor.create(OR144)
             	    ;
-            	    root_0 = (BbTree)adaptor.becomeRoot(OR145_tree, root_0);
+            	    root_0 = (BbTree)adaptor.becomeRoot(OR144_tree, root_0);
 
 
-            	    pushFollow(FOLLOW_boolterm_in_expr1717);
-            	    boolterm146=boolterm();
+            	    pushFollow(FOLLOW_boolterm_in_expr1711);
+            	    boolterm145=boolterm();
 
             	    state._fsp--;
 
-            	    adaptor.addChild(root_0, boolterm146.getTree());
+            	    adaptor.addChild(root_0, boolterm145.getTree());
 
             	    }
             	    break;
@@ -4400,13 +4383,13 @@ public TreeAdaptor getTreeAdaptor() {
 
         BbTree root_0 = null;
 
-        Token AND148=null;
-        BbParser.boolfact_return boolfact147 =null;
+        Token AND147=null;
+        BbParser.boolfact_return boolfact146 =null;
 
-        BbParser.boolfact_return boolfact149 =null;
+        BbParser.boolfact_return boolfact148 =null;
 
 
-        BbTree AND148_tree=null;
+        BbTree AND147_tree=null;
 
         try {
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:187:9: ( boolfact ( AND ^ boolfact )* )
@@ -4415,12 +4398,12 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (BbTree)adaptor.nil();
 
 
-            pushFollow(FOLLOW_boolfact_in_boolterm1728);
-            boolfact147=boolfact();
+            pushFollow(FOLLOW_boolfact_in_boolterm1722);
+            boolfact146=boolfact();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, boolfact147.getTree());
+            adaptor.addChild(root_0, boolfact146.getTree());
 
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:187:22: ( AND ^ boolfact )*
             loop26:
@@ -4437,19 +4420,19 @@ public TreeAdaptor getTreeAdaptor() {
             	case 1 :
             	    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:187:23: AND ^ boolfact
             	    {
-            	    AND148=(Token)match(input,AND,FOLLOW_AND_in_boolterm1731); 
-            	    AND148_tree = 
-            	    (BbTree)adaptor.create(AND148)
+            	    AND147=(Token)match(input,AND,FOLLOW_AND_in_boolterm1725); 
+            	    AND147_tree = 
+            	    (BbTree)adaptor.create(AND147)
             	    ;
-            	    root_0 = (BbTree)adaptor.becomeRoot(AND148_tree, root_0);
+            	    root_0 = (BbTree)adaptor.becomeRoot(AND147_tree, root_0);
 
 
-            	    pushFollow(FOLLOW_boolfact_in_boolterm1734);
-            	    boolfact149=boolfact();
+            	    pushFollow(FOLLOW_boolfact_in_boolterm1728);
+            	    boolfact148=boolfact();
 
             	    state._fsp--;
 
-            	    adaptor.addChild(root_0, boolfact149.getTree());
+            	    adaptor.addChild(root_0, boolfact148.getTree());
 
             	    }
             	    break;
@@ -4499,23 +4482,23 @@ public TreeAdaptor getTreeAdaptor() {
 
         BbTree root_0 = null;
 
-        Token EQ151=null;
-        Token NEQ152=null;
-        Token LT153=null;
-        Token LE154=null;
-        Token GT155=null;
-        Token GE156=null;
-        BbParser.num_expr_return num_expr150 =null;
+        Token EQ150=null;
+        Token NEQ151=null;
+        Token LT152=null;
+        Token LE153=null;
+        Token GT154=null;
+        Token GE155=null;
+        BbParser.num_expr_return num_expr149 =null;
 
-        BbParser.num_expr_return num_expr157 =null;
+        BbParser.num_expr_return num_expr156 =null;
 
 
-        BbTree EQ151_tree=null;
-        BbTree NEQ152_tree=null;
-        BbTree LT153_tree=null;
-        BbTree LE154_tree=null;
-        BbTree GT155_tree=null;
-        BbTree GE156_tree=null;
+        BbTree EQ150_tree=null;
+        BbTree NEQ151_tree=null;
+        BbTree LT152_tree=null;
+        BbTree LE153_tree=null;
+        BbTree GT154_tree=null;
+        BbTree GE155_tree=null;
 
         try {
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:190:9: ( num_expr ( ( EQ ^| NEQ ^| LT ^| LE ^| GT ^| GE ^) num_expr )? )
@@ -4524,12 +4507,12 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (BbTree)adaptor.nil();
 
 
-            pushFollow(FOLLOW_num_expr_in_boolfact1754);
-            num_expr150=num_expr();
+            pushFollow(FOLLOW_num_expr_in_boolfact1748);
+            num_expr149=num_expr();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, num_expr150.getTree());
+            adaptor.addChild(root_0, num_expr149.getTree());
 
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:190:22: ( ( EQ ^| NEQ ^| LT ^| LE ^| GT ^| GE ^) num_expr )?
             int alt28=2;
@@ -4587,11 +4570,11 @@ public TreeAdaptor getTreeAdaptor() {
                         case 1 :
                             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:190:24: EQ ^
                             {
-                            EQ151=(Token)match(input,EQ,FOLLOW_EQ_in_boolfact1758); 
-                            EQ151_tree = 
-                            (BbTree)adaptor.create(EQ151)
+                            EQ150=(Token)match(input,EQ,FOLLOW_EQ_in_boolfact1752); 
+                            EQ150_tree = 
+                            (BbTree)adaptor.create(EQ150)
                             ;
-                            root_0 = (BbTree)adaptor.becomeRoot(EQ151_tree, root_0);
+                            root_0 = (BbTree)adaptor.becomeRoot(EQ150_tree, root_0);
 
 
                             }
@@ -4599,11 +4582,11 @@ public TreeAdaptor getTreeAdaptor() {
                         case 2 :
                             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:190:30: NEQ ^
                             {
-                            NEQ152=(Token)match(input,NEQ,FOLLOW_NEQ_in_boolfact1763); 
-                            NEQ152_tree = 
-                            (BbTree)adaptor.create(NEQ152)
+                            NEQ151=(Token)match(input,NEQ,FOLLOW_NEQ_in_boolfact1757); 
+                            NEQ151_tree = 
+                            (BbTree)adaptor.create(NEQ151)
                             ;
-                            root_0 = (BbTree)adaptor.becomeRoot(NEQ152_tree, root_0);
+                            root_0 = (BbTree)adaptor.becomeRoot(NEQ151_tree, root_0);
 
 
                             }
@@ -4611,11 +4594,11 @@ public TreeAdaptor getTreeAdaptor() {
                         case 3 :
                             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:190:37: LT ^
                             {
-                            LT153=(Token)match(input,LT,FOLLOW_LT_in_boolfact1768); 
-                            LT153_tree = 
-                            (BbTree)adaptor.create(LT153)
+                            LT152=(Token)match(input,LT,FOLLOW_LT_in_boolfact1762); 
+                            LT152_tree = 
+                            (BbTree)adaptor.create(LT152)
                             ;
-                            root_0 = (BbTree)adaptor.becomeRoot(LT153_tree, root_0);
+                            root_0 = (BbTree)adaptor.becomeRoot(LT152_tree, root_0);
 
 
                             }
@@ -4623,11 +4606,11 @@ public TreeAdaptor getTreeAdaptor() {
                         case 4 :
                             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:190:43: LE ^
                             {
-                            LE154=(Token)match(input,LE,FOLLOW_LE_in_boolfact1773); 
-                            LE154_tree = 
-                            (BbTree)adaptor.create(LE154)
+                            LE153=(Token)match(input,LE,FOLLOW_LE_in_boolfact1767); 
+                            LE153_tree = 
+                            (BbTree)adaptor.create(LE153)
                             ;
-                            root_0 = (BbTree)adaptor.becomeRoot(LE154_tree, root_0);
+                            root_0 = (BbTree)adaptor.becomeRoot(LE153_tree, root_0);
 
 
                             }
@@ -4635,11 +4618,11 @@ public TreeAdaptor getTreeAdaptor() {
                         case 5 :
                             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:190:49: GT ^
                             {
-                            GT155=(Token)match(input,GT,FOLLOW_GT_in_boolfact1778); 
-                            GT155_tree = 
-                            (BbTree)adaptor.create(GT155)
+                            GT154=(Token)match(input,GT,FOLLOW_GT_in_boolfact1772); 
+                            GT154_tree = 
+                            (BbTree)adaptor.create(GT154)
                             ;
-                            root_0 = (BbTree)adaptor.becomeRoot(GT155_tree, root_0);
+                            root_0 = (BbTree)adaptor.becomeRoot(GT154_tree, root_0);
 
 
                             }
@@ -4647,11 +4630,11 @@ public TreeAdaptor getTreeAdaptor() {
                         case 6 :
                             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:190:55: GE ^
                             {
-                            GE156=(Token)match(input,GE,FOLLOW_GE_in_boolfact1783); 
-                            GE156_tree = 
-                            (BbTree)adaptor.create(GE156)
+                            GE155=(Token)match(input,GE,FOLLOW_GE_in_boolfact1777); 
+                            GE155_tree = 
+                            (BbTree)adaptor.create(GE155)
                             ;
-                            root_0 = (BbTree)adaptor.becomeRoot(GE156_tree, root_0);
+                            root_0 = (BbTree)adaptor.becomeRoot(GE155_tree, root_0);
 
 
                             }
@@ -4660,12 +4643,12 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
 
-                    pushFollow(FOLLOW_num_expr_in_boolfact1787);
-                    num_expr157=num_expr();
+                    pushFollow(FOLLOW_num_expr_in_boolfact1781);
+                    num_expr156=num_expr();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, num_expr157.getTree());
+                    adaptor.addChild(root_0, num_expr156.getTree());
 
                     }
                     break;
@@ -4712,15 +4695,15 @@ public TreeAdaptor getTreeAdaptor() {
 
         BbTree root_0 = null;
 
-        Token PLUS159=null;
-        Token MINUS160=null;
-        BbParser.term_return term158 =null;
+        Token PLUS158=null;
+        Token MINUS159=null;
+        BbParser.term_return term157 =null;
 
-        BbParser.term_return term161 =null;
+        BbParser.term_return term160 =null;
 
 
-        BbTree PLUS159_tree=null;
-        BbTree MINUS160_tree=null;
+        BbTree PLUS158_tree=null;
+        BbTree MINUS159_tree=null;
 
         try {
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:193:9: ( term ( ( PLUS ^| MINUS ^) term )* )
@@ -4729,12 +4712,12 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (BbTree)adaptor.nil();
 
 
-            pushFollow(FOLLOW_term_in_num_expr1807);
-            term158=term();
+            pushFollow(FOLLOW_term_in_num_expr1801);
+            term157=term();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, term158.getTree());
+            adaptor.addChild(root_0, term157.getTree());
 
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:193:18: ( ( PLUS ^| MINUS ^) term )*
             loop30:
@@ -4772,11 +4755,11 @@ public TreeAdaptor getTreeAdaptor() {
             	        case 1 :
             	            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:193:21: PLUS ^
             	            {
-            	            PLUS159=(Token)match(input,PLUS,FOLLOW_PLUS_in_num_expr1812); 
-            	            PLUS159_tree = 
-            	            (BbTree)adaptor.create(PLUS159)
+            	            PLUS158=(Token)match(input,PLUS,FOLLOW_PLUS_in_num_expr1806); 
+            	            PLUS158_tree = 
+            	            (BbTree)adaptor.create(PLUS158)
             	            ;
-            	            root_0 = (BbTree)adaptor.becomeRoot(PLUS159_tree, root_0);
+            	            root_0 = (BbTree)adaptor.becomeRoot(PLUS158_tree, root_0);
 
 
             	            }
@@ -4784,11 +4767,11 @@ public TreeAdaptor getTreeAdaptor() {
             	        case 2 :
             	            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:193:29: MINUS ^
             	            {
-            	            MINUS160=(Token)match(input,MINUS,FOLLOW_MINUS_in_num_expr1817); 
-            	            MINUS160_tree = 
-            	            (BbTree)adaptor.create(MINUS160)
+            	            MINUS159=(Token)match(input,MINUS,FOLLOW_MINUS_in_num_expr1811); 
+            	            MINUS159_tree = 
+            	            (BbTree)adaptor.create(MINUS159)
             	            ;
-            	            root_0 = (BbTree)adaptor.becomeRoot(MINUS160_tree, root_0);
+            	            root_0 = (BbTree)adaptor.becomeRoot(MINUS159_tree, root_0);
 
 
             	            }
@@ -4797,12 +4780,12 @@ public TreeAdaptor getTreeAdaptor() {
             	    }
 
 
-            	    pushFollow(FOLLOW_term_in_num_expr1821);
-            	    term161=term();
+            	    pushFollow(FOLLOW_term_in_num_expr1815);
+            	    term160=term();
 
             	    state._fsp--;
 
-            	    adaptor.addChild(root_0, term161.getTree());
+            	    adaptor.addChild(root_0, term160.getTree());
 
             	    }
             	    break;
@@ -4852,17 +4835,17 @@ public TreeAdaptor getTreeAdaptor() {
 
         BbTree root_0 = null;
 
-        Token MUL163=null;
-        Token DIV164=null;
-        Token MOD165=null;
-        BbParser.factor_return factor162 =null;
+        Token MUL162=null;
+        Token DIV163=null;
+        Token MOD164=null;
+        BbParser.factor_return factor161 =null;
 
-        BbParser.factor_return factor166 =null;
+        BbParser.factor_return factor165 =null;
 
 
-        BbTree MUL163_tree=null;
-        BbTree DIV164_tree=null;
-        BbTree MOD165_tree=null;
+        BbTree MUL162_tree=null;
+        BbTree DIV163_tree=null;
+        BbTree MOD164_tree=null;
 
         try {
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:196:9: ( factor ( ( MUL ^| DIV ^| MOD ^) factor )* )
@@ -4871,12 +4854,12 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (BbTree)adaptor.nil();
 
 
-            pushFollow(FOLLOW_factor_in_term1845);
-            factor162=factor();
+            pushFollow(FOLLOW_factor_in_term1839);
+            factor161=factor();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, factor162.getTree());
+            adaptor.addChild(root_0, factor161.getTree());
 
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:196:20: ( ( MUL ^| DIV ^| MOD ^) factor )*
             loop32:
@@ -4923,11 +4906,11 @@ public TreeAdaptor getTreeAdaptor() {
             	        case 1 :
             	            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:196:23: MUL ^
             	            {
-            	            MUL163=(Token)match(input,MUL,FOLLOW_MUL_in_term1850); 
-            	            MUL163_tree = 
-            	            (BbTree)adaptor.create(MUL163)
+            	            MUL162=(Token)match(input,MUL,FOLLOW_MUL_in_term1844); 
+            	            MUL162_tree = 
+            	            (BbTree)adaptor.create(MUL162)
             	            ;
-            	            root_0 = (BbTree)adaptor.becomeRoot(MUL163_tree, root_0);
+            	            root_0 = (BbTree)adaptor.becomeRoot(MUL162_tree, root_0);
 
 
             	            }
@@ -4935,11 +4918,11 @@ public TreeAdaptor getTreeAdaptor() {
             	        case 2 :
             	            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:196:30: DIV ^
             	            {
-            	            DIV164=(Token)match(input,DIV,FOLLOW_DIV_in_term1855); 
-            	            DIV164_tree = 
-            	            (BbTree)adaptor.create(DIV164)
+            	            DIV163=(Token)match(input,DIV,FOLLOW_DIV_in_term1849); 
+            	            DIV163_tree = 
+            	            (BbTree)adaptor.create(DIV163)
             	            ;
-            	            root_0 = (BbTree)adaptor.becomeRoot(DIV164_tree, root_0);
+            	            root_0 = (BbTree)adaptor.becomeRoot(DIV163_tree, root_0);
 
 
             	            }
@@ -4947,11 +4930,11 @@ public TreeAdaptor getTreeAdaptor() {
             	        case 3 :
             	            // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:196:37: MOD ^
             	            {
-            	            MOD165=(Token)match(input,MOD,FOLLOW_MOD_in_term1860); 
-            	            MOD165_tree = 
-            	            (BbTree)adaptor.create(MOD165)
+            	            MOD164=(Token)match(input,MOD,FOLLOW_MOD_in_term1854); 
+            	            MOD164_tree = 
+            	            (BbTree)adaptor.create(MOD164)
             	            ;
-            	            root_0 = (BbTree)adaptor.becomeRoot(MOD165_tree, root_0);
+            	            root_0 = (BbTree)adaptor.becomeRoot(MOD164_tree, root_0);
 
 
             	            }
@@ -4960,12 +4943,12 @@ public TreeAdaptor getTreeAdaptor() {
             	    }
 
 
-            	    pushFollow(FOLLOW_factor_in_term1865);
-            	    factor166=factor();
+            	    pushFollow(FOLLOW_factor_in_term1859);
+            	    factor165=factor();
 
             	    state._fsp--;
 
-            	    adaptor.addChild(root_0, factor166.getTree());
+            	    adaptor.addChild(root_0, factor165.getTree());
 
             	    }
             	    break;
@@ -5015,15 +4998,15 @@ public TreeAdaptor getTreeAdaptor() {
 
         BbTree root_0 = null;
 
-        Token NOT167=null;
-        Token PLUS168=null;
-        Token MINUS169=null;
-        BbParser.atom_return atom170 =null;
+        Token NOT166=null;
+        Token PLUS167=null;
+        Token MINUS168=null;
+        BbParser.atom_return atom169 =null;
 
 
-        BbTree NOT167_tree=null;
-        BbTree PLUS168_tree=null;
-        BbTree MINUS169_tree=null;
+        BbTree NOT166_tree=null;
+        BbTree PLUS167_tree=null;
+        BbTree MINUS168_tree=null;
 
         try {
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:199:9: ( ( NOT ^| PLUS ^| MINUS ^)? atom )
@@ -5056,11 +5039,11 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:199:14: NOT ^
                     {
-                    NOT167=(Token)match(input,NOT,FOLLOW_NOT_in_factor1888); 
-                    NOT167_tree = 
-                    (BbTree)adaptor.create(NOT167)
+                    NOT166=(Token)match(input,NOT,FOLLOW_NOT_in_factor1882); 
+                    NOT166_tree = 
+                    (BbTree)adaptor.create(NOT166)
                     ;
-                    root_0 = (BbTree)adaptor.becomeRoot(NOT167_tree, root_0);
+                    root_0 = (BbTree)adaptor.becomeRoot(NOT166_tree, root_0);
 
 
                     }
@@ -5068,11 +5051,11 @@ public TreeAdaptor getTreeAdaptor() {
                 case 2 :
                     // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:199:21: PLUS ^
                     {
-                    PLUS168=(Token)match(input,PLUS,FOLLOW_PLUS_in_factor1893); 
-                    PLUS168_tree = 
-                    (BbTree)adaptor.create(PLUS168)
+                    PLUS167=(Token)match(input,PLUS,FOLLOW_PLUS_in_factor1887); 
+                    PLUS167_tree = 
+                    (BbTree)adaptor.create(PLUS167)
                     ;
-                    root_0 = (BbTree)adaptor.becomeRoot(PLUS168_tree, root_0);
+                    root_0 = (BbTree)adaptor.becomeRoot(PLUS167_tree, root_0);
 
 
                     }
@@ -5080,11 +5063,11 @@ public TreeAdaptor getTreeAdaptor() {
                 case 3 :
                     // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:199:29: MINUS ^
                     {
-                    MINUS169=(Token)match(input,MINUS,FOLLOW_MINUS_in_factor1898); 
-                    MINUS169_tree = 
-                    (BbTree)adaptor.create(MINUS169)
+                    MINUS168=(Token)match(input,MINUS,FOLLOW_MINUS_in_factor1892); 
+                    MINUS168_tree = 
+                    (BbTree)adaptor.create(MINUS168)
                     ;
-                    root_0 = (BbTree)adaptor.becomeRoot(MINUS169_tree, root_0);
+                    root_0 = (BbTree)adaptor.becomeRoot(MINUS168_tree, root_0);
 
 
                     }
@@ -5093,12 +5076,12 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            pushFollow(FOLLOW_atom_in_factor1903);
-            atom170=atom();
+            pushFollow(FOLLOW_atom_in_factor1897);
+            atom169=atom();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, atom170.getTree());
+            adaptor.addChild(root_0, atom169.getTree());
 
             }
 
@@ -5140,20 +5123,20 @@ public TreeAdaptor getTreeAdaptor() {
         BbTree root_0 = null;
 
         Token b=null;
-        Token ID171=null;
-        Token INT172=null;
-        Token char_literal174=null;
-        Token char_literal176=null;
-        BbParser.funcall_return funcall173 =null;
+        Token ID170=null;
+        Token INT171=null;
+        Token char_literal173=null;
+        Token char_literal175=null;
+        BbParser.funcall_return funcall172 =null;
 
-        BbParser.expr_return expr175 =null;
+        BbParser.expr_return expr174 =null;
 
 
         BbTree b_tree=null;
-        BbTree ID171_tree=null;
-        BbTree INT172_tree=null;
-        BbTree char_literal174_tree=null;
-        BbTree char_literal176_tree=null;
+        BbTree ID170_tree=null;
+        BbTree INT171_tree=null;
+        BbTree char_literal173_tree=null;
+        BbTree char_literal175_tree=null;
         RewriteRuleTokenStream stream_TRUE=new RewriteRuleTokenStream(adaptor,"token TRUE");
         RewriteRuleTokenStream stream_FALSE=new RewriteRuleTokenStream(adaptor,"token FALSE");
 
@@ -5211,11 +5194,11 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (BbTree)adaptor.nil();
 
 
-                    ID171=(Token)match(input,ID,FOLLOW_ID_in_atom1928); 
-                    ID171_tree = 
-                    (BbTree)adaptor.create(ID171)
+                    ID170=(Token)match(input,ID,FOLLOW_ID_in_atom1922); 
+                    ID170_tree = 
+                    (BbTree)adaptor.create(ID170)
                     ;
-                    adaptor.addChild(root_0, ID171_tree);
+                    adaptor.addChild(root_0, ID170_tree);
 
 
                     }
@@ -5226,11 +5209,11 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (BbTree)adaptor.nil();
 
 
-                    INT172=(Token)match(input,INT,FOLLOW_INT_in_atom1942); 
-                    INT172_tree = 
-                    (BbTree)adaptor.create(INT172)
+                    INT171=(Token)match(input,INT,FOLLOW_INT_in_atom1936); 
+                    INT171_tree = 
+                    (BbTree)adaptor.create(INT171)
                     ;
-                    adaptor.addChild(root_0, INT172_tree);
+                    adaptor.addChild(root_0, INT171_tree);
 
 
                     }
@@ -5259,7 +5242,7 @@ public TreeAdaptor getTreeAdaptor() {
                         case 1 :
                             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:207:14: b= TRUE
                             {
-                            b=(Token)match(input,TRUE,FOLLOW_TRUE_in_atom1959);  
+                            b=(Token)match(input,TRUE,FOLLOW_TRUE_in_atom1953);  
                             stream_TRUE.add(b);
 
 
@@ -5268,7 +5251,7 @@ public TreeAdaptor getTreeAdaptor() {
                         case 2 :
                             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:207:23: b= FALSE
                             {
-                            b=(Token)match(input,FALSE,FOLLOW_FALSE_in_atom1965);  
+                            b=(Token)match(input,FALSE,FOLLOW_FALSE_in_atom1959);  
                             stream_FALSE.add(b);
 
 
@@ -5314,12 +5297,12 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (BbTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_funcall_in_atom1986);
-                    funcall173=funcall();
+                    pushFollow(FOLLOW_funcall_in_atom1980);
+                    funcall172=funcall();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, funcall173.getTree());
+                    adaptor.addChild(root_0, funcall172.getTree());
 
                     }
                     break;
@@ -5329,16 +5312,16 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (BbTree)adaptor.nil();
 
 
-                    char_literal174=(Token)match(input,LP,FOLLOW_LP_in_atom2000); 
+                    char_literal173=(Token)match(input,LP,FOLLOW_LP_in_atom1994); 
 
-                    pushFollow(FOLLOW_expr_in_atom2003);
-                    expr175=expr();
+                    pushFollow(FOLLOW_expr_in_atom1997);
+                    expr174=expr();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, expr175.getTree());
+                    adaptor.addChild(root_0, expr174.getTree());
 
-                    char_literal176=(Token)match(input,RP,FOLLOW_RP_in_atom2005); 
+                    char_literal175=(Token)match(input,RP,FOLLOW_RP_in_atom1999); 
 
                     }
                     break;
@@ -5381,15 +5364,15 @@ public TreeAdaptor getTreeAdaptor() {
 
         BbTree root_0 = null;
 
-        Token ID177=null;
-        Token char_literal178=null;
-        Token char_literal180=null;
-        BbParser.expr_list_return expr_list179 =null;
+        Token ID176=null;
+        Token char_literal177=null;
+        Token char_literal179=null;
+        BbParser.expr_list_return expr_list178 =null;
 
 
-        BbTree ID177_tree=null;
-        BbTree char_literal178_tree=null;
-        BbTree char_literal180_tree=null;
+        BbTree ID176_tree=null;
+        BbTree char_literal177_tree=null;
+        BbTree char_literal179_tree=null;
         RewriteRuleTokenStream stream_LP=new RewriteRuleTokenStream(adaptor,"token LP");
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
         RewriteRuleTokenStream stream_RP=new RewriteRuleTokenStream(adaptor,"token RP");
@@ -5398,12 +5381,12 @@ public TreeAdaptor getTreeAdaptor() {
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:212:9: ( ID '(' ( expr_list )? ')' -> ^( FUNCALL ID ^( ARGLIST ( expr_list )? ) ) )
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:212:13: ID '(' ( expr_list )? ')'
             {
-            ID177=(Token)match(input,ID,FOLLOW_ID_in_funcall2025);  
-            stream_ID.add(ID177);
+            ID176=(Token)match(input,ID,FOLLOW_ID_in_funcall2019);  
+            stream_ID.add(ID176);
 
 
-            char_literal178=(Token)match(input,LP,FOLLOW_LP_in_funcall2027);  
-            stream_LP.add(char_literal178);
+            char_literal177=(Token)match(input,LP,FOLLOW_LP_in_funcall2021);  
+            stream_LP.add(char_literal177);
 
 
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:212:20: ( expr_list )?
@@ -5417,12 +5400,12 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:212:20: expr_list
                     {
-                    pushFollow(FOLLOW_expr_list_in_funcall2029);
-                    expr_list179=expr_list();
+                    pushFollow(FOLLOW_expr_list_in_funcall2023);
+                    expr_list178=expr_list();
 
                     state._fsp--;
 
-                    stream_expr_list.add(expr_list179.getTree());
+                    stream_expr_list.add(expr_list178.getTree());
 
                     }
                     break;
@@ -5430,12 +5413,12 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            char_literal180=(Token)match(input,RP,FOLLOW_RP_in_funcall2032);  
-            stream_RP.add(char_literal180);
+            char_literal179=(Token)match(input,RP,FOLLOW_RP_in_funcall2026);  
+            stream_RP.add(char_literal179);
 
 
             // AST REWRITE
-            // elements: expr_list, ID
+            // elements: ID, expr_list
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -5522,13 +5505,13 @@ public TreeAdaptor getTreeAdaptor() {
 
         BbTree root_0 = null;
 
-        Token char_literal182=null;
-        BbParser.all_expr_return all_expr181 =null;
+        Token char_literal181=null;
+        BbParser.all_expr_return all_expr180 =null;
 
-        BbParser.all_expr_return all_expr183 =null;
+        BbParser.all_expr_return all_expr182 =null;
 
 
-        BbTree char_literal182_tree=null;
+        BbTree char_literal181_tree=null;
 
         try {
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:216:10: ( all_expr ( ',' ! all_expr )* )
@@ -5537,12 +5520,12 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (BbTree)adaptor.nil();
 
 
-            pushFollow(FOLLOW_all_expr_in_expr_list2065);
-            all_expr181=all_expr();
+            pushFollow(FOLLOW_all_expr_in_expr_list2059);
+            all_expr180=all_expr();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, all_expr181.getTree());
+            adaptor.addChild(root_0, all_expr180.getTree());
 
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:216:22: ( ',' ! all_expr )*
             loop37:
@@ -5559,14 +5542,14 @@ public TreeAdaptor getTreeAdaptor() {
             	case 1 :
             	    // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:216:23: ',' ! all_expr
             	    {
-            	    char_literal182=(Token)match(input,64,FOLLOW_64_in_expr_list2068); 
+            	    char_literal181=(Token)match(input,64,FOLLOW_64_in_expr_list2062); 
 
-            	    pushFollow(FOLLOW_all_expr_in_expr_list2071);
-            	    all_expr183=all_expr();
+            	    pushFollow(FOLLOW_all_expr_in_expr_list2065);
+            	    all_expr182=all_expr();
 
             	    state._fsp--;
 
-            	    adaptor.addChild(root_0, all_expr183.getTree());
+            	    adaptor.addChild(root_0, all_expr182.getTree());
 
             	    }
             	    break;
@@ -5616,13 +5599,13 @@ public TreeAdaptor getTreeAdaptor() {
 
         BbTree root_0 = null;
 
-        Token PITCH184=null;
-        Token ALT185=null;
-        Token INT186=null;
+        Token PITCH183=null;
+        Token ALT184=null;
+        Token INT185=null;
 
-        BbTree PITCH184_tree=null;
-        BbTree ALT185_tree=null;
-        BbTree INT186_tree=null;
+        BbTree PITCH183_tree=null;
+        BbTree ALT184_tree=null;
+        BbTree INT185_tree=null;
 
         try {
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:219:12: ( PITCH ( ALT )? ( INT )? )
@@ -5631,11 +5614,11 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (BbTree)adaptor.nil();
 
 
-            PITCH184=(Token)match(input,PITCH,FOLLOW_PITCH_in_notabasica2090); 
-            PITCH184_tree = 
-            (BbTree)adaptor.create(PITCH184)
+            PITCH183=(Token)match(input,PITCH,FOLLOW_PITCH_in_notabasica2084); 
+            PITCH183_tree = 
+            (BbTree)adaptor.create(PITCH183)
             ;
-            adaptor.addChild(root_0, PITCH184_tree);
+            adaptor.addChild(root_0, PITCH183_tree);
 
 
             // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:219:20: ( ALT )?
@@ -5649,11 +5632,11 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:219:20: ALT
                     {
-                    ALT185=(Token)match(input,ALT,FOLLOW_ALT_in_notabasica2092); 
-                    ALT185_tree = 
-                    (BbTree)adaptor.create(ALT185)
+                    ALT184=(Token)match(input,ALT,FOLLOW_ALT_in_notabasica2086); 
+                    ALT184_tree = 
+                    (BbTree)adaptor.create(ALT184)
                     ;
-                    adaptor.addChild(root_0, ALT185_tree);
+                    adaptor.addChild(root_0, ALT184_tree);
 
 
                     }
@@ -5673,11 +5656,11 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     // /home/raluca/Documents/Uni/Q6/CL/Bb/src/parser/Bb.g:219:25: INT
                     {
-                    INT186=(Token)match(input,INT,FOLLOW_INT_in_notabasica2095); 
-                    INT186_tree = 
-                    (BbTree)adaptor.create(INT186)
+                    INT185=(Token)match(input,INT,FOLLOW_INT_in_notabasica2089); 
+                    INT185_tree = 
+                    (BbTree)adaptor.create(INT185)
                     ;
-                    adaptor.addChild(root_0, INT186_tree);
+                    adaptor.addChild(root_0, INT185_tree);
 
 
                     }
@@ -5797,109 +5780,108 @@ public TreeAdaptor getTreeAdaptor() {
     public static final BitSet FOLLOW_block_instructions_in_for_stmt1152 = new BitSet(new long[]{0x0008000000000000L});
     public static final BitSet FOLLOW_RB_in_for_stmt1154 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RETURN_in_return_stmt1179 = new BitSet(new long[]{0x0400412242208002L,0x00000000000000E8L});
-    public static final BitSet FOLLOW_expr_in_return_stmt1183 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_musicnotation_in_return_stmt1187 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_melodia_in_playable1206 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_polifon_in_playable1218 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NOTEID_in_playable1230 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_notelist_in_playable1250 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_READ_in_read1277 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_ID_in_read1280 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_WRITE_in_write1300 = new BitSet(new long[]{0x0500402242208000L});
-    public static final BitSet FOLLOW_expr_in_write1304 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_in_write1308 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_68_in_instrument1327 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_INT_in_instrument1329 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_73_in_volume1349 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_INT_in_volume1351 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_69_in_melodia1367 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_LP_in_melodia1369 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_INT_in_melodia1371 = new BitSet(new long[]{0x0004110040000000L,0x0000000000000400L});
-    public static final BitSet FOLLOW_notelist_in_melodia1373 = new BitSet(new long[]{0x0044110040000000L,0x0000000000000400L});
-    public static final BitSet FOLLOW_RP_in_melodia1376 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_notas_in_notelist1403 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
-    public static final BitSet FOLLOW_65_in_notelist1405 = new BitSet(new long[]{0x0000000042000000L});
-    public static final BitSet FOLLOW_duration_in_notelist1407 = new BitSet(new long[]{0x0000000800000002L});
-    public static final BitSet FOLLOW_MUL_in_notelist1409 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_nota_in_notas1430 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_74_in_notas1439 = new BitSet(new long[]{0x0004110000000000L});
-    public static final BitSet FOLLOW_pack_in_notas1442 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000800L});
-    public static final BitSet FOLLOW_75_in_notas1444 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LP_in_notas1454 = new BitSet(new long[]{0x0004110000000000L});
-    public static final BitSet FOLLOW_chord_in_notas1457 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_RP_in_notas1459 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_notabasica_in_nota1478 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NOTEID_in_nota1492 = new BitSet(new long[]{0x0000000040000002L});
-    public static final BitSet FOLLOW_LP_in_nota1496 = new BitSet(new long[]{0x0000400000000000L});
-    public static final BitSet FOLLOW_PLUS_in_nota1499 = new BitSet(new long[]{0x0400402242208000L});
-    public static final BitSet FOLLOW_num_expr_in_nota1502 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_RP_in_nota1504 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_QUIET_in_nota1512 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_sub_chord_in_chord1532 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_nota_in_sub_chord1550 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000001L});
-    public static final BitSet FOLLOW_64_in_sub_chord1554 = new BitSet(new long[]{0x0004110000000000L});
-    public static final BitSet FOLLOW_nota_in_sub_chord1558 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000001L});
-    public static final BitSet FOLLOW_sub_chord_in_pack1571 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INT_in_duration1590 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LP_in_duration1599 = new BitSet(new long[]{0x0400402242208000L});
-    public static final BitSet FOLLOW_num_expr_in_duration1602 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_RP_in_duration1604 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_71_in_polifon1618 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_LB_in_polifon1620 = new BitSet(new long[]{0x0000010000000000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_voices_in_polifon1622 = new BitSet(new long[]{0x0008010000000000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_RB_in_polifon1625 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_melodia_in_voices1658 = new BitSet(new long[]{0x0000000000000000L,0x0000000000008000L});
-    public static final BitSet FOLLOW_79_in_voices1660 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NOTEID_in_voices1666 = new BitSet(new long[]{0x0000000000000000L,0x0000000000008000L});
-    public static final BitSet FOLLOW_79_in_voices1669 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_72_in_speed1681 = new BitSet(new long[]{0x0400402242208000L});
-    public static final BitSet FOLLOW_num_expr_in_speed1683 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expr_in_all_expr1700 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_musicnotation_in_all_expr1704 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_all_expr_in_return_stmt1182 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_melodia_in_playable1200 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_polifon_in_playable1212 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NOTEID_in_playable1224 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_notelist_in_playable1244 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_READ_in_read1271 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_ID_in_read1274 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_WRITE_in_write1294 = new BitSet(new long[]{0x0500402242208000L});
+    public static final BitSet FOLLOW_expr_in_write1298 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_in_write1302 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_68_in_instrument1321 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_INT_in_instrument1323 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_73_in_volume1343 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_INT_in_volume1345 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_69_in_melodia1361 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_LP_in_melodia1363 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_INT_in_melodia1365 = new BitSet(new long[]{0x0004110040000000L,0x0000000000000400L});
+    public static final BitSet FOLLOW_notelist_in_melodia1367 = new BitSet(new long[]{0x0044110040000000L,0x0000000000000400L});
+    public static final BitSet FOLLOW_RP_in_melodia1370 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_notas_in_notelist1397 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
+    public static final BitSet FOLLOW_65_in_notelist1399 = new BitSet(new long[]{0x0000000042000000L});
+    public static final BitSet FOLLOW_duration_in_notelist1401 = new BitSet(new long[]{0x0000000800000002L});
+    public static final BitSet FOLLOW_MUL_in_notelist1403 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_nota_in_notas1424 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_74_in_notas1433 = new BitSet(new long[]{0x0004110000000000L});
+    public static final BitSet FOLLOW_pack_in_notas1436 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000800L});
+    public static final BitSet FOLLOW_75_in_notas1438 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LP_in_notas1448 = new BitSet(new long[]{0x0004110000000000L});
+    public static final BitSet FOLLOW_chord_in_notas1451 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_RP_in_notas1453 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_notabasica_in_nota1472 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NOTEID_in_nota1486 = new BitSet(new long[]{0x0000000040000002L});
+    public static final BitSet FOLLOW_LP_in_nota1490 = new BitSet(new long[]{0x0000400000000000L});
+    public static final BitSet FOLLOW_PLUS_in_nota1493 = new BitSet(new long[]{0x0400402242208000L});
+    public static final BitSet FOLLOW_num_expr_in_nota1496 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_RP_in_nota1498 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_QUIET_in_nota1506 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_sub_chord_in_chord1526 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_nota_in_sub_chord1544 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000001L});
+    public static final BitSet FOLLOW_64_in_sub_chord1548 = new BitSet(new long[]{0x0004110000000000L});
+    public static final BitSet FOLLOW_nota_in_sub_chord1552 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000001L});
+    public static final BitSet FOLLOW_sub_chord_in_pack1565 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INT_in_duration1584 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LP_in_duration1593 = new BitSet(new long[]{0x0400402242208000L});
+    public static final BitSet FOLLOW_num_expr_in_duration1596 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_RP_in_duration1598 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_71_in_polifon1612 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_LB_in_polifon1614 = new BitSet(new long[]{0x0000010000000000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_voices_in_polifon1616 = new BitSet(new long[]{0x0008010000000000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_RB_in_polifon1619 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_melodia_in_voices1652 = new BitSet(new long[]{0x0000000000000000L,0x0000000000008000L});
+    public static final BitSet FOLLOW_79_in_voices1654 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NOTEID_in_voices1660 = new BitSet(new long[]{0x0000000000000000L,0x0000000000008000L});
+    public static final BitSet FOLLOW_79_in_voices1663 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_72_in_speed1675 = new BitSet(new long[]{0x0400402242208000L});
+    public static final BitSet FOLLOW_num_expr_in_speed1677 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expr_in_all_expr1694 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_musicnotation_in_all_expr1698 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_boolterm_in_expr1705 = new BitSet(new long[]{0x0000020000000002L});
+    public static final BitSet FOLLOW_OR_in_expr1708 = new BitSet(new long[]{0x0400402242208000L});
     public static final BitSet FOLLOW_boolterm_in_expr1711 = new BitSet(new long[]{0x0000020000000002L});
-    public static final BitSet FOLLOW_OR_in_expr1714 = new BitSet(new long[]{0x0400402242208000L});
-    public static final BitSet FOLLOW_boolterm_in_expr1717 = new BitSet(new long[]{0x0000020000000002L});
+    public static final BitSet FOLLOW_boolfact_in_boolterm1722 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_AND_in_boolterm1725 = new BitSet(new long[]{0x0400402242208000L});
     public static final BitSet FOLLOW_boolfact_in_boolterm1728 = new BitSet(new long[]{0x0000000000000022L});
-    public static final BitSet FOLLOW_AND_in_boolterm1731 = new BitSet(new long[]{0x0400402242208000L});
-    public static final BitSet FOLLOW_boolfact_in_boolterm1734 = new BitSet(new long[]{0x0000000000000022L});
-    public static final BitSet FOLLOW_num_expr_in_boolfact1754 = new BitSet(new long[]{0x0000001088182002L});
-    public static final BitSet FOLLOW_EQ_in_boolfact1758 = new BitSet(new long[]{0x0400402242208000L});
-    public static final BitSet FOLLOW_NEQ_in_boolfact1763 = new BitSet(new long[]{0x0400402242208000L});
-    public static final BitSet FOLLOW_LT_in_boolfact1768 = new BitSet(new long[]{0x0400402242208000L});
-    public static final BitSet FOLLOW_LE_in_boolfact1773 = new BitSet(new long[]{0x0400402242208000L});
-    public static final BitSet FOLLOW_GT_in_boolfact1778 = new BitSet(new long[]{0x0400402242208000L});
-    public static final BitSet FOLLOW_GE_in_boolfact1783 = new BitSet(new long[]{0x0400402242208000L});
-    public static final BitSet FOLLOW_num_expr_in_boolfact1787 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_term_in_num_expr1807 = new BitSet(new long[]{0x0000400200000002L});
-    public static final BitSet FOLLOW_PLUS_in_num_expr1812 = new BitSet(new long[]{0x0400402242208000L});
-    public static final BitSet FOLLOW_MINUS_in_num_expr1817 = new BitSet(new long[]{0x0400402242208000L});
-    public static final BitSet FOLLOW_term_in_num_expr1821 = new BitSet(new long[]{0x0000400200000002L});
-    public static final BitSet FOLLOW_factor_in_term1845 = new BitSet(new long[]{0x0000000C00000802L});
-    public static final BitSet FOLLOW_MUL_in_term1850 = new BitSet(new long[]{0x0400402242208000L});
-    public static final BitSet FOLLOW_DIV_in_term1855 = new BitSet(new long[]{0x0400402242208000L});
-    public static final BitSet FOLLOW_MOD_in_term1860 = new BitSet(new long[]{0x0400402242208000L});
-    public static final BitSet FOLLOW_factor_in_term1865 = new BitSet(new long[]{0x0000000C00000802L});
-    public static final BitSet FOLLOW_NOT_in_factor1888 = new BitSet(new long[]{0x0400000042208000L});
-    public static final BitSet FOLLOW_PLUS_in_factor1893 = new BitSet(new long[]{0x0400000042208000L});
-    public static final BitSet FOLLOW_MINUS_in_factor1898 = new BitSet(new long[]{0x0400000042208000L});
-    public static final BitSet FOLLOW_atom_in_factor1903 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_atom1928 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INT_in_atom1942 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_TRUE_in_atom1959 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_FALSE_in_atom1965 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_funcall_in_atom1986 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LP_in_atom2000 = new BitSet(new long[]{0x0400402242208000L});
-    public static final BitSet FOLLOW_expr_in_atom2003 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_RP_in_atom2005 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_funcall2025 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_LP_in_funcall2027 = new BitSet(new long[]{0x0440412242208000L,0x00000000000000E8L});
-    public static final BitSet FOLLOW_expr_list_in_funcall2029 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_RP_in_funcall2032 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_num_expr_in_boolfact1748 = new BitSet(new long[]{0x0000001088182002L});
+    public static final BitSet FOLLOW_EQ_in_boolfact1752 = new BitSet(new long[]{0x0400402242208000L});
+    public static final BitSet FOLLOW_NEQ_in_boolfact1757 = new BitSet(new long[]{0x0400402242208000L});
+    public static final BitSet FOLLOW_LT_in_boolfact1762 = new BitSet(new long[]{0x0400402242208000L});
+    public static final BitSet FOLLOW_LE_in_boolfact1767 = new BitSet(new long[]{0x0400402242208000L});
+    public static final BitSet FOLLOW_GT_in_boolfact1772 = new BitSet(new long[]{0x0400402242208000L});
+    public static final BitSet FOLLOW_GE_in_boolfact1777 = new BitSet(new long[]{0x0400402242208000L});
+    public static final BitSet FOLLOW_num_expr_in_boolfact1781 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_term_in_num_expr1801 = new BitSet(new long[]{0x0000400200000002L});
+    public static final BitSet FOLLOW_PLUS_in_num_expr1806 = new BitSet(new long[]{0x0400402242208000L});
+    public static final BitSet FOLLOW_MINUS_in_num_expr1811 = new BitSet(new long[]{0x0400402242208000L});
+    public static final BitSet FOLLOW_term_in_num_expr1815 = new BitSet(new long[]{0x0000400200000002L});
+    public static final BitSet FOLLOW_factor_in_term1839 = new BitSet(new long[]{0x0000000C00000802L});
+    public static final BitSet FOLLOW_MUL_in_term1844 = new BitSet(new long[]{0x0400402242208000L});
+    public static final BitSet FOLLOW_DIV_in_term1849 = new BitSet(new long[]{0x0400402242208000L});
+    public static final BitSet FOLLOW_MOD_in_term1854 = new BitSet(new long[]{0x0400402242208000L});
+    public static final BitSet FOLLOW_factor_in_term1859 = new BitSet(new long[]{0x0000000C00000802L});
+    public static final BitSet FOLLOW_NOT_in_factor1882 = new BitSet(new long[]{0x0400000042208000L});
+    public static final BitSet FOLLOW_PLUS_in_factor1887 = new BitSet(new long[]{0x0400000042208000L});
+    public static final BitSet FOLLOW_MINUS_in_factor1892 = new BitSet(new long[]{0x0400000042208000L});
+    public static final BitSet FOLLOW_atom_in_factor1897 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_atom1922 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INT_in_atom1936 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_TRUE_in_atom1953 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_FALSE_in_atom1959 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_funcall_in_atom1980 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LP_in_atom1994 = new BitSet(new long[]{0x0400402242208000L});
+    public static final BitSet FOLLOW_expr_in_atom1997 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_RP_in_atom1999 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_funcall2019 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_LP_in_funcall2021 = new BitSet(new long[]{0x0440412242208000L,0x00000000000000E8L});
+    public static final BitSet FOLLOW_expr_list_in_funcall2023 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_RP_in_funcall2026 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_all_expr_in_expr_list2059 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000001L});
+    public static final BitSet FOLLOW_64_in_expr_list2062 = new BitSet(new long[]{0x0400412242208000L,0x00000000000000E8L});
     public static final BitSet FOLLOW_all_expr_in_expr_list2065 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000001L});
-    public static final BitSet FOLLOW_64_in_expr_list2068 = new BitSet(new long[]{0x0400412242208000L,0x00000000000000E8L});
-    public static final BitSet FOLLOW_all_expr_in_expr_list2071 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000001L});
-    public static final BitSet FOLLOW_PITCH_in_notabasica2090 = new BitSet(new long[]{0x0000000002000012L});
-    public static final BitSet FOLLOW_ALT_in_notabasica2092 = new BitSet(new long[]{0x0000000002000002L});
-    public static final BitSet FOLLOW_INT_in_notabasica2095 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_PITCH_in_notabasica2084 = new BitSet(new long[]{0x0000000002000012L});
+    public static final BitSet FOLLOW_ALT_in_notabasica2086 = new BitSet(new long[]{0x0000000002000002L});
+    public static final BitSet FOLLOW_INT_in_notabasica2089 = new BitSet(new long[]{0x0000000000000002L});
 
 }

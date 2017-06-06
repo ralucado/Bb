@@ -1,6 +1,6 @@
 
 function test1(int i, int j){ //func type ID params LB
-	return i + j / i - j; //num_expr
+	return i + j; //num_expr
 }                            //RB
 
 function main(){
@@ -12,7 +12,8 @@ function main(){
 		if(i % 2 = 0) {
 			Cc.4;
 		}else{
-			(D 5, F 3, A 2).8;
+			l = test1(6,8);
+			(D 5, F 3, A 2).(l);
 		};
 	};
 

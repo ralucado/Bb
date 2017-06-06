@@ -322,7 +322,8 @@ public class Interp {
             	//System.out.format("aux is " + aux.toString()+"\n");
             	for(int i = 0; i < aux.size(); ++i){
             		Data d = aux.get(i);
-            		Double bpm = (double) speed;
+            		double bpm = new Double((double) speed);
+            		//d(bpm, "speed is");
             		music.add(new Pair<Data,Double>(d,bpm));
             	}
             	//System.out.format("music is "+music.toString()+"\n");
@@ -357,11 +358,10 @@ public class Interp {
             	
             //Speed
             case BbLexer.SPEED:
-            	speed = t.getChild(0).getIntValue();
+            	speed = new Integer(t.getChild(0).getIntValue());
             	return null;
             case BbLexer.INSTRUMENT:
             	instrument = t.getChild(0).getIntValue();
-
             	return null;
             	
             case BbLexer.VOL:
@@ -511,10 +511,8 @@ public class Interp {
         		}
         		break;
         	case BbLexer.MELODY:
-        		return null;
         	case BbLexer.POLIFONE:
-        		return null;
-        	
+        		return null;       	
         }
         setLineNumber(previous_line);
         return values;
@@ -541,7 +539,7 @@ public class Interp {
         assert(t.getChildCount() >= 2);
 		//System.out.format(" Speed:"+Integer.toString(speed));
 		///System.out.format(" Beat:"+Double.toString(beat));
-		double duration = 4.0/(double)t.getChild(1).getIntValue(); //number of beats for note
+		double duration = 8.0/(double) evaluateExpression(t.getChild(1)).getIntegerValue(); //number of beats for note
 		//System.out.format(" times:"+Double.toString(times));
 		if(t.getChildCount() > 2) duration += duration/2; //has a dot
 		//System.out.format(" Duration:"+Double.toString(duration));
@@ -819,7 +817,7 @@ public class Interp {
     	System.out.format("The result of the song is:\n");
     	for (int i = 0; i < music.size(); ++i){
     		assert music.get(i).getLeft().isPlayable();
-            System.out.println(music.get(i).getLeft().toString());
+            System.out.println(music.get(i).toString());
     	}
     	File f = new File("song.mid");
 		try{

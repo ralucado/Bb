@@ -8,8 +8,10 @@ function main(){
 	Instrument 2;
 	Vol 120;
 	Aux = Note C 3;
-	for (i = 24; i > 0; i = i - 2){
+	i = 24;
+	while(i > 0){
 		Aux(+i).8;
 		foo( Aux, i-1 );
+		i = i - 2;
 	};
 }

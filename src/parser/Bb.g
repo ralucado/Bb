@@ -118,7 +118,7 @@ for_stmt  :   FOR^ LP! assign ';'! expr ';'! assign RP! LB! block_instructions R
             ;
 
 // Return statement with an expression
-return_stmt :   RETURN^ (expr | musicnotation)?
+return_stmt :   RETURN^ all_expr?
         ;
 
 //A playable is  something that can be turned into sound
