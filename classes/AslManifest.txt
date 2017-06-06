@@ -1,3 +1,0 @@
-Main-Class: Asl.Asl
-Class-Path: /home/jordicf/Soft/ANTLR/java/antlr3.jar /usr/share/java/commons-cli.jar
-

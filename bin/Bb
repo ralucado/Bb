@@ -1,3 +1,0 @@
-#!/bin/sh
-
-exec java -enableassertions -jar /home/raluca/Documents/Uni/Q6/CL/Bb/bin/Bb.jar "$@"
